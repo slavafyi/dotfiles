@@ -1,0 +1,32 @@
+[color]
+  branch = auto
+  grep = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = auto
+
+[commit]
+  gpgsign = true
+
+[core]
+  editor = nvim
+  excludesfile = ~/.gitignore
+  ignorecase = false
+
+[init]
+  defaultBranch = main
+
+[pull]
+  ff = only
+
+[push]
+  default = simple
+
+[tag]
+  gpgsign = true
+
+[user]
+  name = Slava Maksimov
+  email = 204412653+slavafyi@users.noreply.github.com
+  signingkey = A3AD9EDD91BAA8ED

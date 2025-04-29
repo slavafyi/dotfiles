@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+install_gnome() {
+  print_in_purple "Installing gnome environment..."
+  sleep 2
+  local packages="$DIR/packages/gnome.txt"
+  sudo pacman -Sy --noconfirm --needed - < "$packages"
+  sudo systemctl enable gdm.service
+  print_in_green "Gnome environment installed successfully!"
+}
+
+setup_gnome() {
+  print_in_purple "Applying gnome desktop settings..."
+  sleep 2
+  sudo rm -f /etc/xdg/autostart/org.gnome.Software.desktop
+
+  gsettings set org.gnome.desktop.interface clock-show-date true
+  gsettings set org.gnome.desktop.interface clock-show-weekday true
+  gsettings set org.gnome.desktop.interface enable-animations false
+  gsettings set org.gnome.desktop.interface enable-hot-corners true
+  gsettings set org.gnome.desktop.interface show-battery-percentage true
+  gsettings set org.gnome.desktop.peripherals.touchpad tap-and-drag false
+
+  workspace_number=6
+
+  for i in $(seq 1 "$workspace_number"); do
+    gsettings set org.gnome.shell.keybindings switch-to-application-$i []
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$i "['<Super>$i']"
+    gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$i "['<Super><Shift>$i']"
+  done
+
+  gsettings set org.gnome.desktop.wm.preferences num-workspaces "$workspace_number"
+  gsettings set org.gnome.mutter dynamic-workspaces false
+
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 18
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 6
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 3500
+
+  gsettings set org.gnome.desktop.default-applications.terminal exec "ptyxis"
+  gsettings set org.gnome.nautilus.preferences default-folder-viewer "list-view"
+  gsettings set org.gnome.nautilus.preferences default-sort-order "name"
+  gsettings set org.gnome.nautilus.preferences show-hidden-files true
+  gsettings set org.gtk.gtk4.Settings.FileChooser sort-directories-first true
+
+  print_in_green "Gnome desktop settings applied successfully!"
+}
+
+setup_gnome_extensions() {
+  print_in_purple "Installing and configuring gnome extensions..."
+  sleep 2
+  yay -Sy --noconfirm --needed gnome-extensions-cli
+  gext install \
+    mullvadindicator@pobega.github.com \
+    space-bar@luchrioh \
+    tactile@lundal.io \
+    nightthemeswitcher@romainvigier.fr \
+    xremap@k0kubun.com
+  dconf load "/org/gnome/shell/extensions/" < "$DIR/misc/dconf/org-gnome-shell-extensions.conf"
+  print_in_green "Gnome extenstions installed and configured successfully!"
+}
+
+setup_default_apps() {
+  print_in_purple "Configuring default apps..."
+  sleep 2
+  local system_apps_dir="/usr/share/applications"
+  local local_apps_dir="$HOME/.local/share/applications"
+  local apps=("avahi-discover" "bssh" "bvnc" "qv4l2" "qvidcap")
+  mkdir -p "$local_apps_dir"
+  for app in "${apps[@]}"; do
+    local app_path="$system_apps_dir/$app.desktop"
+    if [ -f "$app_path" ]; then
+      cp "$app_path" "$local_apps_dir/"
+      echo "Hidden=true" >> "$local_apps_dir/$app.desktop"
+    fi
+  done
+  xdg-mime default firefox.desktop text/html
+  xdg-mime default org.gnome.Evince.desktop application/pdf
+  xdg-mime default org.gnome.loupe.desktop image/bmp
+  xdg-mime default org.gnome.loupe.desktop image/gif
+  xdg-mime default org.gnome.loupe.desktop image/jpg
+  xdg-mime default org.gnome.loupe.desktop image/jpeg
+  xdg-mime default org.gnome.loupe.desktop image/png
+  xdg-mime default org.gnome.loupe.desktop image/svg+xml
+  xdg-mime default org.gnome.loupe.desktop image/tiff
+  xdg-mime default transmission-gtk.desktop application/x-bittorrent
+  xdg-mime default transmission-gtk.desktop x-scheme-handler/magnet
+  print_in_green "Default apps configured successfully!"
+}
+
+desktop_env() {
+  install_gnome
+  setup_gnome
+  setup_gnome_extensions
+  setup_default_apps
+}
