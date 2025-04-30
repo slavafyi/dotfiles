@@ -1,0 +1,11 @@
+[tools]
+ruby = 'latest'
+node = 'lts'
+
+[settings]
+always_keep_download = true
+experimental = true
+
+[settings.status]
+show_env = true
+show_tools = true

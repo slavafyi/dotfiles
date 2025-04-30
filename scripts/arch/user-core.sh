@@ -25,6 +25,7 @@ setup_git() {
 setup_ssh() {
   print_in_purple "Configuring SSH settings..."
   sleep 2
+  mkdir -pv "$HOME/.ssh"
   stow \
     --verbose \
     --dir "$DIR/configs" \
@@ -69,6 +70,9 @@ setup_fish_shell() {
   else
     print_in_yellow "Default shell already set to Fish."
   fi
+  mkdir -pv "$HOME/.config/fish/conf.d"
+  mkdir -pv "$HOME/.config/fish/completions"
+  mkdir -pv "$HOME/.config/fish/functions"
   stow \
     --verbose \
     --dir "$DIR/configs" \

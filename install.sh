@@ -21,9 +21,10 @@ fi
 ask_for_sudo
 
 main() {
-  # system_base
+  system_base
   user_core
   desktop_env
+  dev_tools
 }
 
 if [ "${1-}" == "" ]; then

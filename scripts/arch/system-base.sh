@@ -53,5 +53,5 @@ system_base() {
   add_packages
   system_settings
   system_update
-  # firmware_update
+  firmware_update
 }

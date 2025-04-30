@@ -56,7 +56,7 @@ setup_gnome_extensions() {
     space-bar@luchrioh \
     tactile@lundal.io \
     nightthemeswitcher@romainvigier.fr \
-    xremap@k0kubun.com
+    firefox-profiles@arnaud.work
   dconf load "/org/gnome/shell/extensions/" < "$DIR/misc/dconf/org-gnome-shell-extensions.conf"
   print_in_green "Gnome extenstions installed and configured successfully!"
 }

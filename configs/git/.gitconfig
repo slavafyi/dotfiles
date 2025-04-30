@@ -30,3 +30,9 @@
   name = Slava Maksimov
   email = 204412653+slavafyi@users.noreply.github.com
   signingkey = A3AD9EDD91BAA8ED
+
+[includeIf "gitdir:~/dev/work/"]
+  path = ~/dev/work/.gitconfig
+
+[includeIf "gitdir:~/dev/nx/"]
+  path = ~/dev/nx/.gitconfig

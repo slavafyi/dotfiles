@@ -1,3 +1,3 @@
-#!/usr/bin/env fish
-
-echo Hello from fish $version
+if type -q mise
+  mise activate fish | source
+end
