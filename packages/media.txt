@@ -1,0 +1,6 @@
+ffmpeg
+libva
+libva-utils
+vdpauinfo
+vulkan-radeon
+vulkan-tools

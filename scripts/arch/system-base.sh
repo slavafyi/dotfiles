@@ -41,10 +41,12 @@ firmware_update() {
   print_in_purple "Updating firmware..."
   sleep 2
   sudo pacman -Sy --noconfirm --needed fwupd
+  set +e
   sudo fwupdmgr refresh --force
   sudo fwupdmgr get-devices
   sudo fwupdmgr get-updates
   sudo fwupdmgr update
+  set -e
   print_in_green "Firmware updated successfully!"
 }
 

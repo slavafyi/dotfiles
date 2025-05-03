@@ -89,9 +89,38 @@ setup_default_apps() {
   print_in_green "Default apps configured successfully!"
 }
 
+setup_hardware_support() {
+  print_in_purple "Enabling essential hardware support services..."
+  sleep 2
+  sudo pacman -S --noconfirm --needed \
+    fprintd libfprint power-profiles-daemon
+  sudo systemctl enable power-profiles-daemon.service
+  sudo systemctl start power-profiles-daemon.service
+  print_in_green "Essential hardware support services enabled!"
+}
+
+setup_media_support() {
+  print_in_purple "Installing media and graphics support packages..."
+  sleep 2
+  local packages="$DIR/packages/media.txt"
+  sudo pacman -Sy --noconfirm --needed - < "$packages"
+  print_in_green "Media and graphics support packages installed!"
+}
+
+setup_fonts() {
+  print_in_purple "Installing additional fonts..."
+  sleep 2
+  local packages="$DIR/packages/fonts.txt"
+  sudo pacman -Sy --noconfirm --needed - < "$packages"
+  print_in_green "Additional fonts installed successfully!"
+}
+
 desktop_env() {
   install_gnome
   setup_gnome
   setup_gnome_extensions
   setup_default_apps
+  setup_hardware_support
+  setup_media_support
+  setup_fonts
 }

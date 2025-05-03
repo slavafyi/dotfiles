@@ -25,6 +25,9 @@ setup_git() {
 setup_ssh() {
   print_in_purple "Configuring SSH settings..."
   sleep 2
+  sudo pacman -Sy --noconfirm --needed openssh
+  sudo systemctl enable sshd.service
+  sudo systemctl start sshd.service
   mkdir -pv "$HOME/.ssh"
   stow \
     --verbose \
