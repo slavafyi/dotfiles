@@ -43,11 +43,17 @@ setup_neovim() {
   print_in_green "Neovim configuration set up successfully!"
 }
 
+install_additional_tools() {
+  print_in_purple "Installing additional development tools..."
+  sleep 2
+  local packages="$DIR/packages/dev-tools.txt"
+  yay -Sy --noconfirm --needed - < "$packages"
+  print_in_green "Additional development tools installed successfully!"
+}
+
 dev_tools() {
   setup_mise
   setup_docker
   setup_neovim
-  # postgresql
-  # heroku cli
-  # gh
+  install_additional_tools
 }

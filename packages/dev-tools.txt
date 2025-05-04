@@ -1,0 +1,5 @@
+github-cli
+heroku-cli
+lazydocker
+lazygit
+postgresql
