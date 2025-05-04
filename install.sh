@@ -25,6 +25,7 @@ main() {
   user_core
   desktop_env
   dev_tools
+  optional_extras
 }
 
 if [ "${1-}" == "" ]; then

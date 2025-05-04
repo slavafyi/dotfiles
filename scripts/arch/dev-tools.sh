@@ -34,7 +34,7 @@ setup_neovim() {
     --target "$HOME" \
     --stow neovim
   local plugins_path="$HOME/.local/share/nvim/site/pack/plugins/start"
-	mkdir -pv "$plugins_path"
+  mkdir -pv "$plugins_path"
   if [ ! -d "$plugins_path/papercolor-theme-slim" ]; then
     cd "$plugins_path"
     git clone https://github.com/pappasam/papercolor-theme-slim
