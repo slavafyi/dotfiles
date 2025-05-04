@@ -34,6 +34,13 @@ setup_ssh() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow ssh
+  eval "$(ssh-agent -s)"
+  local ssh_key="$HOME/.ssh/id_ed25519"
+  if [ -f "$ssh_key" ]; then
+    ssh-add "$ssh_key"
+  else
+    print_in_yellow "SSH key not found. Skipping key adding."
+  fi
   print_in_green "SSH settings configured successfully!"
 }
 
