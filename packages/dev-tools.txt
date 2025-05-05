@@ -3,3 +3,5 @@ heroku-cli
 lazydocker
 lazygit
 postgresql
+shfmt
+stylua

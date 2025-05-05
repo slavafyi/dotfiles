@@ -50,6 +50,7 @@ vim.api.nvim_create_autocmd('OptionSet', {
 vim.cmd.packadd 'papercolor-theme-slim'
 vim.cmd.colorscheme 'PaperColorSlim'
 
+-- stylua: ignore start
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Escape' })
 vim.keymap.set({ 'n', 'i' }, '<Esc>', '<Cmd>noh<Cr><Esc>', { desc = 'Clear the search highlight' })
 vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', { desc = 'Copy to system clipboard' })
@@ -60,6 +61,7 @@ vim.keymap.set('x', '<Backspace>', '"_d', { desc = 'Delete selection without aff
 vim.keymap.set('v', 'J', ":m '>+1<Cr>gv=gv", { desc = 'Move selection down' })
 vim.keymap.set('v', 'K', ":m '>-2<Cr>gv=gv", { desc = 'Move selection up' })
 vim.keymap.set('n', '<Leader>p', '<Cmd>Ex<Cr>', { desc = 'Open Netrw' })
+-- stylua: ignore end
 
 vim.keymap.set('n', 'л', 'gk', { desc = 'Move cursor up' })
 vim.keymap.set('n', 'о', 'gj', { desc = 'Move cursor down' })

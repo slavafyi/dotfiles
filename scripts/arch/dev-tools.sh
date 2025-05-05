@@ -48,6 +48,11 @@ install_additional_tools() {
   sleep 2
   local packages="$DIR/packages/dev-tools.txt"
   yay -Sy --noconfirm --needed - < "$packages"
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow tools
   print_in_green "Additional development tools installed successfully!"
 }
 

@@ -1,2 +1,3 @@
 fmt:
-	shfmt -i 2 -s -ci -sr -ln bash -w .
+	shfmt --write .
+	stylua --allow-hidden --search-parent-directories --respect-ignores .
