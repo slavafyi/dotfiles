@@ -38,7 +38,7 @@ setup_gnome() {
   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 6
   gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 3500
 
-  gsettings set org.gnome.desktop.default-applications.terminal exec "ptyxis"
+  gsettings set org.gnome.desktop.default-applications.terminal exec "ghostty"
   gsettings set org.gnome.nautilus.preferences default-folder-viewer "list-view"
   gsettings set org.gnome.nautilus.preferences default-sort-order "name"
   gsettings set org.gnome.nautilus.preferences show-hidden-files true
@@ -115,6 +115,23 @@ setup_fonts() {
   print_in_green "Additional fonts installed successfully!"
 }
 
+setup_terminal() {
+  print_in_purple "Setting up ghostty configuration..."
+  sleep 2
+  sudo pacman -Sy --noconfirm --needed ghostty
+  local config_path="$HOME/.config/ghostty/config"
+  mkdir -pv "$HOME/.config/ghostty/themes"
+  if [ -f "$config_path" ]; then
+    rm -f "$config_path"
+  fi
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow ghostty
+  print_in_green "Ghostty configuration set up successfully!"
+}
+
 desktop_env() {
   install_gnome
   setup_gnome
@@ -123,4 +140,5 @@ desktop_env() {
   setup_hardware_support
   setup_media_support
   setup_fonts
+  setup_terminal
 }

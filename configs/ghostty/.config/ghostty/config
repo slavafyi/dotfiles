@@ -1,0 +1,7 @@
+theme = light:papercolor-light, dark:papercolor-dark
+window-width = 100
+window-height = 30
+window-padding-balance = true
+window-padding-color = extend
+window-padding-x = 4
+window-padding-y = 4

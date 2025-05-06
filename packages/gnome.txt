@@ -3,6 +3,7 @@ decibels
 epiphany
 evince
 gdm
+ghostty
 gnome-backgrounds
 gnome-calculator
 gnome-calendar
@@ -43,7 +44,6 @@ loupe
 malcontent
 nautilus
 orca
-ptyxis
 rygel
 simple-scan
 snapshot
