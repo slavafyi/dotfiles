@@ -43,6 +43,30 @@ setup_neovim() {
   print_in_green "Neovim configuration set up successfully!"
 }
 
+setup_tmux() {
+  print_in_purple "Setting up tmux configuration..."
+  sleep 2
+  sudo pacman -Sy --noconfirm --needed tmux
+  local tmp_plugins_path="$HOME/.tmux/plugins"
+  mkdir -pv "$tmp_plugins_path"
+  if [ ! -d "$tmp_plugins_path/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm "$tmp_plugins_path/tpm"
+  fi
+  local tms_temp_path="/tmp/tms"
+  mkdir -pv "$HOME/.config/tms"
+  if [ ! -d "$tms_temp_path" ]; then
+    git clone https://github.com/jrmoulton/tmux-sessionizer.git "$tms_temp_path"
+    cargo install --path "$tms_temp_path" --force
+    echo "COMPLETE=fish tms | source" > "$HOME/.config/fish/completions/tms.fish"
+  fi
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow tmux
+  print_in_green "Tmux configuration set up successfully!"
+}
+
 install_additional_tools() {
   print_in_purple "Installing additional development tools..."
   sleep 2
@@ -60,5 +84,6 @@ dev_tools() {
   setup_mise
   setup_docker
   setup_neovim
+  setup_tmux
   install_additional_tools
 }

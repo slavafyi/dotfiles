@@ -1,6 +1,7 @@
 [tools]
+node = { version = 'lts', postinstall = 'corepack enable' }
 ruby = 'latest'
-node = 'lts'
+rust = 'latest'
 
 [settings]
 always_keep_download = true
