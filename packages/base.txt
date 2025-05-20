@@ -1,8 +1,10 @@
 curl
 findutils
+fzf
 git
 gnupg
 grep
 make
+ripgrep
 sed
 stow

@@ -4,3 +4,7 @@ if path is -r -- "$HOME/.local/share/pnpm"
 end
 
 set --export VDPAU_DRIVER radeonsi
+
+if status --is-interactive; and type -q nvim
+  set --export EDITOR nvim
+end
