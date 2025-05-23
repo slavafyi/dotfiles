@@ -110,5 +110,5 @@ user_core() {
   setup_pacman
   setup_yay
   setup_fish_shell
-  setup_starship_prompt
+  # setup_starship_prompt
 }
