@@ -1,10 +1,17 @@
 if path is -r -- "$HOME/.local/share/pnpm"
-  set --export PNPM_HOME "$HOME/.local/share/pnpm"
-  set --export PATH "$PNPM_HOME" "$PATH"
+  set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+  fish_add_path "$PNPM_HOME"
 end
 
-set --export VDPAU_DRIVER radeonsi
+if status --is-interactive
+  set -gx VDPAU_DRIVER radeonsi
 
-if status --is-interactive; and type -q nvim
-  set --export EDITOR nvim
+  if type -q nvim
+    set -gx EDITOR nvim
+  else
+    set -gx EDITOR vim
+  end
+
+  set -gx VISUAL "$EDITOR"
+  set -gx GIT_EDITOR "$EDITOR"
 end
