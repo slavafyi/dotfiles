@@ -28,7 +28,7 @@ add_packages() {
   # Common
   sudo dnf --assumeyes install \
     cmake containerd curl docker-cli fd-find gcc gettext git \
-    glibc-gconv-extra gpg make ninja-build ripgrep stow unzip xclip
+    glibc-gconv-extra gpg make ninja-build ripgrep stow unzip wl-clipboard
 
   # Media Codecs
   sudo dnf swap --assumeyes --allowerasing ffmpeg-free ffmpeg # Switch to full FFMPEG.

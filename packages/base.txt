@@ -8,3 +8,4 @@ make
 ripgrep
 sed
 stow
+wl-clipboard
