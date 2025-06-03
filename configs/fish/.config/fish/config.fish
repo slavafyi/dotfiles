@@ -8,10 +8,10 @@ bind -M insert -m default j,k cancel repaint-mode
 
 if status --is-interactive
   if type -q starship
-    starship init fish | source
+    starship init fish | source 2>/dev/null
   end
 
   if type -q mise
-    mise activate fish | source
+    mise activate fish | source 2>/dev/null
   end
 end
