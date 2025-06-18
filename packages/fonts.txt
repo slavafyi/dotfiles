@@ -7,3 +7,4 @@ ttf-fira-mono
 ttf-liberation
 ttf-opensans
 ttf-roboto
+ttf-sazanami
