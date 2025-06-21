@@ -52,11 +52,14 @@ setup_gnome_extensions() {
   sleep 2
   yay -Sy --noconfirm --needed gnome-extensions-cli
   gext install \
+    battery-usage-wattmeter@halfmexicanhalfamazing.gmail.com \
+    firefox-profiles@arnaud.work \
+    fw-fanctrl-revived@willow.sh \
     mullvadindicator@pobega.github.com \
-    space-bar@luchrioh \
-    tactile@lundal.io \
     nightthemeswitcher@romainvigier.fr \
-    firefox-profiles@arnaud.work
+    space-bar@luchrioh \
+    tactile@lundal.io
+
   dconf load "/org/gnome/shell/extensions/" < "$DIR/misc/dconf/org-gnome-shell-extensions.conf"
   print_in_green "Gnome extenstions installed and configured successfully!"
 }
