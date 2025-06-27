@@ -21,16 +21,11 @@ setup_gnome() {
   gsettings set org.gnome.desktop.interface show-battery-percentage true
   gsettings set org.gnome.desktop.peripherals.touchpad tap-and-drag false
 
-  workspace_number=6
-
-  for i in $(seq 1 "$workspace_number"); do
-    gsettings set org.gnome.shell.keybindings switch-to-application-$i []
-    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$i "['<Super>$i']"
-    gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$i "['<Super><Shift>$i']"
-  done
-
-  gsettings set org.gnome.desktop.wm.preferences num-workspaces "$workspace_number"
+  gsettings set org.gnome.desktop.wm.keybindings switch-group []
+  gsettings set org.gnome.desktop.wm.keybindings switch-group-backward []
+  gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
   gsettings set org.gnome.mutter dynamic-workspaces false
+  gsettings set org.gnome.shell.keybindings focus-active-notification []
 
   gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
   gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
