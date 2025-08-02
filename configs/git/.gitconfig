@@ -28,11 +28,8 @@
 
 [user]
   name = Slava Maksimov
-  email = 204412653+slavafyi@users.noreply.github.com
-  signingkey = A3AD9EDD91BAA8ED
-
-[includeIf "gitdir:~/dev/work/"]
-  path = ~/dev/work/.gitconfig
+  email = 28267670+slavafyi@users.noreply.github.com
+  signingkey = 93BF899239FE0933
 
 [includeIf "gitdir:~/dev/nx/"]
   path = ~/dev/nx/.gitconfig
