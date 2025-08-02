@@ -1,11 +1,15 @@
 [tools]
+crystal = 'latest'
 node = { version = 'lts', postinstall = 'corepack enable' }
+python = 'latest'
 ruby = 'latest'
 rust = 'latest'
+uv = 'latest'
 
 [settings]
 always_keep_download = true
 experimental = true
+python.uv_venv_auto = true
 
 [settings.status]
 show_env = true
