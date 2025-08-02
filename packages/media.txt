@@ -2,5 +2,8 @@ ffmpeg
 libva
 libva-utils
 vdpauinfo
+vlc
+vlc-plugins-extra
+vlc-plugins-ffmpeg
 vulkan-radeon
 vulkan-tools
