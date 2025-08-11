@@ -1,5 +1,5 @@
 [tools]
-crystal = 'latest'
+go = 'latest'
 node = { version = 'lts', postinstall = 'corepack enable' }
 python = 'latest'
 ruby = 'latest'
