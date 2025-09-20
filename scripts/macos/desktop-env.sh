@@ -3,8 +3,8 @@
 setup_preferences() {
   print_in_purple "Applying system preferences..."
   sleep 2
-  defaults write -g InitialKeyRepeat -int 10
-  defaults write -g KeyRepeat -int 1
+  defaults write -g InitialKeyRepeat -int 15
+  defaults write -g KeyRepeat -int 2
   defaults write com.apple.dock "autohide" -bool "true"
   defaults write com.apple.dock "show-recents" -bool "false"
   defaults write com.apple.screencapture "disable-shadow" -bool "true"
@@ -63,9 +63,26 @@ setup_terminal() {
   print_in_green "Ghostty configuration set up successfully!"
 }
 
+setup_keymaps() {
+  print_in_purple "Setting up keymaps configuration..."
+  sleep 2
+  brew install --cask karabiner-elements
+  local config_path="$HOME/.config/karabiner/karabiner.json"
+  if [ -f "$config_path" ]; then
+    rm -f "$config_path"
+  fi
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow keymaps
+  print_in_green "Keymaps configuration set up successfully!"
+}
+
 desktop_env() {
   setup_preferences
   install_apps
   setup_fonts
   setup_terminal
+  setup_keymaps
 }
