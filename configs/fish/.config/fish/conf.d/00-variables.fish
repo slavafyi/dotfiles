@@ -9,6 +9,7 @@ end
 
 if status --is-interactive
   set -gx GPG_TTY (tty)
+  set -gx MISE_FISH_AUTO_ACTIVATE 0
   set -gx VDPAU_DRIVER radeonsi
 
   if type -q nvim
