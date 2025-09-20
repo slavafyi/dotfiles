@@ -3,12 +3,14 @@
 setup_preferences() {
   print_in_purple "Applying system preferences..."
   sleep 2
+  local screenshot_folder="$HOME/Pictures/Screenshots"
+  mkdir -pv "$screenshot_folder"
   defaults write -g InitialKeyRepeat -int 15
   defaults write -g KeyRepeat -int 2
   defaults write com.apple.dock "autohide" -bool "true"
   defaults write com.apple.dock "show-recents" -bool "false"
   defaults write com.apple.screencapture "disable-shadow" -bool "true"
-  defaults write com.apple.screencapture "location" -string "$HOME/Pictures/Screenshots"
+  defaults write com.apple.screencapture "location" -string "$screenshot_folder"
   defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
   defaults write com.apple.finder "AppleShowAllFiles" -bool "true"
   defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
@@ -18,6 +20,7 @@ setup_preferences() {
   defaults write com.apple.menuextra.clock "FlashDateSeparators" -bool "true"
   defaults write com.apple.HIToolbox AppleFnUsageType -int "2"
   defaults write NSGlobalDomain AppleKeyboardUIMode -int "2"
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool "false"
   defaults write kCFPreferencesAnyApplication TSMLanguageIndicatorEnabled -bool "false"
   defaults write com.apple.TextEdit "RichText" -bool "false"
   defaults write com.apple.CloudSubscriptionFeatures.optIn "545129924" -bool "false"
