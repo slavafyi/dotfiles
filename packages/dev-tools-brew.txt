@@ -1,0 +1,7 @@
+brew "gh"
+brew "heroku"
+brew "lazydocker"
+brew "lazygit"
+brew "postgresql@17"
+brew "shfmt"
+brew "stylua"

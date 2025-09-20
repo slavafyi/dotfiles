@@ -1,0 +1,7 @@
+brew "btop"
+brew "fastfetch"
+brew "ffmpeg"
+cask "firefox"
+cask "localsend"
+cask "mullvad-vpn"
+cask "vlc"
