@@ -28,7 +28,6 @@ setup_easyeffects() {
   print_in_green "EasyEffects installed successfully!"
 }
 
-
 optional_extras() {
   setup_obsidian
   setup_easyeffects

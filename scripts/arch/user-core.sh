@@ -91,18 +91,6 @@ setup_fish_shell() {
   print_in_green "Fish shell installed successfully!"
 }
 
-setup_starship_prompt() {
-  print_in_purple "Installing starhip prompt..."
-  sleep 2
-  sudo pacman -Sy --noconfirm --needed starship
-  stow \
-    --verbose \
-    --dir "$DIR/configs" \
-    --target "$HOME" \
-    --stow starship
-  print_in_green "Starship prompt installed successfully!"
-}
-
 user_core() {
   setup_stow
   setup_git
@@ -110,5 +98,4 @@ user_core() {
   setup_pacman
   setup_yay
   setup_fish_shell
-  # setup_starship_prompt
 }
