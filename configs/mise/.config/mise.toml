@@ -1,4 +1,6 @@
 [tools]
+erlang = 'latest'
+gleam = 'latest'
 go = 'latest'
 node = { version = 'lts', postinstall = 'corepack enable' }
 python = 'latest'
