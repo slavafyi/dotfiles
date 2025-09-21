@@ -17,6 +17,8 @@ setup_preferences() {
   defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
   defaults write com.apple.finder _FXSortFoldersFirst -bool true
   defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
+  defaults write com.apple.finder NewWindowTarget -string PfHm
+  defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
   defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
   defaults write com.apple.menuextra.clock FlashDateSeparators -bool true
   defaults write com.apple.HIToolbox AppleFnUsageType -int 2
