@@ -17,7 +17,7 @@ setup_mise() {
 setup_docker() {
   print_in_purple "Setting up docker configuration..."
   sleep 2
-  brew install --cask docker-desktop
+  brew install --cask orbstack
   print_in_green "Docker configuration set up successfully!"
 }
 
