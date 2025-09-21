@@ -27,6 +27,13 @@ setup_preferences() {
   defaults write com.apple.CloudSubscriptionFeatures.optIn 545129924 -bool false
   defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
   defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+  defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" -bool true
+  defaults write com.apple.controlcenter "NSStatusItem Visible Sound" -bool false
+  defaults write com.apple.airplay showInMenuBarIfPresent -bool false
+  defaults write com.apple.airplay "NSStatusItem Visible NowPlaying" -bool false
+  defaults write com.apple.menuextra.clock ShowDate -int 0
+  defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
+  defaults -currentHost write com.apple.Spotlight MenuItemHidden -int 1
   chflags nohidden "$HOME/Library"
   killall Dock
   killall SystemUIServer
