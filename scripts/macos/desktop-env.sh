@@ -54,11 +54,7 @@ setup_terminal() {
   print_in_purple "Setting up ghostty configuration..."
   sleep 2
   brew install --cask ghostty
-  local config_path="$HOME/.config/ghostty/config"
   mkdir -pv "$HOME/.config/ghostty/themes"
-  if [ -f "$config_path" ]; then
-    rm -f "$config_path"
-  fi
   stow \
     --verbose \
     --dir "$DIR/configs" \
@@ -71,10 +67,6 @@ setup_keymaps() {
   print_in_purple "Setting up keymaps configuration..."
   sleep 2
   brew install --cask karabiner-elements
-  local config_path="$HOME/.config/karabiner/karabiner.json"
-  if [ -f "$config_path" ]; then
-    rm -f "$config_path"
-  fi
   stow \
     --verbose \
     --dir "$DIR/configs" \
