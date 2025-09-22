@@ -1,6 +1,7 @@
+brew "cmake"
 brew "coreutils"
 brew "curl"
-brew "cmake"
+brew "eza"
 brew "fd"
 brew "findutils"
 brew "fzf"
