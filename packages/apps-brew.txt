@@ -11,3 +11,6 @@ cask "soundsource"
 cask "spotify"
 cask "telegram"
 cask "vlc"
+mas "Bitwarden", id: 1352778147
+mas "Outline client", id: 1356178125
+mas "v2RayTun", id: 6476628951
