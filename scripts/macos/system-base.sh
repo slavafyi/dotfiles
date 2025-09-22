@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install_brew() {
+add_homebrew() {
   print_in_purple "Installing Homebrew..."
   sleep 2
   if ! [ -x "$(command -v brew)" ]; then
@@ -16,6 +16,9 @@ add_packages() {
   sleep 2
   local packages="$DIR/packages/base-brew.txt"
   brew bundle --file="$packages"
+  if ! xcode-select --print-path &> /dev/null; then
+    xcode-select --install &> /dev/null
+  fi
   print_in_green "Base packages installed successfully!"
 }
 
@@ -27,7 +30,7 @@ system_update() {
 }
 
 system_base() {
-  install_brew
-  add_packages
   system_update
+  add_homebrew
+  add_packages
 }
