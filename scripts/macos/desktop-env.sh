@@ -15,10 +15,10 @@ setup_preferences() {
   defaults write -g AppleShowScrollBars -string Automatic
   defaults write -g InitialKeyRepeat -int 15
   defaults write -g KeyRepeat -int 2
-  defaults write -g NSPreferredWebServices -dict-add NSWebServicesProviderWebSearch "{
+  defaults write -g NSPreferredWebServices -dict-add NSWebServicesProviderWebSearch '{
     NSDefaultDisplayName = DuckDuckGo;
-    NSProviderIdentifier = \"com.duckduckgo\";
-  }"
+    NSProviderIdentifier = "com.duckduckgo";
+  }'
   defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
   defaults write NSGlobalDomain AppleShowAllExtensions -bool true
