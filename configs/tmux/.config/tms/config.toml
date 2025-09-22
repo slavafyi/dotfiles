@@ -1,5 +1,0 @@
-default_session = "$HOME/dev/personal"
-
-[[search_dirs]]
-path = "$HOME/dev"
-depth = 10

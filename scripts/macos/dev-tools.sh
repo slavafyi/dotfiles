@@ -47,6 +47,19 @@ setup_tmux() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow tmux
+  mkdir \
+    -p \
+    "$HOME/.local/bin" \
+    "$HOME/.local/share/man/man1"
+  curl \
+    -Lo \
+    "$HOME/.local/share/man/man1/git-mux.1" \
+    "https://raw.githubusercontent.com/benelan/git-mux/stable/bin/man/man1/git-mux.1"
+  curl \
+    -Lo \
+    "$HOME/.local/bin/git-mux" \
+    "https://raw.githubusercontent.com/benelan/git-mux/stable/bin/git-mux"
+  chmod +x "$HOME/.local/bin/git-mux"
   print_in_green "Tmux configuration set up successfully!"
 }
 
