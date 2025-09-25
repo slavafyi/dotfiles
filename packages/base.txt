@@ -1,4 +1,6 @@
+bat
 curl
+duf
 eza
 findutils
 fzf
@@ -6,7 +8,9 @@ git
 gnupg
 grep
 make
+ncdu
 ripgrep
 sed
 stow
+tldr
 wl-clipboard
