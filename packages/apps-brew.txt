@@ -1,6 +1,8 @@
 brew "btop"
 brew "fastfetch"
 brew "ffmpeg"
+cask "figma"
+cask "figma-agent"
 cask "firefox"
 cask "google-chrome"
 cask "localsend"
