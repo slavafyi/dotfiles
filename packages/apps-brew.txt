@@ -12,6 +12,7 @@ cask "slack"
 cask "soundsource"
 cask "spotify"
 cask "telegram"
+cask "transmission"
 cask "vlc"
 mas "Bitwarden", id: 1352778147
 mas "Outline client", id: 1356178125
