@@ -5,7 +5,7 @@ function seek -d "Search for a pattern in current dir and open it in default \$E
       echo "Example: seek myFunction"
       return 1
     end
-    set --local result (rg -n . | fzf --query "$input")
+    set --local result (rg -n. . | fzf --query "$input")
     if test -n "$result"
       set --local parts (string split ":" "$result")
       set --local file "$parts[1]"
