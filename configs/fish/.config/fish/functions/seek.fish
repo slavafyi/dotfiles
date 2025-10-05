@@ -1,6 +1,11 @@
-function seek
+function seek -d "Search for a pattern in current dir and open it in default \$EDITOR" -a input
   if type -q rg; and type -q fzf; and set -q EDITOR
-    set --local result (rg -n . | fzf --query "$argv")
+    if test -z "$input"
+      echo "Usage: seek <search-term>"
+      echo "Example: seek myFunction"
+      return 1
+    end
+    set --local result (rg -n . | fzf --query "$input")
     if test -n "$result"
       set --local parts (string split ":" "$result")
       set --local file "$parts[1]"
