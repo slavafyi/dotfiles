@@ -20,6 +20,7 @@ if status --is-interactive
     --color=info:-1,prompt:-1,pointer:-1
     --color=marker:-1,spinner:-1,header:-1
   "
+  set -gx GIT_MUX_PROJECTS "$HOME/obsidian/personal"
   set -gx GIT_MUX_PROJECT_PARENTS "$HOME/dev/personal $HOME/dev/nx"
   set -gx GPG_TTY (tty)
   set -gx MISE_FISH_AUTO_ACTIVATE 0
