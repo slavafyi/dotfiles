@@ -1,3 +1,6 @@
+font-family = "IosevkaTerm NFM"
+font-feature = "-calt, -liga, -dlig"
+font-size = 16
 theme = light:papercolor-light, dark:papercolor-dark
 window-width = 100
 window-height = 30
