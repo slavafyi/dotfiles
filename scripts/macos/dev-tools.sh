@@ -76,10 +76,23 @@ install_additional_tools() {
   print_in_green "Additional development tools installed successfully!"
 }
 
+install_bin_tools() {
+  print_in_purple "Installing bin tools..."
+  sleep 2
+  mkdir -pv "$HOME/.local/bin"
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow bin
+  print_in_green "Bin tools installed successfully!"
+}
+
 dev_tools() {
   setup_mise
   setup_docker
   setup_neovim
   setup_tmux
+  install_bin_tools
   install_additional_tools
 }
