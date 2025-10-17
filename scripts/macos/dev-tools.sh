@@ -18,6 +18,7 @@ setup_docker() {
   print_in_purple "Setting up docker configuration..."
   sleep 2
   brew install --cask orbstack
+  docker completion fish > "$HOME/.config/fish/completions/docker.fish"
   print_in_green "Docker configuration set up successfully!"
 }
 
