@@ -1,4 +1,10 @@
+set -gx VIRTUAL_ENV_DISABLE_PROMPT true
+
 function fish_prompt
+  if set -q VIRTUAL_ENV
+    printf '(venv) '
+  end
+
   set_color yellow
   printf '%s' $USER
   set_color normal
