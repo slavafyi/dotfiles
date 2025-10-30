@@ -1,4 +1,25 @@
+[env]
+_.file = { path = '{{ env.HOME }}/.secrets.yaml', redact = true }
+
+[settings]
+always_keep_download = true
+experimental = true
+
+[settings.age]
+key_file = '{{ env.XDG_CONFIG_HOME }}/sops/age/keys.txt'
+
+[settings.python]
+uv_venv_auto = true
+
+[settings.sops]
+age_key_file = '{{ env.XDG_CONFIG_HOME }}/sops/age/keys.txt'
+
+[settings.status]
+show_env = true
+show_tools = true
+
 [tools]
+age = 'latest'
 deno = 'latest'
 erlang = 'latest'
 gleam = 'latest'
@@ -7,13 +28,5 @@ node = { version = 'lts', postinstall = 'corepack enable' }
 python = 'latest'
 ruby = 'latest'
 rust = 'latest'
+sops = 'latest'
 uv = 'latest'
-
-[settings]
-always_keep_download = true
-experimental = true
-python.uv_venv_auto = true
-
-[settings.status]
-show_env = true
-show_tools = true
