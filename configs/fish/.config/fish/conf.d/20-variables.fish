@@ -4,8 +4,8 @@ if test -e "/opt/homebrew/bin/brew"
   fish_add_path "/opt/homebrew/bin"
 end
 
-if path is -r -- "$HOME/.local/share/pnpm"
-  set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+if path is -r -- "$XDG_DATA_HOME/pnpm"
+  set -gx PNPM_HOME "$XDG_DATA_HOME/pnpm"
   fish_add_path "$PNPM_HOME"
 end
 

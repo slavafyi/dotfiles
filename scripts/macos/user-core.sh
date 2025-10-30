@@ -72,9 +72,7 @@ setup_fish_shell() {
   else
     print_in_yellow "Default shell already set to Fish."
   fi
-  mkdir -pv "$HOME/.config/fish/conf.d"
   mkdir -pv "$HOME/.config/fish/completions"
-  mkdir -pv "$HOME/.config/fish/functions"
   stow \
     --verbose \
     --dir "$DIR/configs" \
