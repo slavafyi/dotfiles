@@ -13,4 +13,4 @@ if ! tmux has -t "$session" 2>/dev/null; then
     attach -t "$session"
 fi
 
-exec tmux attach -t "$session" >/dev/null
+exec tmux attach -t "$session"

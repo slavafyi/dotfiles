@@ -4,11 +4,11 @@ set -euo pipefail
 
 PORT="${1:-8000}"
 
-if hash python3 2>/dev/null; then
+if command -v python3 &>/dev/null; then
   exec python3 -m http.server "$PORT"
 fi
 
-if hash ruby 2>/dev/null; then
+if command -v ruby &>/dev/null; then
   exec ruby -run -e httpd . -p "$PORT"
 fi
 
