@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+input="$1"
+
+if [ -z "$input" ]; then
+  echo "Usage: capitalize <string>"
+  echo "Example: ls | xargs -I {} bash -c 'mv \"{}\" \$(capitalize \"{}\")'"
+  echo "Example: ls -d PATTERN | xargs -I {} bash -c 'mv \"{}\" \$(capitalize \"{}\")'"
+  exit 1
+fi
+
+first_char=$(echo "${input:0:1}" | tr '[:lower:]' '[:upper:]')
+rest_of_string=$(echo "${input:1}" | tr '[:upper:]' '[:lower:]')
+
+echo "$first_char$rest_of_string"

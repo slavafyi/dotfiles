@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+input="$1"
+
+if ! command -v rg &>/dev/null || ! command -v fzf &>/dev/null || [ -z "$EDITOR" ]; then
+  echo "Missing required tools: rg, fzf or \$EDITOR"
+  exit 1
+fi
+
+if [ -z "$input" ]; then
+  echo "Usage: seek <search-term>"
+  echo "Example: seek myFunction"
+  exit 1
+fi
+
+result=$(rg -n. . | fzf --query "$input")
+
+if [ -n "$result" ]; then
+  file=$(echo "$result" | cut -d':' -f1)
+  line=$(echo "$result" | cut -d':' -f2)
+
+  echo "Seeking file: $file at line $line"
+  "$EDITOR" "$file" "+$line"
+else
+  echo "No results found"
+fi
