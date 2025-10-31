@@ -8,15 +8,15 @@ bind -M insert ctrl-n down-or-search
 bind -M insert -m default j,k cancel repaint-mode
 
 if status --is-interactive
-  if type -q starship
-    starship init fish | source 2>/dev/null
-  end
+    if type -q starship
+        starship init fish | source 2>/dev/null
+    end
 
-  if type -q mise
-    mise activate fish | source 2>/dev/null
-  end
+    if type -q mise
+        mise activate fish | source 2>/dev/null
+    end
 
-  if type -q orb
-    source ~/.orbstack/shell/init2.fish 2>/dev/null || :
-  end
+    if type -q orb
+        source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+    end
 end
