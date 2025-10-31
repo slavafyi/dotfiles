@@ -28,8 +28,10 @@ if status --is-interactive
 
     if type -q nvim
         set -gx EDITOR nvim
-    else
+    else if type -q vim
         set -gx EDITOR vim
+    else
+        set -gx EDITOR vi
     end
 
     set -gx VISUAL "$EDITOR"
