@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 session="$(tmux display -p '_popup_#S')"
 
 if ! tmux has -t "$session" 2>/dev/null; then

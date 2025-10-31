@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 input="$1"
 
 if ! command -v rg &>/dev/null || ! command -v fzf &>/dev/null || [ -z "$EDITOR" ]; then
