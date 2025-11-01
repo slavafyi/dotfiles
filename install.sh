@@ -14,7 +14,7 @@ if [[ $OS != "unknown" ]]; then
   print_in_blue "Detected operating system: $OS"
   source "$DIR/scripts/$OS/main.sh"
 else
-  print_in_red " Operating system not recognized, aborting"
+  print_in_red "✗ Operating system not recognized, aborting"
   exit 1
 fi
 
