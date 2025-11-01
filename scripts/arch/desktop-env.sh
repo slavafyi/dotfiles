@@ -3,7 +3,7 @@
 install_gnome() {
   print_in_purple "Installing Gnome..."
   sleep 2
-  local packages="$DIR/packages/gnome.txt"
+  local packages="$DIR/packages/$OS/gnome.txt"
   sudo pacman -Sy --noconfirm --needed - < "$packages"
   sudo systemctl enable gdm.service
   print_in_green "✓ Gnome installed successfully!"
@@ -99,7 +99,7 @@ enable_hardware_support() {
 install_media_packages() {
   print_in_purple "Installing media and graphics support packages..."
   sleep 2
-  local packages="$DIR/packages/media.txt"
+  local packages="$DIR/packages/$OS/media.txt"
   sudo pacman -Sy --noconfirm --needed - < "$packages"
   print_in_green "✓ Media and graphics support packages installed!"
 }
@@ -107,7 +107,7 @@ install_media_packages() {
 install_fonts() {
   print_in_purple "Installing fonts..."
   sleep 2
-  local packages="$DIR/packages/fonts.txt"
+  local packages="$DIR/packages/$OS/fonts.txt"
   sudo pacman -Sy --noconfirm --needed - < "$packages"
   print_in_green "✓ Fonts installed successfully!"
 }

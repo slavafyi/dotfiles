@@ -70,7 +70,7 @@ setup_tmux() {
 install_dev_tools() {
   print_in_purple "Installing dev tools..."
   sleep 2
-  local packages="$DIR/packages/dev-tools.txt"
+  local packages="$DIR/packages/$OS/dev-tools.txt"
   yay -Sy --noconfirm --needed - < "$packages"
   stow \
     --verbose \

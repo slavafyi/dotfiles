@@ -1,19 +1,23 @@
 brew "btop"
 brew "fastfetch"
 brew "ffmpeg"
+
+cask "cyberduck"
 cask "figma"
 cask "figma-agent"
 cask "firefox"
 cask "google-chrome"
 cask "localsend"
-cask "mullvad-vpn"
+cask "netnewswire"
 cask "nextcloud-vfs"
+cask "rectangle"
 cask "slack"
 cask "soundsource"
 cask "spotify"
 cask "telegram"
 cask "transmission"
 cask "vlc"
+cask "zed"
+
 mas "Bitwarden", id: 1352778147
-mas "Outline client", id: 1356178125
 mas "v2RayTun", id: 6476628951

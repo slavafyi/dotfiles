@@ -1,3 +1,4 @@
+brew "codex"
 brew "gh"
 brew "heroku"
 brew "lazydocker"

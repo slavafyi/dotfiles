@@ -14,7 +14,7 @@ configure_homebrew() {
 install_base_packages() {
   print_in_purple "Installing base packages..."
   sleep 2
-  local packages="$DIR/packages/base-brew.txt"
+  local packages="$DIR/packages/$OS/base.txt"
   brew bundle --file="$packages"
   if ! xcode-select --print-path &> /dev/null; then
     print_in_purple "Installing xcode..."
