@@ -21,7 +21,7 @@ install:
 
 update:
 	@echo "⚡ Updating system and packages..."
-	@./install.sh system_base
+	@./install.sh system_base || true
 	@echo "✓ Update complete!"
 
 fmt:
