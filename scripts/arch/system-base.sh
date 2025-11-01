@@ -34,6 +34,9 @@ update_system() {
   print_in_purple "Updating the system..."
   sleep 2
   sudo pacman -Syu --noconfirm
+  if command -v yay &> /dev/null; then
+    yay -Syu --noconfirm
+  fi
   print_in_green "✓ System updated successfully!"
 }
 

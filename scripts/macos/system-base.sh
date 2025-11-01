@@ -27,6 +27,9 @@ update_system() {
   print_in_purple "Updating the system..."
   sleep 2
   brew update --quiet > /dev/null 2>&1
+  brew upgrade
+  brew upgrade --cask --greedy
+  brew cleanup
   print_in_green "✓ System updated successfully!"
 }
 
