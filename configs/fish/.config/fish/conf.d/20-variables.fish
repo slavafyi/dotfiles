@@ -1,4 +1,10 @@
+set os (uname)
+
 fish_add_path "$HOME/.local/bin"
+
+if test "$os" = Darwin
+    set -gx TMPDIR (getconf DARWIN_USER_TEMP_DIR)
+end
 
 if test -e /opt/homebrew/bin/brew
     fish_add_path /opt/homebrew/bin
