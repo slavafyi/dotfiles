@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 
 setup_stow() {
-  print_in_purple "Setting up stow configuration..."
+  print_in_purple "Setting up Stow..."
   sleep 2
   stow \
     --verbose \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow stow
-  print_in_green "Stow configuration set up successfully!"
+  print_in_green "✓ Stow set up successfully!"
 }
 
 setup_git() {
-  print_in_purple "Configuring Git settings..."
+  print_in_purple "Setting up Git..."
   sleep 2
   stow \
     --verbose \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow git
-  print_in_green "Git settings configured successfully!"
+  print_in_green "✓ Git set up successfully!"
 }
 
 setup_ssh() {
-  print_in_purple "Configuring SSH settings..."
+  print_in_purple "Setting up SSH..."
   sleep 2
   sudo pacman -Sy --noconfirm --needed openssh
   sudo systemctl enable sshd.service
@@ -39,22 +39,22 @@ setup_ssh() {
   if [ -f "$ssh_key" ]; then
     ssh-add "$ssh_key"
   else
-    print_in_yellow "SSH key not found. Skipping key adding."
+    print_in_yellow "⚠ SSH key not found, skipping"
   fi
-  print_in_green "SSH settings configured successfully!"
+  print_in_green "✓ SSH set up successfully!"
 }
 
-setup_pacman() {
-  print_in_purple "Configuring pacman settings..."
+configure_pacman() {
+  print_in_purple "Configuring Pacman..."
   sleep 2
   local conf="/etc/pacman.conf"
   if ! grep -q "^Color$" "$conf"; then
     sudo sed -i "s/^#Color$/Color/" "$conf"
   fi
-  print_in_green "Pacman settings configured successfully!"
+  print_in_green "✓ Pacman configured successfully!"
 }
 
-setup_yay() {
+install_yay() {
   print_in_purple "Installing Yay AUR helper..."
   sleep 2
   local directory="/tmp/yay-bin"
@@ -67,18 +67,18 @@ setup_yay() {
   cd "$directory"
   makepkg -si --noconfirm
   cd "$DIR"
-  print_in_green "Yay AUR helper installed successfully!"
+  print_in_green "✓ Yay AUR helper installed successfully!"
 }
 
-setup_fish_shell() {
-  print_in_purple "Installing Fish shell..."
+setup_fish() {
+  print_in_purple "Setting up Fish..."
   sleep 2
   sudo pacman -Sy --noconfirm --needed fish
   if ! grep -q "fish" <(getent passwd "$(whoami)"); then
     print_in_purple "Changing login shell to Fish..."
     chsh -s /usr/bin/fish
   else
-    print_in_yellow "Default shell already set to Fish."
+    print_in_yellow "⚠ Default shell already set to Fish, skipping"
   fi
   mkdir -pv "$HOME/.config/fish/completions"
   stow \
@@ -86,14 +86,14 @@ setup_fish_shell() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow fish
-  print_in_green "Fish shell installed successfully!"
+  print_in_green "✓ Fish set up successfully!"
 }
 
 user_core() {
   setup_stow
   setup_git
   setup_ssh
-  setup_pacman
-  setup_yay
-  setup_fish_shell
+  configure_pacman
+  install_yay
+  setup_fish
 }

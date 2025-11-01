@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 setup_preferences() {
-  print_in_purple "Applying system preferences..."
+  print_in_purple "Setting up system preferences..."
   sleep 2
   local screenshot_folder="$HOME/Pictures/Screenshots"
   mkdir -pv "$screenshot_folder"
@@ -54,7 +54,7 @@ setup_preferences() {
   killall Dock
   killall Finder
   killall SystemUIServer
-  print_in_green "System preferences applied successfully!"
+  print_in_green "✓ Set up system preferences successfully!"
 }
 
 install_apps() {
@@ -62,19 +62,19 @@ install_apps() {
   sleep 2
   local packages="$DIR/packages/apps-brew.txt"
   brew bundle --file="$packages"
-  print_in_green "Apps installed successfully!"
+  print_in_green "✓ Apps installed successfully!"
 }
 
-setup_fonts() {
-  print_in_purple "Installing additional fonts..."
+install_fonts() {
+  print_in_purple "Installing fonts..."
   sleep 2
   local packages="$DIR/packages/fonts-brew.txt"
   brew bundle --file="$packages"
-  print_in_green "Additional fonts installed successfully!"
+  print_in_green "✓ Fonts installed successfully!"
 }
 
 setup_terminal() {
-  print_in_purple "Setting up ghostty configuration..."
+  print_in_purple "Setting up Ghostty..."
   sleep 2
   brew install --cask ghostty
   mkdir -pv "$HOME/.config/ghostty/themes"
@@ -83,11 +83,11 @@ setup_terminal() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow ghostty
-  print_in_green "Ghostty configuration set up successfully!"
+  print_in_green "✓ Ghostty set up successfully!"
 }
 
-setup_keymaps() {
-  print_in_purple "Setting up keymaps configuration..."
+setup_keyboard() {
+  print_in_purple "Setting up keyboard..."
   sleep 2
   brew install --cask karabiner-elements
   stow \
@@ -95,13 +95,13 @@ setup_keymaps() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow keymaps
-  print_in_green "Keymaps configuration set up successfully!"
+  print_in_green "✓ Keyboard set up successfully!"
 }
 
 desktop_env() {
   setup_preferences
   install_apps
-  setup_fonts
+  install_fonts
   setup_terminal
-  setup_keymaps
+  setup_keyboard
 }

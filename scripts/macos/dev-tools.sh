@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 setup_mise() {
-  print_in_purple "Setting up mise configuration..."
+  print_in_purple "Setting up Mise..."
   sleep 2
   brew install mise usage libyaml
   stow \
@@ -11,19 +11,19 @@ setup_mise() {
     --stow mise
   mise completion fish > "$HOME/.config/fish/completions/mise.fish"
   mise install
-  print_in_green "Mise configuration set up successfully!"
+  print_in_green "✓ Mise set up successfully!"
 }
 
 setup_docker() {
-  print_in_purple "Setting up docker configuration..."
+  print_in_purple "Setting up Docker..."
   sleep 2
   brew install --cask orbstack
   docker completion fish > "$HOME/.config/fish/completions/docker.fish"
-  print_in_green "Docker configuration set up successfully!"
+  print_in_green "✓ Docker set up successfully!"
 }
 
 setup_neovim() {
-  print_in_purple "Setting up neovim configuration..."
+  print_in_purple "Setting up Neovim..."
   sleep 2
   brew install neovim
   stow \
@@ -31,16 +31,17 @@ setup_neovim() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow neovim
-  print_in_green "Neovim configuration set up successfully!"
+  print_in_green "✓ Neovim set up successfully!"
 }
 
 setup_tmux() {
-  print_in_purple "Setting up tmux configuration..."
+  print_in_purple "Setting up Tmux..."
   sleep 2
   brew install tmux
   local tmp_plugins_path="$HOME/.tmux/plugins"
   mkdir -pv "$tmp_plugins_path"
   if [ ! -d "$tmp_plugins_path/tpm" ]; then
+    print_in_purple "Adding Tmux Plugin Manager..."
     git clone https://github.com/tmux-plugins/tpm "$tmp_plugins_path/tpm"
   fi
   stow \
@@ -61,11 +62,11 @@ setup_tmux() {
     "$HOME/.local/bin/git-mux" \
     "https://raw.githubusercontent.com/benelan/git-mux/stable/bin/git-mux"
   chmod +x "$HOME/.local/bin/git-mux"
-  print_in_green "Tmux configuration set up successfully!"
+  print_in_green "✓ Tmux set up successfully!"
 }
 
-install_additional_tools() {
-  print_in_purple "Installing additional development tools..."
+install_dev_tools() {
+  print_in_purple "Installing dev tools..."
   sleep 2
   local packages="$DIR/packages/dev-tools-brew.txt"
   brew bundle --file="$packages"
@@ -74,11 +75,11 @@ install_additional_tools() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow tools
-  print_in_green "Additional development tools installed successfully!"
+  print_in_green "✓ Dev tools installed successfully!"
 }
 
-install_bin_tools() {
-  print_in_purple "Installing bin tools..."
+install_bin_scripts() {
+  print_in_purple "Installing bin scripts..."
   sleep 2
   mkdir -pv "$HOME/.local/bin"
   stow \
@@ -86,7 +87,7 @@ install_bin_tools() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow bin
-  print_in_green "Bin tools installed successfully!"
+  print_in_green "✓ Bin scripts installed successfully!"
 }
 
 dev_tools() {
@@ -94,6 +95,6 @@ dev_tools() {
   setup_docker
   setup_neovim
   setup_tmux
-  install_bin_tools
-  install_additional_tools
+  install_bin_scripts
+  install_dev_tools
 }

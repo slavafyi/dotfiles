@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 install_gnome() {
-  print_in_purple "Installing gnome environment..."
+  print_in_purple "Installing Gnome..."
   sleep 2
   local packages="$DIR/packages/gnome.txt"
   sudo pacman -Sy --noconfirm --needed - < "$packages"
   sudo systemctl enable gdm.service
-  print_in_green "Gnome environment installed successfully!"
+  print_in_green "✓ Gnome installed successfully!"
 }
 
-setup_gnome() {
-  print_in_purple "Applying gnome desktop settings..."
+configure_gnome() {
+  print_in_purple "Configuring Gnome..."
   sleep 2
   sudo rm -f /etc/xdg/autostart/org.gnome.Software.desktop
 
@@ -39,11 +39,11 @@ setup_gnome() {
   gsettings set org.gnome.nautilus.preferences show-hidden-files true
   gsettings set org.gtk.gtk4.Settings.FileChooser sort-directories-first true
 
-  print_in_green "Gnome desktop settings applied successfully!"
+  print_in_green "✓ Gnome configured successfully!"
 }
 
 setup_gnome_extensions() {
-  print_in_purple "Installing and configuring gnome extensions..."
+  print_in_purple "Setting up gnome extensions..."
   sleep 2
   yay -Sy --noconfirm --needed gnome-extensions-cli
   gext install \
@@ -54,12 +54,11 @@ setup_gnome_extensions() {
     nightthemeswitcher@romainvigier.fr \
     space-bar@luchrioh \
     tactile@lundal.io
-
   dconf load "/org/gnome/shell/extensions/" < "$DIR/misc/dconf/org-gnome-shell-extensions.conf"
-  print_in_green "Gnome extenstions installed and configured successfully!"
+  print_in_green "✓ Gnome extenstions set up successfully!"
 }
 
-setup_default_apps() {
+configure_default_apps() {
   print_in_purple "Configuring default apps..."
   sleep 2
   local system_apps_dir="/usr/share/applications"
@@ -84,37 +83,37 @@ setup_default_apps() {
   xdg-mime default org.gnome.loupe.desktop image/tiff
   xdg-mime default transmission-gtk.desktop application/x-bittorrent
   xdg-mime default transmission-gtk.desktop x-scheme-handler/magnet
-  print_in_green "Default apps configured successfully!"
+  print_in_green "✓ Default apps configured successfully!"
 }
 
-setup_hardware_support() {
+enable_hardware_support() {
   print_in_purple "Enabling essential hardware support services..."
   sleep 2
   sudo pacman -S --noconfirm --needed \
     fprintd libfprint power-profiles-daemon
   sudo systemctl enable power-profiles-daemon.service
   sudo systemctl start power-profiles-daemon.service
-  print_in_green "Essential hardware support services enabled!"
+  print_in_green "✓ Essential hardware support services enabled!"
 }
 
-setup_media_support() {
+install_media_packages() {
   print_in_purple "Installing media and graphics support packages..."
   sleep 2
   local packages="$DIR/packages/media.txt"
   sudo pacman -Sy --noconfirm --needed - < "$packages"
-  print_in_green "Media and graphics support packages installed!"
+  print_in_green "✓ Media and graphics support packages installed!"
 }
 
-setup_fonts() {
-  print_in_purple "Installing additional fonts..."
+install_fonts() {
+  print_in_purple "Installing fonts..."
   sleep 2
   local packages="$DIR/packages/fonts.txt"
   sudo pacman -Sy --noconfirm --needed - < "$packages"
-  print_in_green "Additional fonts installed successfully!"
+  print_in_green "✓ Fonts installed successfully!"
 }
 
 setup_terminal() {
-  print_in_purple "Setting up ghostty configuration..."
+  print_in_purple "Setting up Ghostty..."
   sleep 2
   sudo pacman -Sy --noconfirm --needed ghostty
   local config_path="$HOME/.config/ghostty/config"
@@ -127,16 +126,16 @@ setup_terminal() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow ghostty
-  print_in_green "Ghostty configuration set up successfully!"
+  print_in_green "✓ Ghostty set up successfully!"
 }
 
 desktop_env() {
   install_gnome
-  setup_gnome
+  configure_gnome
   setup_gnome_extensions
-  setup_default_apps
-  setup_hardware_support
-  setup_media_support
-  setup_fonts
+  configure_default_apps
+  enable_hardware_support
+  install_media_packages
+  install_fonts
   setup_terminal
 }

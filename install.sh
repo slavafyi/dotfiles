@@ -11,10 +11,10 @@ print_in_blue "Current dotfiles directory: $DIR"
 os="$(detect_os)"
 
 if [[ $os != "unknown" ]]; then
-  print_in_green "Detected Operating System: $os"
+  print_in_blue "Detected operating system: $os"
   source "$DIR/scripts/$os/main.sh"
 else
-  print_in_yellow "Operating System not recognized. No setup script will be sourced."
+  print_in_red " Operating system not recognized, aborting"
   exit 1
 fi
 
