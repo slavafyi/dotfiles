@@ -80,7 +80,7 @@ setup_fish() {
   else
     print_in_yellow "⚠ Default shell already set to Fish, skipping"
   fi
-  mkdir -pv "$HOME/.config/fish/completions"
+  mkdir -pv "$XDG_CONFIG_HOME/fish/completions"
   stow \
     --verbose \
     --dir "$DIR/configs" \

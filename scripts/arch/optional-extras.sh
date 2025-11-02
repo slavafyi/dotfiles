@@ -19,7 +19,7 @@ setup_easyeffects() {
   print_in_purple "Setting up EasyEffects..."
   sleep 2
   sudo pacman -Sy --noconfirm --needed easyeffects lsp-plugins calf
-  local base_config="$HOME/.config/easyeffects"
+  local base_config="$XDG_CONFIG_HOME/easyeffects"
   local config_dir="$base_config/output"
   local irs_dir="$base_config/irs"
   mkdir -p "$config_dir" "$irs_dir"

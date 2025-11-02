@@ -77,7 +77,7 @@ setup_terminal() {
   print_in_purple "Setting up Ghostty..."
   sleep 2
   brew install --cask ghostty
-  mkdir -pv "$HOME/.config/ghostty/themes"
+  mkdir -pv "$XDG_CONFIG_HOME/ghostty/themes"
   stow \
     --verbose \
     --dir "$DIR/configs" \

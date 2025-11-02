@@ -62,7 +62,7 @@ configure_default_apps() {
   print_in_purple "Configuring default apps..."
   sleep 2
   local system_apps_dir="/usr/share/applications"
-  local local_apps_dir="$HOME/.local/share/applications"
+  local local_apps_dir="$XDG_DATA_HOME/applications"
   local apps=("avahi-discover" "bssh" "bvnc" "qv4l2" "qvidcap")
   mkdir -p "$local_apps_dir"
   for app in "${apps[@]}"; do
@@ -116,8 +116,8 @@ setup_terminal() {
   print_in_purple "Setting up Ghostty..."
   sleep 2
   sudo pacman -Sy --noconfirm --needed ghostty
-  local config_path="$HOME/.config/ghostty/config"
-  mkdir -pv "$HOME/.config/ghostty/themes"
+  local config_path="$XDG_CONFIG_HOME/ghostty/config"
+  mkdir -pv "$XDG_CONFIG_HOME/ghostty/themes"
   if [ -f "$config_path" ]; then
     rm -f "$config_path"
   fi

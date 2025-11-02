@@ -9,7 +9,7 @@ setup_mise() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow mise
-  mise completion fish > "$HOME/.config/fish/completions/mise.fish"
+  mise completion fish > "$XDG_CONFIG_HOME/fish/completions/mise.fish"
   mise install
   print_in_green "✓ Mise set up successfully!"
 }
@@ -54,10 +54,10 @@ setup_tmux() {
   mkdir \
     -p \
     "$HOME/.local/bin" \
-    "$HOME/.local/share/man/man1"
+    "$XDG_DATA_HOME/man/man1"
   curl \
     -Lo \
-    "$HOME/.local/share/man/man1/git-mux.1" \
+    "$XDG_DATA_HOME/man/man1/git-mux.1" \
     "https://raw.githubusercontent.com/benelan/git-mux/stable/bin/man/man1/git-mux.1"
   curl \
     -Lo \
