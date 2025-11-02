@@ -28,7 +28,7 @@
 
 [user]
   name = Slava M.
-  email = 28267670+slavafyi@users.noreply.github.com
+  email = mailer@noreply.slava.fyi
   signingkey = 93BF899239FE0933
 
 [includeIf "gitdir:~/dev/nx/"]
