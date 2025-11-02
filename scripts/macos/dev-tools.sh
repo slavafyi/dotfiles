@@ -19,6 +19,7 @@ setup_docker() {
   sleep 2
   brew install --cask orbstack
   docker completion fish > "$HOME/.config/fish/completions/docker.fish"
+  orb completion fish > "$HOME/.config/fish/completions/orb.fish"
   print_in_green "✓ Docker set up successfully!"
 }
 
