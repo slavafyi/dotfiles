@@ -16,16 +16,31 @@ if path is -r -- "$XDG_DATA_HOME/pnpm"
 end
 
 if status --is-interactive
+    set -gx FZF_ALT_C_OPTS "
+      --preview 'tree {} | head -200'
+      --walker-skip .git,node_modules
+    "
+    set -gx FZF_CTRL_R_OPTS "
+      --bind 'ctrl-/:change-preview-window(down:10:wrap|)'
+      --bind 'ctrl-y:execute-silent(echo -n {2..} | copy)+abort'
+      --preview 'echo {}'
+    "
+    set -gx FZF_CTRL_T_OPTS "
+      --walker-skip .git,node_modules
+    "
     set -gx FZF_DEFAULT_OPTS "
-    --height=~75%
-    --extended
-    --cycle
-    --border=rounded
-    --color=fg:-1,bg:-1,hl:-1
-    --color=fg+:-1,bg+:-1,hl+:-1
-    --color=info:-1,prompt:-1,pointer:-1
-    --color=marker:-1,spinner:-1,header:-1
-  "
+      --style=full
+      --bind 'ctrl-/:change-preview-window(right|down|)'
+      --color=fg:-1,bg:-1,hl:-1
+      --color=fg+:-1,bg+:-1,gutter:8,hl+:3
+      --color=info:-1,prompt:15,pointer:15
+      --color=marker:15,spinner:15,header:-1
+      --cycle
+      --height=~75%
+      --preview 'cat -n {}'
+      --preview-window hidden
+      --reverse
+    "
     set -gx GIT_MUX_PROJECTS "$HOME/obsidian/personal"
     set -gx GIT_MUX_PROJECT_PARENTS "$HOME/dev/personal $HOME/dev/nx"
     set -gx GPG_TTY (tty)

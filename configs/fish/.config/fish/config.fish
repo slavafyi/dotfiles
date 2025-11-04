@@ -16,6 +16,10 @@ if status --is-interactive
         mise activate fish | source 2>/dev/null
     end
 
+    if type -q fzf
+        fzf --fish | source 2>/dev/null
+    end
+
     if type -q orb
         source ~/.orbstack/shell/init2.fish 2>/dev/null || :
     end
