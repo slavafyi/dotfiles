@@ -1,4 +1,3 @@
-brew "bat"
 brew "cmake"
 brew "coreutils"
 brew "curl"

@@ -89,6 +89,18 @@ setup_fish() {
   print_in_green "✓ Fish set up successfully!"
 }
 
+setup_bat() {
+  print_in_purple "Setting up Bat..."
+  sleep 2
+  sudo pacman -Sy --noconfirm --needed bat
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow bat
+  print_in_green "✓ Bat set up successfully!"
+}
+
 user_core() {
   setup_stow
   setup_git
@@ -96,4 +108,5 @@ user_core() {
   configure_pacman
   install_yay
   setup_fish
+  setup_bat
 }

@@ -81,10 +81,23 @@ setup_fish() {
   print_in_green "✓ Fish set up successfully!"
 }
 
+setup_bat() {
+  print_in_purple "Setting up Bat..."
+  sleep 2
+  brew install bat
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow bat
+  print_in_green "✓ Bat set up successfully!"
+}
+
 user_core() {
   setup_stow
   setup_git
   setup_ssh
   setup_gpg
   setup_fish
+  setup_bat
 }
