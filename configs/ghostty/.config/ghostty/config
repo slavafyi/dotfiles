@@ -1,6 +1,7 @@
 font-family = "IosevkaTerm NFM"
 font-feature = "-calt, -liga, -dlig"
 font-size = 16
+shell-integration-features = ssh-terminfo, ssh-env
 theme = light:papercolor-light, dark:papercolor-dark
 window-width = 100
 window-height = 30
