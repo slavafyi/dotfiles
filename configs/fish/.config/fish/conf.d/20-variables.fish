@@ -1,6 +1,6 @@
 set os (uname)
 
-fish_add_path "$HOME/.local/bin"
+fish_add_path "$XDG_BIN_HOME"
 
 if test "$os" = Darwin
     set -gx TMPDIR (getconf DARWIN_USER_TEMP_DIR)
