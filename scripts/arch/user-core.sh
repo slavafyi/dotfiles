@@ -57,6 +57,7 @@ configure_pacman() {
 install_yay() {
   print_in_purple "Installing Yay AUR helper..."
   sleep 2
+  sudo pacman -Sy --noconfirm --needed fakeroot
   local directory="/tmp/yay-bin"
   if [ -d "$directory" ]; then
     rm -rf "$directory"
