@@ -8,6 +8,9 @@ end
 
 if test -e /opt/homebrew/bin/brew
     fish_add_path /opt/homebrew/bin
+    if type -q ggrep
+        fish_add_path /opt/homebrew/opt/grep/libexec/gnubin
+    end
 end
 
 if path is -r -- "$XDG_DATA_HOME/pnpm"
