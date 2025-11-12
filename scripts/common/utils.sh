@@ -50,8 +50,8 @@ detect_os() {
   elif [[ -f /etc/os-release ]]; then
     . /etc/os-release
     case "$ID" in
-      ubuntu)
-        os="ubuntu"
+      debian|ubuntu)
+        os="debian"
         ;;
       fedora)
         os="fedora"

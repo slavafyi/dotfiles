@@ -11,6 +11,7 @@ setup_mise() {
     --stow mise
   mise completion fish > "$XDG_CONFIG_HOME/fish/completions/mise.fish"
   mise install
+  mise ls
   print_in_green "✓ Mise set up successfully!"
 }
 

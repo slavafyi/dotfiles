@@ -39,7 +39,7 @@ misc/        Additional files (dconf dumps, etc)
 - Arch Linux
 - macOS
 - Fedora (coming soon)
-- Ubuntu (coming soon)
+- Debian/Ubuntu
 
 ## License
 
