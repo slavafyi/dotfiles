@@ -23,6 +23,7 @@ setup_mise() {
     mkdir -p "$XDG_CONFIG_HOME/fish/completions"
     mise completion fish > "$XDG_CONFIG_HOME/fish/completions/mise.fish"
   fi
+  mise trust --all --yes
   mise install
   mise ls
   print_in_green "✓ Mise set up successfully!"
@@ -193,7 +194,7 @@ install_dev_tools() {
   xargs -r -a "$packages" sudo apt install -yy
   if command -v cargo > /dev/null 2>&1; then
     print_in_purple "Installing cargo packages..."
-    cargo install stylua
+    cargo binstall stylua usage-cli
   fi
   stow \
     --verbose \
