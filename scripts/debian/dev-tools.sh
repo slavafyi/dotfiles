@@ -5,9 +5,12 @@ setup_mise() {
   sleep 2
   if ! command -v mise > /dev/null 2>&1; then
     local arch=$(dpkg --print-architecture)
+    local key_path=/etc/apt/keyrings/mise-archive-keyring.gpg
+    local url=https://mise.jdx.dev
     sudo install -dm 755 /etc/apt/keyrings
-    wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
-    echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=$arch] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
+    wget -qO - "$url/gpg-key.pub" | gpg --dearmor | sudo tee $key_path 1> /dev/null
+    echo "deb [signed-by=$key_path arch=$arch] $url/deb stable main" |
+      sudo tee /etc/apt/sources.list.d/mise.list
   fi
   sudo apt update
   sudo apt install -yy mise autoconf libncurses-dev libssl-dev libyaml-dev zlib1g-dev
@@ -42,13 +45,15 @@ setup_docker() {
     echo "deb [arch=$arch signed-by=$key_path] $url $VERSION_CODENAME stable" |
       sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt update
-    sudo apt install -yy docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo apt install -yy docker-ce docker-ce-cli containerd.io \
+      docker-buildx-plugin docker-compose-plugin
     sudo systemctl enable docker.service
     sudo systemctl start docker.service
     sudo usermod -aG docker $USER
   else
     sudo apt update
-    sudo apt install -yy docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo apt install -yy docker-ce docker-ce-cli containerd.io \
+      docker-buildx-plugin docker-compose-plugin
   fi
   print_in_green "✓ Docker set up successfully!"
 }
