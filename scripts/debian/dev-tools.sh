@@ -148,6 +148,32 @@ setup_heroku() {
   print_in_green "✓ Heroku CLI set up successfully!"
 }
 
+setup_lazygit() {
+  print_in_purple "Setting up Lazygit..."
+  sleep 2
+  local arch=$(dpkg --print-architecture)
+  local bin_arch="x86_64"
+  if [[ $arch == "arm64" ]]; then
+    bin_arch="arm64"
+  fi
+  if apt-cache show lazygit > /dev/null 2>&1; then
+    sudo apt-get update
+    sudo apt-get install -y lazygit
+  else
+    local version=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
+    local temp_path=$(mktemp -d)
+    local tarball="lazygit_${version}_Linux_${bin_arch}.tar.gz"
+    local url="https://github.com/jesseduffield/lazygit/releases/download/v${version}/${tarball}"
+    cd "$temp_path"
+    curl -LO "$url"
+    tar xf "$tarball" lazygit
+    sudo install lazygit -D -t /usr/local/bin/
+    cd "$DIR"
+    rm -rf "$temp_path"
+  fi
+  print_in_green "✓ Lazygit set up successfully (manual install)!"
+}
+
 setup_lazydocker() {
   print_in_purple "Setting up Lazydocker..."
   sleep 2

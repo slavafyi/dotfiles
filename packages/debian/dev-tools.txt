@@ -1,3 +1,2 @@
-lazygit
 postgresql
 shfmt
