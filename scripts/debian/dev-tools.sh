@@ -162,16 +162,15 @@ setup_lazygit() {
   else
     local version=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
     local temp_path=$(mktemp -d)
-    local tarball="lazygit_${version}_Linux_${bin_arch}.tar.gz"
+    local tarball="lazygit_${version}_linux_${bin_arch}.tar.gz"
     local url="https://github.com/jesseduffield/lazygit/releases/download/v${version}/${tarball}"
     cd "$temp_path"
     curl -LO "$url"
     tar xf "$tarball" lazygit
     sudo install lazygit -D -t /usr/local/bin/
     cd "$DIR"
-    rm -rf "$temp_path"
   fi
-  print_in_green "✓ Lazygit set up successfully (manual install)!"
+  print_in_green "✓ Lazygit set up successfully!"
 }
 
 setup_lazydocker() {
