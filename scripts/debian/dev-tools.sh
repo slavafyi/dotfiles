@@ -192,6 +192,10 @@ install_dev_tools() {
   local packages="$DIR/packages/$OS/dev-tools.txt"
   sudo apt update
   xargs -r -a "$packages" sudo apt install -yy
+  if command -v cargo > /dev/null 2>&1; then
+    print_in_purple "Installing cargo packages..."
+    cargo install stylua
+  fi
   stow \
     --verbose \
     --dir "$DIR/configs" \
