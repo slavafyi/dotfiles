@@ -1,7 +1,3 @@
-if type -q bat
-    alias cat="bat"
-end
-
 if type -q eza
     alias ls="eza -1 --group-directories-first"
     alias la="eza -1a --group-directories-first"

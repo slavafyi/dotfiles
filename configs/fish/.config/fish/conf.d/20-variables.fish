@@ -40,12 +40,10 @@ if status --is-interactive
       --color=marker:15,spinner:15,header:-1
       --cycle
       --height=~75%
-      --preview 'cat -n {}'
+      --preview 'bat -n {}'
       --preview-window hidden
       --reverse
     "
-    set -gx GIT_MUX_PROJECTS "$HOME/obsidian/personal"
-    set -gx GIT_MUX_PROJECT_PARENTS "$HOME/dev/personal $HOME/dev/nx"
     set -gx GPG_TTY (tty)
     set -gx MISE_FISH_AUTO_ACTIVATE 0
     set -gx VDPAU_DRIVER radeonsi
@@ -60,4 +58,11 @@ if status --is-interactive
 
     set -gx VISUAL "$EDITOR"
     set -gx GIT_EDITOR "$EDITOR"
+
+    if set -q REMOTE_DEV; and test $REMOTE_DEV -eq 1
+        set -gx GIT_MUX_PROJECTS "$HOME/dev"
+    else
+        set -gx GIT_MUX_PROJECTS "$HOME/obsidian/personal"
+        set -gx GIT_MUX_PROJECT_PARENTS "$HOME/dev/personal $HOME/dev/nx $HOME/dev/open-source"
+    end
 end

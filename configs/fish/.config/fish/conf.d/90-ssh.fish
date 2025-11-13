@@ -8,7 +8,7 @@ function __tmux_update_ssh_auth_sock --on-event fish_preexec
     end
 end
 
-if set -q SSH_FORWARDING_ENABLED; and test $SSH_FORWARDING_ENABLED -eq 1
+if set -q FORWARDING; and test $FORWARDING -eq 1
     exit 0
 end
 
