@@ -40,7 +40,7 @@ setup_docker() {
     sudo apt update
     sudo apt install -yy ca-certificates curl
     sudo install -m 0755 -d /etc/apt/keyrings
-    sudo curl -fsSL "$url/gpg" -o $key_path
+    sudo curl -fsSL "$url/gpg" | sudo gpg --dearmor -o $key_path
     sudo chmod a+r $key_path
     echo "deb [arch=$arch signed-by=$key_path] $url $VERSION_CODENAME stable" |
       sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
