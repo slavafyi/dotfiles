@@ -114,12 +114,16 @@ setup_github() {
   sleep 2
   if ! command -v gh > /dev/null 2>&1; then
     local temp_path="$(mktemp)"
+    local arch=$(dpkg --print-architecture)
+    local key_path=/etc/apt/keyrings/githubcli-archive-keyring.gpg
+    local url=https://cli.github.com/packages
     sudo install -dm 755 /etc/apt/keyrings
-    wget -nv -O$temp_path https://cli.github.com/packages/githubcli-archive-keyring.gpg
-    cat $temp_path | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null
-    sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+    wget -nv -O$temp_path "$url/githubcli-archive-keyring.gpg"
+    cat $temp_path | sudo tee $key_path > /dev/null
+    sudo chmod go+r $key_path
     sudo mkdir -p -m 755 /etc/apt/sources.list.d
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+    echo "deb [arch=$arch signed-by=$key_path] $url stable main" |
+      sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
   fi
   sudo apt update
   sudo apt install -yy gh
