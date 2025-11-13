@@ -3,7 +3,6 @@ curl
 duf
 eza
 findutils
-fzf
 git
 gnupg
 grep

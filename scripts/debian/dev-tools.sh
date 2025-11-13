@@ -186,6 +186,16 @@ setup_lazydocker() {
   print_in_green "✓ Lazydocker set up successfully!"
 }
 
+setup_fzf() {
+  print_in_purple "Setting up Fzf..."
+  sleep 2
+  local temp_path="$(mktemp -d)"
+  git clone --depth 1 https://github.com/junegunn/fzf.git $temp_path
+  "$temp_path/install" --bin
+  sudo cp -f "$temp_path/bin/fzf" /usr/local/bin/fzf
+  print_in_green "✓ Fzf set up successfully!"
+}
+
 install_dev_tools() {
   print_in_purple "Installing dev tools..."
   sleep 2
@@ -225,6 +235,7 @@ dev_tools() {
   setup_heroku
   setup_lazygit
   setup_lazydocker
+  setup_fzf
   install_bin_scripts
   install_dev_tools
 }
