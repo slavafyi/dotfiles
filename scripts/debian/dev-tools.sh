@@ -29,19 +29,18 @@ setup_docker() {
   print_in_purple "Setting up Docker..."
   sleep 2
   if ! command -v docker > /dev/null 2>&1; then
+    local arch=$(dpkg --print-architecture)
+    local key_path=/etc/apt/keyrings/docker.gpg
+    local url=https://download.docker.com/linux/debian
+    source /etc/os-release
     sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-doc podman-docker containerd runc | cut -f1)
     sudo apt update
     sudo apt install -yy ca-certificates curl
     sudo install -m 0755 -d /etc/apt/keyrings
-    sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-    sudo chmod a+r /etc/apt/keyrings/docker.asc
-    sudo tee /etc/apt/sources.list.d/docker.sources << EOF
-    Types: deb
-    URIs: https://download.docker.com/linux/debian
-    Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
-    Components: stable
-    Signed-By: /etc/apt/keyrings/docker.asc
-EOF
+    sudo curl -fsSL "$url/gpg" -o $key_path
+    sudo chmod a+r $key_path
+    echo "deb [arch=$arch signed-by=$key_path] $url $VERSION_CODENAME stable" |
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt update
     sudo apt install -yy docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     sudo systemctl enable docker.service
