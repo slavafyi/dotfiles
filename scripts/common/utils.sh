@@ -28,6 +28,10 @@ print_in_purple() {
 }
 
 ask_for_sudo() {
+  if sudo -n true 2> /dev/null; then
+    return 0
+  fi
+
   sudo -v &> /dev/null
 
   # Update existing `sudo` time stamp until this script has finished.
@@ -50,7 +54,7 @@ detect_os() {
   elif [[ -f /etc/os-release ]]; then
     . /etc/os-release
     case "$ID" in
-      debian|ubuntu)
+      debian | ubuntu)
         os="debian"
         ;;
       fedora)
