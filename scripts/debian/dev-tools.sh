@@ -71,8 +71,8 @@ setup_neovim() {
   else
     cd $temp_path
     rm -rf build/
+    git fetch origin
     git checkout stable
-    git pull
   fi
   make CMAKE_BUILD_TYPE=Release
   sudo make install
@@ -223,6 +223,7 @@ dev_tools() {
   setup_tmux
   setup_github
   setup_heroku
+  setup_lazygit
   setup_lazydocker
   install_bin_scripts
   install_dev_tools
