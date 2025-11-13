@@ -5,7 +5,7 @@ install_fonts() {
   sleep 2
   local packages="$DIR/packages/$OS/fonts.txt"
   local fonts_dir="$XDG_DATA_HOME/fonts"
-  local temp_path=/tmp/
+  local temp_path=$(mktemp -d)
   sudo apt install -yy fontconfig
   mkdir -p "$fonts_dir"
   while IFS= read -r font || [[ -n $font ]]; do

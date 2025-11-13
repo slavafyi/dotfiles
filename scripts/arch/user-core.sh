@@ -58,14 +58,9 @@ install_yay() {
   print_in_purple "Installing Yay AUR helper..."
   sleep 2
   sudo pacman -Sy --noconfirm --needed fakeroot
-  local directory="/tmp/yay-bin"
-  if [ -d "$directory" ]; then
-    rm -rf "$directory"
-  else
-    mkdir -p "$directory"
-  fi
-  git clone https://aur.archlinux.org/yay-bin.git "$directory"
-  cd "$directory"
+  local temp_path=$(mktemp -d)
+  git clone https://aur.archlinux.org/yay-bin.git "$temp_path"
+  cd "$temp_path"
   makepkg -si --noconfirm
   cd "$DIR"
   print_in_green "✓ Yay AUR helper installed successfully!"
