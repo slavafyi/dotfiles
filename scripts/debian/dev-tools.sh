@@ -32,10 +32,10 @@ setup_docker() {
   print_in_purple "Setting up Docker..."
   sleep 2
   if ! command -v docker > /dev/null 2>&1; then
+    source /etc/os-release
     local arch=$(dpkg --print-architecture)
     local key_path=/etc/apt/keyrings/docker.gpg
-    local url=https://download.docker.com/linux/debian
-    source /etc/os-release
+    local url="https://download.docker.com/linux/$ID"
     sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-doc podman-docker containerd runc | cut -f1)
     sudo apt update
     sudo apt install -yy ca-certificates curl

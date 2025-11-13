@@ -26,8 +26,8 @@ setup_ssh() {
   print_in_purple "Setting up SSH..."
   sleep 2
   sudo apt install -yy openssh-server
-  sudo systemctl enable sshd.service
-  sudo systemctl start sshd.service
+  sudo systemctl enable ssh.service
+  sudo systemctl start ssh.service
   mkdir -pv "$HOME/.ssh"
   stow \
     --verbose \
