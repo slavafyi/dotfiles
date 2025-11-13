@@ -66,12 +66,14 @@ setup_neovim() {
   sudo apt install -yy ninja-build gettext cmake unzip curl build-essential git
   if [ ! -d "$temp_path" ]; then
     git clone https://github.com/neovim/neovim.git $temp_path
+    cd $temp_path
+    git checkout stable
   else
     cd $temp_path
     rm -rf build/
+    git checkout stable
     git pull
   fi
-  cd $temp_path
   make CMAKE_BUILD_TYPE=Release
   sudo make install
   cd "$DIR"
