@@ -1,8 +1,12 @@
 [env]
-_.file = { path = '{{ env.HOME }}/.secrets.yaml', redact = true }
+_.file = [
+  { path = '{{ env.HOME }}/.env.local' },
+  { path = '{{ env.HOME }}/.secrets.yaml', redact = true },
+]
 
 [settings]
 always_keep_download = true
+env_file = '.env.local'
 experimental = true
 
 [settings.age]
