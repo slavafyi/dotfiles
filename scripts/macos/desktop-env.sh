@@ -98,6 +98,16 @@ setup_keyboard() {
   print_in_green "✓ Keyboard set up successfully!"
 }
 
+setup_rectangle() {
+  print_in_purple "Setting up Rectangle..."
+  sleep 2
+  brew install --cask rectangle
+  local path="$HOME/Library/Application Support/Rectangle/"
+  mkdir -pv "$path"
+  cp -R "$DIR/configs/rectangle/" "$path"
+  print_in_green "✓ Rectangle set up successfully!"
+}
+
 desktop_env() {
   setup_preferences
   install_apps
