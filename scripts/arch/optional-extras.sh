@@ -29,7 +29,25 @@ setup_easyeffects() {
   print_in_green "✓ EasyEffects installed successfully!"
 }
 
+setup_zeit() {
+  print_in_purple "Setting up Zeit..."
+  sleep 2
+  local arch=$(dpkg --print-architecture)
+  local version=$(curl -s "https://api.github.com/repos/mrusme/zeit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
+  local temp_path=$(mktemp -d)
+  local tarball="zeit_${version}_linux_${arch}.tar.gz"
+  local url="https://github.com/mrusme/zeit/releases/download/v${version}/${tarball}"
+  cd "$temp_path"
+  curl -LO "$url"
+  tar xf "$tarball" zeit
+  sudo install zeit -D -t /usr/local/bin/
+  cd "$DIR"
+  zeit completion fish > "$XDG_CONFIG_HOME/fish/completions/zeit.fish"
+  print_in_green "✓ Zeit set up successfully!"
+}
+
 optional_extras() {
   setup_obsidian
   setup_easyeffects
+  setup_zeit
 }
