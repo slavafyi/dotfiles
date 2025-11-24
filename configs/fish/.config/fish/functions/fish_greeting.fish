@@ -1,4 +1,4 @@
-function fish_greeting --description 'Set fish greeting'
+function fish_greeting --description "Set fish greeting"
     echo
     set_color blue
     echo "○ Remember to track your work, mate!"
