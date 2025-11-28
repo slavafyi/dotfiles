@@ -1,17 +1,4 @@
-set os (uname)
-
 fish_add_path "$XDG_BIN_HOME"
-
-if test "$os" = Darwin
-    set -gx TMPDIR (getconf DARWIN_USER_TEMP_DIR)
-end
-
-if test -e /opt/homebrew/bin/brew
-    fish_add_path /opt/homebrew/bin
-    if type -q ggrep
-        fish_add_path /opt/homebrew/opt/grep/libexec/gnubin
-    end
-end
 
 if path is -r -- "$XDG_DATA_HOME/pnpm"
     set -gx PNPM_HOME "$XDG_DATA_HOME/pnpm"
