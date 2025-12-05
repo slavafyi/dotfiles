@@ -3,9 +3,10 @@
 help:
 	@echo "Available commands:"
 	@echo ""
-	@echo "  make install    Full system installation"
-	@echo "  make update     Update system and packages"
-	@echo "  make fmt        Format code files"
+	@echo "  make install            Full system installation"
+	@echo "  make install PROFILE=x  Run named profile"
+	@echo "  make update             Update system and packages"
+	@echo "  make fmt                Format code files"
 	@echo ""
 	@echo "For partial installation, use:"
 	@echo "  ./install.sh <function_name>"
@@ -13,10 +14,16 @@ help:
 	@echo "Examples:"
 	@echo "  ./install.sh setup_mise"
 	@echo "  ./install.sh dev_tools"
+	@echo "  ./install.sh profile desktop"
 
 install:
-	@echo "⚡ Starting full installation..."
-	@./install.sh
+	@if [ -n "$$PROFILE" ]; then \
+		echo "⚡ Starting $$PROFILE installation..."; \
+		./install.sh profile "$$PROFILE"; \
+	else \
+		echo "⚡ Starting full installation..."; \
+		./install.sh; \
+	fi
 	@echo "✓ Installation complete!"
 
 update:
