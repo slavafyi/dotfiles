@@ -68,6 +68,17 @@ setup_tmux() {
   print_in_green "✓ Tmux set up successfully!"
 }
 
+setup_opencode() {
+  print_in_purple "Setting up OpenCode..."
+  sleep 2
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow opencode
+  print_in_green "✓ OpenCode set up successfully!"
+}
+
 install_dev_tools() {
   print_in_purple "Installing dev tools..."
   sleep 2
@@ -98,6 +109,7 @@ dev_tools() {
   setup_docker
   setup_neovim
   setup_tmux
+  setup_opencode
   install_bin_scripts
   install_dev_tools
 }
