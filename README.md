@@ -15,10 +15,10 @@ make install
 
 ## Available Commands
 ```bash
-make install             # Full system setup
+make install                  # Full system setup
 make install PROFILE=desktop  # Run a named profile
-make update              # Update system and packages
-make fmt                 # Format code files
+make update                   # Update system and packages
+make fmt                      # Format code files
 ```
 
 ## Profiles
