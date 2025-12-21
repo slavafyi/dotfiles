@@ -3,7 +3,7 @@
 install_fonts() {
   print_in_purple "Installing Nerd Fonts..."
   sleep 2
-  local packages="$DIR/packages/$OS/fonts.txt"
+  local packages="$DIR/misc/packages/$OS/fonts.txt"
   local fonts_dir="$XDG_DATA_HOME/fonts"
   local temp_path=$(mktemp -d)
   sudo apt install -yy fontconfig

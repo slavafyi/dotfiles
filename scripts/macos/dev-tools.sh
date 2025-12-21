@@ -82,7 +82,7 @@ setup_opencode() {
 install_dev_tools() {
   print_in_purple "Installing dev tools..."
   sleep 2
-  local packages="$DIR/packages/$OS/dev-tools.txt"
+  local packages="$DIR/misc/packages/$OS/dev-tools.txt"
   brew bundle --file="$packages"
   stow \
     --verbose \

@@ -3,7 +3,7 @@
 install_base_packages() {
   print_in_purple "Installing base packages..."
   sleep 2
-  local packages="$DIR/packages/$OS/base.txt"
+  local packages="$DIR/misc/packages/$OS/base.txt"
   sudo apt update
   xargs -r -a "$packages" sudo apt install -yy
   print_in_green "✓ Base packages installed successfully!"
