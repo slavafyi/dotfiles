@@ -27,12 +27,29 @@ profile_modules() {
       printf "%s\n" "system_base user_core desktop_env optional_extras"
       ;;
     dev-workstation)
-      printf "%s\n" "system_base user_core desktop_env dev_tools optional_extras"
+      printf "%s\n" "system_base user_core dev_tools"
       ;;
     *)
       return 1
       ;;
   esac
+}
+
+print_banner() {
+  print_in_blue "╭──────────────────────────────────────────────╮"
+  print_in_blue "│ System setup                                 │"
+  print_in_blue "╰──────────────────────────────────────────────╯"
+}
+
+print_section_title() {
+  local title="$1"
+  print_in_blue "› $title"
+}
+
+print_command_row() {
+  local label="$1"
+  local description="$2"
+  printf "  %-28s %s\n" "$label" "$description"
 }
 
 prepare_install() {
@@ -54,8 +71,7 @@ run_profile() {
   local modules
 
   if ! modules="$(profile_modules $profile)"; then
-    print_in_red "✗ Unknown profile: $profile"
-    list_profiles
+    list_profiles "✗ Unknown profile: $profile"
     exit 1
   fi
 
@@ -70,7 +86,16 @@ run_profile() {
 }
 
 list_profiles() {
-  printf "Available profiles:\n"
+  local message="${1-}"
+  print_banner
+  if [[ -n $message ]]; then
+    print_in_red "$message"
+    printf "\n"
+  fi
+  print_section_title "Available profiles"
+  printf "\n"
+  printf "  %-17s %s\n" "Name" "Description"
+  printf "  %-17s %s\n" "-----------------" "----------------------------------"
   print_profile "full" "Complete workstation setup"
   print_profile "minimal-server" "Bare essentials for servers"
   print_profile "desktop" "Desktop essentials without dev tools"
@@ -80,21 +105,26 @@ list_profiles() {
 print_profile() {
   local name="$1"
   local description="$2"
-
   printf "  %-17s %s\n" "$name" "$description"
-  printf "      %s\n" "$(profile_modules "$name")"
+  printf "  %-17s %s\n" "" "Modules: $(profile_modules $name)"
+  printf "\n"
 }
 
 print_usage() {
-  cat << 'EOF'
-Usage: ./install.sh [profile <name>|list-profiles|help|<function>]
-
-Examples:
-  ./install.sh                  # full installation (default profile)
-  ./install.sh profile desktop  # run named profile
-  ./install.sh list-profiles    # show available profiles
-  ./install.sh dev_tools        # call individual module
-EOF
+  print_banner
+  print_section_title "Usage"
+  print_command_row "./install.sh [profile <name>|list-profiles|help|<function>]" ""
+  printf "\n"
+  print_section_title "Commands"
+  print_command_row "profile <name>" "Run a named profile"
+  print_command_row "list-profiles" "Show available profiles"
+  print_command_row "help | -h | --help" "Show this help"
+  print_command_row "<function>" "Run an individual module"
+  printf "\n"
+  print_section_title "Examples"
+  print_command_row "./install.sh" "Full installation (default profile)"
+  print_command_row "./install.sh profile desktop" "Run the desktop profile"
+  print_command_row "./install.sh dev_tools" "Call an individual module"
 }
 
 if [[ $# -eq 0 ]]; then
@@ -106,8 +136,7 @@ case "$1" in
   profile)
     shift
     if [[ $# -eq 0 ]]; then
-      print_in_red "✗ Missing profile name"
-      list_profiles
+      list_profiles "✗ Missing profile name"
       exit 1
     fi
     run_profile "$1"
