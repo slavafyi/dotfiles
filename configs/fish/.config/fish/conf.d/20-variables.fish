@@ -45,12 +45,11 @@ if status --is-interactive
 
     set -gx VISUAL "$EDITOR"
     set -gx GIT_EDITOR "$EDITOR"
+    set -gx GIT_MUX_CUSTOM_ROOT "$HOME/dev"
 
     if set -q REMOTE_DEV; and test $REMOTE_DEV -eq 1
-        set -gx GIT_MUX_PROJECTS "$HOME/dev $HOME/dotfiles $HOME/share"
-        set -gx GIT_MUX_PROJECT_PARENTS "$HOME/dev"
+        set -gx GIT_MUX_CUSTOM_PROJECTS "$HOME/dotfiles" "$HOME/share"
     else
-        set -gx GIT_MUX_PROJECTS (git_mux_projects "$HOME/dev")
-        set -a GIT_MUX_PROJECTS "$HOME/dev $HOME/obsidian/personal"
+        set -gx GIT_MUX_CUSTOM_PROJECTS "$HOME/obsidian/personal"
     end
 end

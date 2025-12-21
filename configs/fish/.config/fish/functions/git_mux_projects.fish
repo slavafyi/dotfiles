@@ -1,27 +1,14 @@
 function git_mux_projects --description "List git repos under a dir"
     set -l root $argv[1]
 
-    if test -z "$root"
+    if not set -q root; or not test -d "$root"; or not type -q fd
         return
     end
 
-    if not test -d "$root"
-        return
-    end
-
-    if not type -q fd
-        return
-    end
-
-    set -l git_paths (fd --hidden --type d --max-depth 5 --prune --regex '\.git$' "$root")
+    set -l git_paths (fd --hidden --type d --type f --max-depth 7 --prune --regex .git\$ "$root")
     if test (count $git_paths) -eq 0
         return
     end
 
-    set -l projects
-    for git_path in $git_paths
-        set -a projects (path dirname "$git_path")
-    end
-
-    printf "%s\n" $projects
+    path dirname $git_paths
 end
