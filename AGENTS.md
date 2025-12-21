@@ -1,21 +1,58 @@
 # AGENT GUIDE
 
-1. Build and full setup run via `make install` (wraps `install.sh`)
-2. Update only base packages with `make update`
-3. Format everything with `make fmt` (runs shfmt, stylua, fish_indent)
-4. Shell formatting uses `shfmt --write <paths>` and `.editorconfig` rules
-5. Lua formatting uses `stylua --allow-hidden --search-parent-directories .`
-6. Fish formatting uses `fish -c 'fish_indent -w configs/fish/.config/**/*.fish'`
-7. No global test suite exists; test stages via `./install.sh <function>` (e.g., `./install.sh dev_tools`)
-8. New install steps must be idempotent and safe on reruns
-9. Bash scripts: `#!/usr/bin/env bash`, `set -euo pipefail`, snake_case, `local`, helpers from `scripts/common/utils.sh`
-10. Use `print_in_[color]` from helpers for output, quote expansions, and prefer `[[ ... ]]`
-11. Guard privileged actions with `ask_for_sudo`; failures exit via `print_in_red`
-12. Fish configs: 4-space indent, gated by `if status --is-interactive`, gate external commands with `type -q`
-13. Lua lives under `configs/neovim/.config/nvim/lua` and follows Stylua defaults (2 spaces, col 100, single quotes)
-14. Keep Lua declarative (`vim.opt`, `vim.keymap.set`, top-level `require`s only)
-15. Flag long Lua blocks with `-- stylua: ignore` instead of disabling formatters
-16. New CLI tools belong in `configs/bin/.local/bin`, stay POSIX-friendly, and reuse shared helpers
-17. Apply dotfiles only via `stow --dir configs --target "$HOME" --stow <component>`; never handcraft symlinks
-18. Keep package lists under `misc/packages/<os>` alphabetized
-19. Never commit secrets; store them outside the repo (see `mise/.secrets.yaml`)
+For human-oriented usage and profiles, see `README.md` and `./install.sh help`. This file is agent/contributor-facing: conventions, safety rules, and the repo’s source-of-truth commands.
+
+## Commands
+
+- Full installation: `make install` (defaults to profile `full`)
+- Install a named profile: `make install PROFILE=desktop` (or `./install.sh profile desktop`)
+- List profiles: `./install.sh list-profiles`
+- Run an individual module: `./install.sh dev_tools`
+- Update base system/packages only: `make update`
+- Format repo files: `make fmt`
+
+## Formatting
+
+These commands reflect what `make fmt` runs:
+
+- Shell: `shfmt --write .` (uses `.editorconfig` where applicable; currently `shell_variant = bash` for `*.sh`)
+- Fish: `fish --command "fish_indent -w configs/fish/.config/**/*.fish"`
+
+## Validation (recommended)
+
+- No global test suite exists; validate changes by re-running the relevant stage: `./install.sh <module>`
+- Bash: run `bash -n path/to/script.sh` (syntax) and `shellcheck path/to/script.sh` when available
+- Fish: run `fish -n path/to/script.fish` (syntax)
+
+## Installer rules
+
+- New install steps must be idempotent and safe on reruns
+- Guard privileged actions with `ask_for_sudo`
+- Use `print_in_[color]` helpers for user-facing output; failures should exit via `print_in_red` (helpers in `scripts/common/utils.sh`)
+
+## Bash conventions
+
+- Use `#!/usr/bin/env bash` and `set -euo pipefail`
+- Use `snake_case` for functions/variables and prefer `local` inside functions
+- Quote expansions, prefer `[[ ... ]]`, and prefer `printf` over `echo`
+
+## Fish conventions
+
+- 4-space indent
+- Gate interactive-only behavior with `if status --is-interactive ... end`
+- Gate external commands with `type -q`
+
+## Layout rules
+
+- New CLI tools belong in `configs/bin/.local/bin` (POSIX-friendly, reuse shared helpers)
+- Apply dotfiles only via stow: `stow --dir configs --target "$HOME" --stow <component>` (never handcraft symlinks)
+- Keep package lists under `misc/packages/<os>` alphabetized
+- Never commit secrets; store them outside the repo (see `mise/.secrets.yaml`)
+
+## References
+
+- ShellCheck: https://www.shellcheck.net/
+- Google Shell Style Guide: https://google.github.io/styleguide/shellguide.html
+- EditorConfig spec: https://editorconfig.org/
+- GNU Stow manual: https://www.gnu.org/software/stow/manual/stow.html
+- fish shell documentation: https://fishshell.com/docs/current/
