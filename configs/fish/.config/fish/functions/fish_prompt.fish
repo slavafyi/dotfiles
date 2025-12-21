@@ -21,7 +21,6 @@ function fish_prompt --description "Set fish prompt"
 
     printf "%s" (fish_git_prompt)
 
-    # Line 2
     echo
     printf "↪ "
     set_color normal

@@ -11,4 +11,9 @@ function git_mux --description "Wrapper for git-mux with lazy project discovery"
     end
 
     git-mux $argv
+
+    set -l git_mux_status $status
+    commandline -f repaint
+
+    return $git_mux_status
 end
