@@ -22,8 +22,8 @@ update:
 	@echo "✓ Update complete"
 
 fmt:
-	@echo "→ [1/3] Formatting bash files"
+	@echo "→ [1/2] Formatting bash files"
 	@shfmt --write .
-	@echo "→ [2/3] Formatting fish files"
+	@echo "→ [2/2] Formatting fish files"
 	@fish --command "fish_indent -w configs/fish/.config/**/*.fish"
 	@echo "✓ Formatting complete"
