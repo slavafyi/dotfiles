@@ -45,9 +45,8 @@ You can still run individual modules when needed:
 ## Structure
 ```
 configs/     Configuration files (managed by stow)
-packages/    Package lists by OS
 scripts/     Installation scripts
-misc/        Additional files (dconf dumps, etc)
+misc/        Additional files (packages, dconf dumps, etc)
 ```
 
 ## Supported Systems

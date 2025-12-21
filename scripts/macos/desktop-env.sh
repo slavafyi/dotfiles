@@ -60,7 +60,7 @@ setup_preferences() {
 install_apps() {
   print_in_purple "Installing apps..."
   sleep 2
-  local packages="$DIR/packages/$OS/apps.txt"
+  local packages="$DIR/misc/packages/$OS/apps.txt"
   brew bundle --file="$packages"
   print_in_green "✓ Apps installed successfully!"
 }
@@ -68,7 +68,7 @@ install_apps() {
 install_fonts() {
   print_in_purple "Installing fonts..."
   sleep 2
-  local packages="$DIR/packages/$OS/fonts.txt"
+  local packages="$DIR/misc/packages/$OS/fonts.txt"
   brew bundle --file="$packages"
   print_in_green "✓ Fonts installed successfully!"
 }
