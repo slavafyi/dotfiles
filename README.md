@@ -15,12 +15,28 @@ make install
 
 ## Available Commands
 ```bash
-make install    # Full system setup
-make update     # Update system and packages
-make fmt        # Format code files
+make install             # Full system setup
+make install PROFILE=desktop  # Run a named profile
+make update              # Update system and packages
+make fmt                 # Format code files
 ```
 
-For partial installation:
+## Profiles
+Profiles let you reuse the underlying install modules for different targets:
+
+- `full` – complete workstation setup (default)
+- `minimal-server` – essentials only (`system_base`, `user_core`)
+- `desktop` – desktop experience without developer extras
+- `dev-workstation` – desktop plus developer tooling
+
+Usage examples:
+```bash
+make install PROFILE=minimal-server
+./install.sh profile desktop
+./install.sh list-profiles
+```
+
+You can still run individual modules when needed:
 ```bash
 ./install.sh setup_mise
 ./install.sh dev_tools
