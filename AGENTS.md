@@ -17,5 +17,5 @@
 15. Flag long Lua blocks with `-- stylua: ignore` instead of disabling formatters
 16. New CLI tools belong in `configs/bin/.local/bin`, stay POSIX-friendly, and reuse shared helpers
 17. Apply dotfiles only via `stow --dir configs --target "$HOME" --stow <component>`; never handcraft symlinks
-18. Keep package lists under `packages/<os>` alphabetized
+18. Keep package lists under `misc/packages/<os>` alphabetized
 19. Never commit secrets; store them outside the repo (see `mise/.secrets.yaml`)

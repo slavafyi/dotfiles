@@ -5,7 +5,7 @@ GREEN="\033[0;32m"
 YELLOW="\033[1;33m"
 BLUE="\033[0;34m"
 PURPLE="\033[0;35m"
-NC="\033[0m" # No Color
+NC="\033[0m"
 
 print_in_red() {
   printf "${RED}%s${NC}\n" "$1"
