@@ -5,51 +5,46 @@ if path is -r -- "$XDG_DATA_HOME/pnpm"
     fish_add_path "$PNPM_HOME"
 end
 
-if status --is-interactive
-    set -gx FZF_ALT_C_OPTS "
-      --preview 'tree {} | head -200'
-      --walker-skip .git,node_modules
-    "
-    set -gx FZF_CTRL_R_OPTS "
-      --bind 'ctrl-/:change-preview-window(down:10:wrap|)'
-      --bind 'ctrl-y:execute-silent(echo -n {2..} | copy)+abort'
-      --preview 'echo {}'
-    "
-    set -gx FZF_CTRL_T_OPTS "
-      --walker-skip .git,node_modules
-    "
-    set -gx FZF_DEFAULT_OPTS "
-      --style=full
-      --bind 'ctrl-/:change-preview-window(right|down|)'
-      --color=fg:-1,bg:-1,hl:-1
-      --color=fg+:-1,bg+:-1,gutter:8,hl+:3
-      --color=info:-1,prompt:15,pointer:15
-      --color=marker:15,spinner:15,header:-1
-      --cycle
-      --height=~75%
-      --preview 'bat -n {}'
-      --preview-window hidden
-      --reverse
-    "
-    set -gx GPG_TTY (tty)
-    set -gx MISE_FISH_AUTO_ACTIVATE 0
-    set -gx VDPAU_DRIVER radeonsi
+if not status --is-interactive
+    return
+end
 
-    if type -q nvim
-        set -gx EDITOR nvim
-    else if type -q vim
-        set -gx EDITOR vim
-    else
-        set -gx EDITOR vi
-    end
+set -gx FZF_ALT_C_OPTS "
+  --preview 'tree {} | head -200'
+  --walker-skip .git,node_modules
+"
+set -gx FZF_CTRL_R_OPTS "
+  --bind 'ctrl-/:change-preview-window(down:10:wrap|)'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | copy)+abort'
+  --preview 'echo {}'
+"
+set -gx FZF_CTRL_T_OPTS "
+  --walker-skip .git,node_modules
+"
+set -gx FZF_DEFAULT_OPTS "
+  --style=full
+  --bind 'ctrl-/:change-preview-window(right|down|)'
+  --color=fg:-1,bg:-1,hl:-1
+  --color=fg+:-1,bg+:-1,gutter:8,hl+:3
+  --color=info:-1,prompt:15,pointer:15
+  --color=marker:15,spinner:15,header:-1
+  --cycle
+  --height=~75%
+  --preview 'bat -n {}'
+  --preview-window hidden
+  --reverse
+"
 
-    set -gx VISUAL "$EDITOR"
-    set -gx GIT_EDITOR "$EDITOR"
-    set -gx GIT_MUX_CUSTOM_ROOT "$HOME/dev"
+set -gx GPG_TTY (tty)
+set -gx MISE_FISH_AUTO_ACTIVATE 0
+set -gx VDPAU_DRIVER radeonsi
+set -gx EDITOR nvim
+set -gx VISUAL "$EDITOR"
+set -gx GIT_EDITOR "$EDITOR"
 
-    if set -q REMOTE_DEV; and test $REMOTE_DEV -eq 1
-        set -gx GIT_MUX_CUSTOM_PROJECTS "$HOME/dotfiles" "$HOME/share"
-    else
-        set -gx GIT_MUX_CUSTOM_PROJECTS "$HOME/obsidian/personal"
-    end
+set -gx GIT_MUX_CUSTOM_ROOT "$HOME/dev"
+if set -q REMOTE_DEV; and test $REMOTE_DEV -eq 1
+    set -gx GIT_MUX_CUSTOM_PROJECTS "$HOME/dotfiles" "$HOME/share"
+else
+    set -gx GIT_MUX_CUSTOM_PROJECTS "$HOME/obsidian/personal"
 end
