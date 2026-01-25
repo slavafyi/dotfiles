@@ -1,10 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "theme": "system",
   "autoupdate": true,
-  "lsp": {
-    "shopify-theme": {
-      "command": ["shopify", "theme", "language-server"],
-      "extensions": [".liquid"]
+  "model": "openai/gpt-5.2-codex",
+  "default_agent": "plan",
+  "agent": {
+    "plan": {
+      "model": "openai/gpt-5.2-pro"
     }
   },
   "mcp": {
@@ -24,20 +26,12 @@
       }
     }
   },
-  "model": "openai/gpt-5.1-codex-max",
-  "provider": {
-    "openai": {
-      "models": {
-        "gpt-5.1-codex-max": {
-          "options": {
-            "reasoningEffort": "xhigh",
-            "reasoningSummary": "auto"
-          }
-        }
-      }
+  "lsp": {
+    "shopify-theme": {
+      "command": ["shopify", "theme", "language-server"],
+      "extensions": [".liquid"]
     }
   },
-  "theme": "system",
   "tools": {
     "context7": true,
     "shopify-dev": true
