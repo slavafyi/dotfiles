@@ -16,7 +16,7 @@ function fish_prompt --description "Set fish prompt"
     printf " in "
 
     set_color $fish_color_cwd
-    printf "%s" (prompt_pwd --full-length-dirs 2 --dir-length 6)
+    printf "%s" (prompt_pwd)
     set_color normal
 
     printf "%s" (fish_git_prompt)
