@@ -6,7 +6,12 @@
   "default_agent": "plan",
   "agent": {
     "plan": {
-      "model": "openai/gpt-5.2-pro"
+      "model": "openai/gpt-5.2",
+      "variant": "xhigh"
+    },
+    "build": {
+      "model": "openai/gpt-5.3-codex",
+      "variant": "xhigh"
     }
   },
   "mcp": {
@@ -38,10 +43,5 @@
       "command": ["shopify", "theme", "language-server"],
       "extensions": [".liquid"]
     }
-  },
-  "tools": {
-    "context7": true,
-    "shopify-dev": true,
-    "github": true
   }
 }
