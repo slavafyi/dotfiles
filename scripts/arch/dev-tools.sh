@@ -72,6 +72,7 @@ setup_tmux() {
 setup_opencode() {
   print_in_purple "Setting up OpenCode..."
   sleep 2
+  yay -Sy --noconfirm --needed opencode-bin
   stow \
     --verbose \
     --dir "$DIR/configs" \

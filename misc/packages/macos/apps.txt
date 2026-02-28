@@ -20,4 +20,5 @@ cask "vlc"
 cask "zed"
 
 mas "Bitwarden", id: 1352778147
+mas "Tailscale", id: 1475387142
 mas "v2RayTun", id: 6476628951
