@@ -1,5 +1,4 @@
 brew "cloudflared"
-brew "codex"
 brew "gh"
 brew "heroku"
 brew "lazydocker"
@@ -11,3 +10,5 @@ brew "railway"
 brew "shellcheck"
 brew "shfmt"
 brew "stylua"
+
+cask "codex"
