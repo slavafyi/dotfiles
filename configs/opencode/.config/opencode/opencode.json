@@ -5,7 +5,7 @@
   "default_agent": "plan",
   "agent": {
     "plan": {
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.4",
       "variant": "xhigh"
     },
     "build": {
