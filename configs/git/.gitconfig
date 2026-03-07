@@ -29,7 +29,7 @@
 [user]
   name = Slava M.
   email = mailer@noreply.slava.fyi
-  signingkey = 93BF899239FE0933
+  signingkey = D03B14E28F60B4A28BEC2F4012E2F9BEE23B3B8D!
 
 [includeIf "gitdir:~/dev/nx/"]
   path = ~/dev/nx/.gitconfig
