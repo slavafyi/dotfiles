@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+umask 077
+
+KEY_FPR="${1:-}"
+OUT_DIR="${2:-$HOME/.gpg-backup}"
+GNUPG_HOME="${GNUPGHOME:-$HOME/.gnupg}"
+
+if [[ -z $KEY_FPR ]]; then
+  echo "Usage: gpg-backup <PRIMARY_KEY_FINGERPRINT> [OUTPUT_DIR]"
+  exit 1
+fi
+
+if ! gpg --list-secret-keys "$KEY_FPR" > /dev/null 2>&1; then
+  echo "Error: secret key not found for fingerprint: $KEY_FPR" >&2
+  exit 1
+fi
+
+KEY_DIR="$OUT_DIR/$KEY_FPR"
+mkdir -p "$KEY_DIR"
+chmod 700 "$OUT_DIR" "$KEY_DIR" 2> /dev/null || true
+
+gpg --yes --armor --output "$KEY_DIR/public.asc" --export "$KEY_FPR"
+gpg --yes --armor --output "$KEY_DIR/secret-full.asc" --export-secret-keys "$KEY_FPR"
+gpg --yes --armor --output "$KEY_DIR/secret-subkeys.asc" --export-secret-subkeys "$KEY_FPR"
+
+if [[ -f "$GNUPG_HOME/openpgp-revocs.d/$KEY_FPR.rev" ]]; then
+  cp "$GNUPG_HOME/openpgp-revocs.d/$KEY_FPR.rev" "$KEY_DIR/"
+fi
+
+gpg --export-ownertrust > "$OUT_DIR/ownertrust.txt"
+
+chmod 600 "$KEY_DIR"/* "$OUT_DIR/ownertrust.txt" 2> /dev/null || true
+
+echo
+echo "Done: $KEY_DIR"

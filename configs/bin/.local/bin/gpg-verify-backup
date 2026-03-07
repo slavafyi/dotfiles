@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+umask 077
+
+KEY_FPR="${1:-}"
+OUT_DIR="${2:-$HOME/.gpg-backup}"
+KEY_DIR="$OUT_DIR/$KEY_FPR"
+
+if [[ -z $KEY_FPR ]]; then
+  echo "Usage: gpg-verify-backup <PRIMARY_KEY_FINGERPRINT> [BACKUP_DIR]"
+  exit 1
+fi
+
+if [[ ! -d $KEY_DIR ]]; then
+  echo "Error: key directory not found: $KEY_DIR" >&2
+  exit 1
+fi
+
+if [[ ! -f "$KEY_DIR/public.asc" ]]; then
+  echo "Error: missing $KEY_DIR/public.asc" >&2
+  exit 1
+fi
+
+if [[ ! -f "$KEY_DIR/secret-full.asc" ]]; then
+  echo "Error: missing $KEY_DIR/secret-full.asc" >&2
+  exit 1
+fi
+
+TMPGNUPG="$(mktemp -d)"
+chmod 700 "$TMPGNUPG"
+
+trap 'rm -rf "$TMPGNUPG"' EXIT
+
+gpg --homedir "$TMPGNUPG" --import "$KEY_DIR/public.asc" >/dev/null
+gpg --homedir "$TMPGNUPG" --import "$KEY_DIR/secret-full.asc" >/dev/null
+
+if [[ -f "$OUT_DIR/ownertrust.txt" ]]; then
+  gpg --homedir "$TMPGNUPG" --import-ownertrust "$OUT_DIR/ownertrust.txt" >/dev/null 2>&1 || true
+fi
+
+gpg --homedir "$TMPGNUPG" --keyid-format long --with-subkey-fingerprints -k
+gpg --homedir "$TMPGNUPG" --keyid-format long --with-subkey-fingerprints -K
+
+printf 'backup verification test\n' >"$TMPGNUPG/test.txt"
+gpg --homedir "$TMPGNUPG" --yes --armor --local-user "$KEY_FPR" \
+  --output "$TMPGNUPG/test.txt.asc" --detach-sign "$TMPGNUPG/test.txt"
+gpg --homedir "$TMPGNUPG" --verify "$TMPGNUPG/test.txt.asc" "$TMPGNUPG/test.txt"
+
+echo
+echo "Done: $KEY_DIR"

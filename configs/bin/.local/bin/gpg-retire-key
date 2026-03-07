@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+umask 077
+
+KEY_FPR="${1:-}"
+OUT_DIR="${2:-$HOME/.gpg-cleanup}"
+KEY_DIR="$OUT_DIR/$KEY_FPR"
+GNUPG_HOME="${GNUPGHOME:-$HOME/.gnupg}"
+
+if [[ -z $KEY_FPR ]]; then
+  echo "Usage: gpg-retire-key <PRIMARY_KEY_FINGERPRINT> [OUTPUT_DIR]"
+  exit 1
+fi
+
+mkdir -p "$KEY_DIR"
+chmod 700 "$OUT_DIR" "$KEY_DIR" 2>/dev/null || true
+
+gpg --armor --output "$KEY_DIR/public.asc" --export "$KEY_FPR"
+gpg --armor --output "$KEY_DIR/secret-full.asc" --export-secret-keys "$KEY_FPR"
+gpg --armor --output "$KEY_DIR/secret-subkeys.asc" --export-secret-subkeys "$KEY_FPR"
+
+gpg --export-ownertrust >"$OUT_DIR/ownertrust.txt"
+
+if [[ -f "$GNUPG_HOME/openpgp-revocs.d/$KEY_FPR.rev" ]]; then
+  sed 's/^://g' "$GNUPG_HOME/openpgp-revocs.d/$KEY_FPR.rev" >"$KEY_DIR/revoke.asc"
+else
+  gpg --output "$KEY_DIR/revoke.asc" --gen-revoke "$KEY_FPR"
+fi
+
+gpg --import "$KEY_DIR/revoke.asc"
+gpg --armor --output "$KEY_DIR/public-revoked.asc" --export "$KEY_FPR"
+
+chmod 600 "$KEY_DIR"/* "$OUT_DIR/ownertrust.txt" 2>/dev/null || true
+
+echo
+echo "Done: $KEY_DIR"
