@@ -3,9 +3,18 @@ font-feature = "-calt, -liga, -dlig"
 font-size = 16
 shell-integration-features = ssh-terminfo, ssh-env
 theme = light:papercolor-light, dark:papercolor-dark
-window-width = 100
+
 window-height = 30
+window-width = 100
 window-padding-balance = true
 window-padding-color = extend
 window-padding-x = 4
 window-padding-y = 4
+
+split-inherit-working-directory = true
+tab-inherit-working-directory = true
+window-inherit-working-directory = false
+
+keybind = global:super+backquote=toggle_quick_terminal
+
+config-file = vim
