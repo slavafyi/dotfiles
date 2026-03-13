@@ -12,14 +12,14 @@ if [[ -z $KEY_FPR ]]; then
   exit 1
 fi
 
-if ! gpg --list-secret-keys "$KEY_FPR" > /dev/null 2>&1; then
+if ! gpg --list-secret-keys "$KEY_FPR" >/dev/null 2>&1; then
   echo "Error: secret key not found for fingerprint: $KEY_FPR" >&2
   exit 1
 fi
 
 KEY_DIR="$OUT_DIR/$KEY_FPR"
 mkdir -p "$KEY_DIR"
-chmod 700 "$OUT_DIR" "$KEY_DIR" 2> /dev/null || true
+chmod 700 "$OUT_DIR" "$KEY_DIR" 2>/dev/null || true
 
 gpg --yes --armor --output "$KEY_DIR/public.asc" --export "$KEY_FPR"
 gpg --yes --armor --output "$KEY_DIR/secret-full.asc" --export-secret-keys "$KEY_FPR"
@@ -29,9 +29,9 @@ if [[ -f "$GNUPG_HOME/openpgp-revocs.d/$KEY_FPR.rev" ]]; then
   cp "$GNUPG_HOME/openpgp-revocs.d/$KEY_FPR.rev" "$KEY_DIR/"
 fi
 
-gpg --export-ownertrust > "$OUT_DIR/ownertrust.txt"
+gpg --export-ownertrust >"$OUT_DIR/ownertrust.txt"
 
-chmod 600 "$KEY_DIR"/* "$OUT_DIR/ownertrust.txt" 2> /dev/null || true
+chmod 600 "$KEY_DIR"/* "$OUT_DIR/ownertrust.txt" 2>/dev/null || true
 
 echo
 echo "Done: $KEY_DIR"
