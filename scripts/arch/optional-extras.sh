@@ -15,6 +15,31 @@ setup_obsidian() {
   print_in_green "✓ Obsidian installed successfully!"
 }
 
+setup_zk() {
+  print_in_purple "Setting up zk..."
+  sleep 2
+  sudo pacman -Sy --noconfirm --needed zk
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow zk
+  print_in_green "✓ Zk set up successfully!"
+}
+
+setup_notes() {
+  print_in_purple "Setting up notes..."
+  sleep 2
+  local notes_path="${NOTES_DIR:-$HOME/notes}"
+  if [ ! -d "$notes_path" ]; then
+    print_in_purple "Adding notes..."
+    git clone git@github.com:slavafyi/notes.git "$notes_path"
+  else
+    print_in_yellow "⚠ Notes already exists, skipping"
+  fi
+  print_in_green "✓ Notes set up successfully!"
+}
+
 setup_easyeffects() {
   print_in_purple "Setting up EasyEffects..."
   sleep 2
@@ -30,6 +55,7 @@ setup_easyeffects() {
 }
 
 optional_extras() {
-  setup_obsidian
   setup_easyeffects
+  setup_zk
+  setup_notes
 }

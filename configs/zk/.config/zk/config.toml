@@ -1,0 +1,28 @@
+[notebook]
+dir = "$NOTES_DIR"
+
+[note]
+default-title = "Untitled"
+exclude = [".zk"]
+extension = "md"
+filename = "{{slug title}}"
+language = "en"
+template = "default.md"
+
+[group.daily]
+paths = ["daily"]
+
+[group.daily.note]
+default-title = "{{format-date now 'long'}}"
+filename = "{{format-date now}}"
+template = "daily.md"
+
+[tool]
+fzf-preview = "bat -p --color always {-1}"
+pager = "less -FIRX"
+
+[alias]
+daily = "zk new --no-input daily"
+last = "zk edit --limit 1 --sort modified-"
+recent = "zk edit --sort created- --created-after \"last two weeks\" --interactive"
+sync = "git add -A && git commit -m \"feat: sync from $(uname -n) at $(date \"+%Y-%m-%dT%H:%M\")\" && git pull && git push"

@@ -41,10 +41,11 @@ set -gx VDPAU_DRIVER radeonsi
 set -gx EDITOR nvim
 set -gx VISUAL "$EDITOR"
 set -gx GIT_EDITOR "$EDITOR"
+set -gx NOTES_DIR "$HOME/notes"
 
 set -gx GIT_MUX_CUSTOM_ROOT "$HOME/dev"
 if set -q REMOTE_DEV; and test $REMOTE_DEV -eq 1
     set -gx GIT_MUX_CUSTOM_PROJECTS "$HOME/dotfiles" "$HOME/share"
 else
-    set -gx GIT_MUX_CUSTOM_PROJECTS "$HOME/obsidian/personal"
+    set -gx GIT_MUX_CUSTOM_PROJECTS "$NOTES_DIR"
 end
