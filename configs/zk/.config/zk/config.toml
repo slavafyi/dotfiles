@@ -13,7 +13,6 @@ template = "default.md"
 paths = ["daily"]
 
 [group.daily.note]
-default-title = "{{format-date now 'long'}}"
 filename = "{{format-date now}}"
 template = "daily.md"
 
