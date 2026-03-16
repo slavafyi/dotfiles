@@ -5,6 +5,9 @@ if path is -r -- "$XDG_DATA_HOME/pnpm"
     fish_add_path "$PNPM_HOME"
 end
 
+set -gx NOTES_DIR "$HOME/notes"
+set -gx DOTFILES "$HOME/dev/personal/dotfiles"
+
 if not status --is-interactive
     return
 end
@@ -41,7 +44,6 @@ set -gx VDPAU_DRIVER radeonsi
 set -gx EDITOR nvim
 set -gx VISUAL "$EDITOR"
 set -gx GIT_EDITOR "$EDITOR"
-set -gx NOTES_DIR "$HOME/notes"
 
 set -gx GIT_MUX_CUSTOM_ROOT "$HOME/dev"
 if set -q REMOTE_DEV; and test $REMOTE_DEV -eq 1
