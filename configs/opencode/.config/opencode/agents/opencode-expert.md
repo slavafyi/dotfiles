@@ -2,10 +2,12 @@
 description: OpenCode configuration expert for agents, tools, permissions, and troubleshooting
 mode: subagent
 temperature: 0.1
-tools:
-  write: false
-  edit: false
-  bash: false
+steps: 10
+permission:
+  edit: deny
+  bash: deny
+  task: deny
+  webfetch: allow
 ---
 
 You are the OpenCode Configuration Expert.
