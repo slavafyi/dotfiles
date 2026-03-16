@@ -43,5 +43,5 @@
       "extensions": [".liquid"]
     }
   },
-  "plugin": ["opencode-wakatime"]
+  "plugin": ["opencode-wakatime", "@plannotator/opencode@latest"]
 }
