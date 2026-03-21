@@ -85,16 +85,18 @@ setup_ghostty() {
   print_in_green "✓ Ghostty set up successfully!"
 }
 
-setup_keyboard() {
-  print_in_purple "Setting up keyboard..."
+setup_karabiner() {
+  print_in_purple "Setting up Karabiner-Elements..."
   sleep 2
   brew install --cask karabiner-elements
+  local path="$XDG_CONFIG_HOME/karabiner"
+  mkdir -pv "$path"
   stow \
     --verbose \
     --dir "$DIR/configs" \
     --target "$HOME" \
-    --stow keymaps
-  print_in_green "✓ Keyboard set up successfully!"
+    --stow karabiner
+  print_in_green "✓ Karabiner-Elements set up successfully!"
 }
 
 setup_rectangle() {
@@ -112,5 +114,5 @@ desktop_env() {
   install_apps
   install_fonts
   setup_terminal
-  setup_keyboard
+  setup_karabiner
 }
