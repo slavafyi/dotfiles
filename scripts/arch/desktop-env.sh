@@ -112,15 +112,10 @@ install_fonts() {
   print_in_green "✓ Fonts installed successfully!"
 }
 
-setup_terminal() {
+setup_ghostty() {
   print_in_purple "Setting up Ghostty..."
   sleep 2
   sudo pacman -Sy --noconfirm --needed ghostty
-  local config_path="$XDG_CONFIG_HOME/ghostty/config"
-  mkdir -pv "$XDG_CONFIG_HOME/ghostty/themes"
-  if [ -f "$config_path" ]; then
-    rm -f "$config_path"
-  fi
   stow \
     --verbose \
     --dir "$DIR/configs" \
@@ -137,5 +132,5 @@ desktop_env() {
   enable_hardware_support
   install_media_packages
   install_fonts
-  setup_terminal
+  setup_ghostty
 }

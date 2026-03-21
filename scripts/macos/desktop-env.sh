@@ -73,11 +73,10 @@ install_fonts() {
   print_in_green "✓ Fonts installed successfully!"
 }
 
-setup_terminal() {
+setup_ghostty() {
   print_in_purple "Setting up Ghostty..."
   sleep 2
   brew install --cask ghostty
-  mkdir -pv "$XDG_CONFIG_HOME/ghostty/themes"
   stow \
     --verbose \
     --dir "$DIR/configs" \
