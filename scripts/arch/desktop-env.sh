@@ -124,6 +124,21 @@ setup_ghostty() {
   print_in_green "✓ Ghostty set up successfully!"
 }
 
+setup_kitty() {
+  print_in_purple "Setting up Kitty..."
+  sleep 2
+  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+  local path="$HOME/.local/kitty.app/bin"
+  ln -sf "$path/kitty" "$XDG_BIN_HOME/kitty"
+  ln -sf "$path/kitten" "$XDG_BIN_HOME/kitten"
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow kitty
+  print_in_green "✓ Kitty set up successfully!"
+}
+
 desktop_env() {
   install_gnome
   configure_gnome
@@ -132,5 +147,5 @@ desktop_env() {
   enable_hardware_support
   install_media_packages
   install_fonts
-  setup_ghostty
+  setup_kitty
 }

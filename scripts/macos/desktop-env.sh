@@ -109,10 +109,26 @@ setup_rectangle() {
   print_in_green "✓ Rectangle set up successfully!"
 }
 
+setup_kitty() {
+  print_in_purple "Setting up Kitty..."
+  sleep 2
+  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+  local path="/Applications/kitty.app/Contents/MacOS"
+  ln -sf "$path/kitty" "$XDG_BIN_HOME/kitty"
+  ln -sf "$path/kitten" "$XDG_BIN_HOME/kitten"
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow kitty
+  print_in_green "✓ Kitty set up successfully!"
+}
+
 desktop_env() {
   setup_preferences
   install_apps
   install_fonts
-  setup_terminal
   setup_karabiner
+  setup_rectangle
+  setup_kitty
 }
