@@ -35,6 +35,10 @@
       "headers": {
         "Authorization": "Bearer {env:GITHUB_MCP_PAT}"
       }
+    },
+    "railway": {
+      "type": "local",
+      "command": ["pnpx", "@railway/mcp-server"]
     }
   },
   "lsp": {
