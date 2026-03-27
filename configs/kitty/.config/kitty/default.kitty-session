@@ -1,0 +1,7 @@
+new_tab @@project-name@@
+cd @@project-path@@
+launch --title "@@project-name@@"
+
+new_tab @@project-name@@
+cd @@project-path@@
+launch --title "@@project-name@@"
