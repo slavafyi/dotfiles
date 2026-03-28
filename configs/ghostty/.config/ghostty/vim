@@ -29,3 +29,5 @@ keybind = vim/q=deactivate_key_table
 keybind = vim/i=deactivate_key_table
 
 keybind = vim/catch_all=ignore
+
+# vim: set filetype=ghostty :

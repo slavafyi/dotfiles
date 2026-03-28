@@ -20,3 +20,5 @@ cursor-color = #444444
 cursor-text = #eeeeee
 selection-background = #0087af
 selection-foreground = #fffff0
+
+# vim: set filetype=ghostty :

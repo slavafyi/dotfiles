@@ -1,0 +1,37 @@
+# Tmux-style keybindings for Ghostty
+
+keybind = ctrl+s>c=new_tab
+keybind = ctrl+s>shift+&=close_tab
+keybind = ctrl+s>shift+{=move_tab:-1
+keybind = ctrl+s>shift+}=move_tab:1
+
+keybind = ctrl+s>p=previous_tab
+keybind = ctrl+s>n=next_tab
+keybind = ctrl+s>shift+$=last_tab
+keybind = ctrl+s>1=goto_tab:1
+keybind = ctrl+s>2=goto_tab:2
+keybind = ctrl+s>3=goto_tab:3
+keybind = ctrl+s>4=goto_tab:4
+keybind = ctrl+s>5=goto_tab:5
+keybind = ctrl+s>6=goto_tab:6
+keybind = ctrl+s>7=goto_tab:7
+keybind = ctrl+s>8=goto_tab:8
+keybind = ctrl+s>9=goto_tab:9
+keybind = ctrl+s>0=goto_tab:0
+
+keybind = ctrl+s>,=prompt_surface_title
+keybind = ctrl+s>x=close_surface
+keybind = ctrl+s>z=toggle_split_zoom
+
+keybind = ctrl+s>\=new_split:auto
+keybind = ctrl+s>shift+%=new_split:right
+keybind = ctrl+s>shift+'=new_split:down
+
+keybind = ctrl+s>;=goto_split:previous
+keybind = ctrl+s>o=goto_split:next
+keybind = ctrl+s>h=goto_split:left
+keybind = ctrl+s>j=goto_split:down
+keybind = ctrl+s>k=goto_split:up
+keybind = ctrl+s>l=goto_split:right
+
+# vim: set filetype=ghostty :
