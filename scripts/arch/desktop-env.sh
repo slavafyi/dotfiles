@@ -147,5 +147,5 @@ desktop_env() {
   enable_hardware_support
   install_media_packages
   install_fonts
-  setup_kitty
+  setup_ghostty
 }

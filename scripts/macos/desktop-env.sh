@@ -119,5 +119,5 @@ desktop_env() {
   install_apps
   install_fonts
   setup_karabiner
-  setup_kitty
+  setup_ghostty
 }
