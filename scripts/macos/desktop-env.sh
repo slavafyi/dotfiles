@@ -99,16 +99,6 @@ setup_karabiner() {
   print_in_green "✓ Karabiner-Elements set up successfully!"
 }
 
-setup_rectangle() {
-  print_in_purple "Setting up Rectangle..."
-  sleep 2
-  brew install --cask rectangle
-  local path="$HOME/Library/Application Support/Rectangle/"
-  mkdir -pv "$path"
-  cp -R "$DIR/configs/rectangle/" "$path"
-  print_in_green "✓ Rectangle set up successfully!"
-}
-
 setup_kitty() {
   print_in_purple "Setting up Kitty..."
   sleep 2
@@ -129,6 +119,5 @@ desktop_env() {
   install_apps
   install_fonts
   setup_karabiner
-  setup_rectangle
   setup_kitty
 }
