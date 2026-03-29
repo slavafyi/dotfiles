@@ -7,6 +7,8 @@ end
 
 set -gx NOTES_DIR "$HOME/notes"
 set -gx DOTFILES "$HOME/dev/personal/dotfiles"
+set -gx PI_CONFIG_DIR "$XDG_CONFIG_HOME/pi"
+set -gx PI_CODING_AGENT_DIR "$PI_CONFIG_DIR/agent"
 
 if not status --is-interactive
     return
@@ -42,8 +44,8 @@ set -gx GPG_TTY (tty)
 set -gx MISE_FISH_AUTO_ACTIVATE 0
 set -gx VDPAU_DRIVER radeonsi
 set -gx EDITOR nvim
-set -gx VISUAL "$EDITOR"
 set -gx GIT_EDITOR "$EDITOR"
+set -gx VISUAL "$EDITOR"
 
 set -gx GIT_MUX_CUSTOM_ROOT "$HOME/dev"
 if set -q REMOTE_DEV; and test $REMOTE_DEV -eq 1

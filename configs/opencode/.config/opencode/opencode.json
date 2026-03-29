@@ -23,7 +23,10 @@
     },
     "shopify-dev": {
       "type": "local",
-      "command": ["pnpx", "@shopify/dev-mcp@latest"],
+      "command": [
+        "pnpx",
+        "@shopify/dev-mcp@latest"
+      ],
       "environment": {
         "LIQUID_VALIDATION_MODE": "full",
         "OPT_OUT_INSTRUMENTATION": "true"
@@ -38,14 +41,25 @@
     },
     "railway": {
       "type": "local",
-      "command": ["pnpx", "@railway/mcp-server"]
+      "command": [
+        "pnpx",
+        "@railway/mcp-server"
+      ]
     }
   },
   "lsp": {
     "shopify-theme": {
-      "command": ["shopify", "theme", "language-server"],
-      "extensions": [".liquid"]
+      "command": [
+        "shopify",
+        "theme",
+        "language-server"
+      ],
+      "extensions": [
+        ".liquid"
+      ]
     }
   },
-  "plugin": ["opencode-wakatime", "@plannotator/opencode@latest"]
+  "plugin": [
+    "opencode-wakatime"
+  ]
 }
