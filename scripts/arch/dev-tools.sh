@@ -118,6 +118,18 @@ install_bin_scripts() {
   print_in_green "✓ Bin scripts installed successfully!"
 }
 
+setup_agents() {
+  print_in_purple "Installing agents..."
+  sleep 2
+  mkdir -pv "$HOME/.agents"
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow agents
+  print_in_green "✓ Agents installed successfully!"
+}
+
 dev_tools() {
   setup_mise
   setup_docker
@@ -125,6 +137,7 @@ dev_tools() {
   setup_tmux
   setup_opencode
   setup_pi
+  setup_agents
   install_bin_scripts
   install_dev_tools
 }

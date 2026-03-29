@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "type": "module",
+  "scripts": {
+    "transcript": "node scripts/transcript.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "youtube-transcript-plus": "^2.0.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.4",
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}
