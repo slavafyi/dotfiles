@@ -6,6 +6,7 @@ _.file = [
 
 [settings]
 always_keep_download = true
+cargo.binstall = true
 env_file = '.env.local'
 experimental = true
 
@@ -23,6 +24,7 @@ show_env = true
 show_tools = true
 
 [tools]
+'cargo:tree-sitter-cli' = 'latest'
 age = 'latest'
 cargo-binstall = 'latest'
 deno = 'latest'
