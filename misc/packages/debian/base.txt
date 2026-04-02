@@ -3,9 +3,11 @@ curl
 duf
 eza
 findutils
+ghostscript
 git
 gnupg
 grep
+imagemagick
 make
 ncdu
 ripgrep
