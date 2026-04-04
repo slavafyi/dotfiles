@@ -13,6 +13,7 @@ end
 set -l brew_prefix (brew --prefix)
 
 fish_add_path $brew_prefix/bin
+fish_add_path $brew_prefix/sbin
 fish_add_path $brew_prefix/opt/*/libexec/gnubin
 
 set -gx MANPATH $brew_prefix/opt/*/libexec/gnuman $MANPATH
