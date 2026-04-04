@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install_fonts() {
+setup_fonts() {
   print_in_purple "Installing Nerd Fonts..."
   sleep 2
   local packages="$DIR/misc/packages/$OS/fonts.txt"
@@ -28,5 +28,5 @@ install_fonts() {
 }
 
 desktop_env() {
-  install_fonts
+  setup_fonts
 }

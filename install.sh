@@ -125,6 +125,7 @@ print_usage() {
   print_command_row "./install.sh" "Full installation (default profile)"
   print_command_row "./install.sh profile desktop" "Run the desktop profile"
   print_command_row "./install.sh dev_tools" "Call an individual module"
+  print_command_row "./install.sh setup_bins" "Call an individual setup sub-module"
 }
 
 if [[ $# -eq 0 ]]; then

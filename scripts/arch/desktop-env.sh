@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install_gnome() {
+setup_gnome() {
   print_in_purple "Installing Gnome..."
   sleep 2
   local packages="$DIR/misc/packages/$OS/gnome.txt"
@@ -9,7 +9,7 @@ install_gnome() {
   print_in_green "✓ Gnome installed successfully!"
 }
 
-configure_gnome() {
+setup_gnome_settings() {
   print_in_purple "Configuring Gnome..."
   sleep 2
   sudo rm -f /etc/xdg/autostart/org.gnome.Software.desktop
@@ -58,7 +58,7 @@ setup_gnome_extensions() {
   print_in_green "✓ Gnome extenstions set up successfully!"
 }
 
-configure_default_apps() {
+setup_default_apps() {
   print_in_purple "Configuring default apps..."
   sleep 2
   local system_apps_dir="/usr/share/applications"
@@ -86,7 +86,7 @@ configure_default_apps() {
   print_in_green "✓ Default apps configured successfully!"
 }
 
-enable_hardware_support() {
+setup_hardware_support() {
   print_in_purple "Enabling essential hardware support services..."
   sleep 2
   sudo pacman -S --noconfirm --needed \
@@ -96,7 +96,7 @@ enable_hardware_support() {
   print_in_green "✓ Essential hardware support services enabled!"
 }
 
-install_media_packages() {
+setup_media_packages() {
   print_in_purple "Installing media and graphics support packages..."
   sleep 2
   local packages="$DIR/misc/packages/$OS/media.txt"
@@ -104,7 +104,7 @@ install_media_packages() {
   print_in_green "✓ Media and graphics support packages installed!"
 }
 
-install_fonts() {
+setup_fonts() {
   print_in_purple "Installing fonts..."
   sleep 2
   local packages="$DIR/misc/packages/$OS/fonts.txt"
@@ -140,12 +140,12 @@ setup_kitty() {
 }
 
 desktop_env() {
-  install_gnome
-  configure_gnome
+  setup_gnome
+  setup_gnome_settings
   setup_gnome_extensions
-  configure_default_apps
-  enable_hardware_support
-  install_media_packages
-  install_fonts
+  setup_default_apps
+  setup_hardware_support
+  setup_media_packages
+  setup_fonts
   setup_ghostty
 }

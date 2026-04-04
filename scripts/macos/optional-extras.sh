@@ -41,7 +41,6 @@ setup_notes() {
 }
 
 optional_extras() {
-  # setup_obsidian
   setup_zk
   setup_notes
 }

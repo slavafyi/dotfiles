@@ -57,7 +57,7 @@ setup_preferences() {
   print_in_green "✓ Set up system preferences successfully!"
 }
 
-install_apps() {
+setup_apps() {
   print_in_purple "Installing apps..."
   sleep 2
   local packages="$DIR/misc/packages/$OS/apps.txt"
@@ -65,7 +65,7 @@ install_apps() {
   print_in_green "✓ Apps installed successfully!"
 }
 
-install_fonts() {
+setup_fonts() {
   print_in_purple "Installing fonts..."
   sleep 2
   local packages="$DIR/misc/packages/$OS/fonts.txt"
@@ -116,8 +116,8 @@ setup_kitty() {
 
 desktop_env() {
   setup_preferences
-  install_apps
-  install_fonts
+  setup_apps
+  setup_fonts
   setup_karabiner
   setup_ghostty
 }

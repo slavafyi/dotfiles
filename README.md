@@ -36,11 +36,14 @@ make install PROFILE=minimal-server
 ./install.sh list-profiles
 ```
 
-You can still run individual modules when needed:
+You can still run individual modules and sub-modules when needed:
 ```bash
-./install.sh setup_mise
 ./install.sh dev_tools
+./install.sh setup_bins
+./install.sh update_system
 ```
+
+Helper steps use `setup_*` names across OSes when they represent the same task. `update_system` remains the manual update entrypoint.
 
 ## Structure
 ```

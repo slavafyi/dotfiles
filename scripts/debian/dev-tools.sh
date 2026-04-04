@@ -196,7 +196,7 @@ setup_fzf() {
   print_in_green "✓ Fzf set up successfully!"
 }
 
-install_dev_tools() {
+setup_dev_tools() {
   print_in_purple "Installing dev tools..."
   sleep 2
   local packages="$DIR/misc/packages/$OS/dev-tools.txt"
@@ -214,7 +214,7 @@ install_dev_tools() {
   print_in_green "✓ Dev tools installed successfully!"
 }
 
-install_bin_scripts() {
+setup_bins() {
   print_in_purple "Installing bin scripts..."
   sleep 2
   mkdir -pv "$XDG_BIN_HOME"
@@ -236,6 +236,6 @@ dev_tools() {
   setup_lazygit
   setup_lazydocker
   setup_fzf
-  install_bin_scripts
-  install_dev_tools
+  setup_bins
+  setup_dev_tools
 }

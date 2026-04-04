@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install_base_packages() {
+setup_base_packages() {
   print_in_purple "Installing base packages..."
   sleep 2
   local packages="$DIR/misc/packages/$OS/base.txt"
@@ -9,7 +9,7 @@ install_base_packages() {
   print_in_green "✓ Base packages installed successfully!"
 }
 
-configure_settings() {
+setup_system_settings() {
   print_in_purple "Configuring system settings..."
   sleep 2
   sudo timedatectl set-local-rtc false
@@ -26,7 +26,7 @@ update_system() {
 }
 
 system_base() {
-  install_base_packages
-  configure_settings
+  setup_base_packages
+  setup_system_settings
   update_system
 }

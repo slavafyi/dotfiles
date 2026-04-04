@@ -44,7 +44,7 @@ setup_ssh() {
   print_in_green "✓ SSH set up successfully!"
 }
 
-configure_pacman() {
+setup_pacman() {
   print_in_purple "Configuring Pacman..."
   sleep 2
   local conf="/etc/pacman.conf"
@@ -54,7 +54,7 @@ configure_pacman() {
   print_in_green "✓ Pacman configured successfully!"
 }
 
-install_yay() {
+setup_yay() {
   print_in_purple "Installing Yay AUR helper..."
   sleep 2
   sudo pacman -Sy --noconfirm --needed fakeroot
@@ -101,8 +101,8 @@ user_core() {
   setup_stow
   setup_git
   setup_ssh
-  configure_pacman
-  install_yay
+  setup_pacman
+  setup_yay
   setup_fish
   setup_bat
 }

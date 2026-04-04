@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-configure_homebrew() {
+setup_homebrew() {
   print_in_purple "Configuring Homebrew..."
   sleep 2
   if ! [ -x "$(command -v brew)" ]; then
@@ -11,7 +11,7 @@ configure_homebrew() {
   fi
 }
 
-install_base_packages() {
+setup_base_packages() {
   print_in_purple "Installing base packages..."
   sleep 2
   local packages="$DIR/misc/packages/$OS/base.txt"
@@ -34,7 +34,7 @@ update_system() {
 }
 
 system_base() {
+  setup_homebrew
+  setup_base_packages
   update_system
-  configure_homebrew
-  install_base_packages
 }

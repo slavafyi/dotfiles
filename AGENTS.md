@@ -29,6 +29,8 @@ These commands reflect what `make fmt` runs:
 - New install steps must be idempotent and safe on reruns
 - Guard privileged actions with `ask_for_sudo`
 - Use `print_in_[color]` helpers for user-facing output; failures should exit via `print_in_red` (helpers in `scripts/common/utils.sh`)
+- Keep top-level install module names as `system_base`, `user_core`, `desktop_env`, `dev_tools`, and `optional_extras`
+- Helper commands exposed via `install.sh` should use `setup_*` names across OSes when they represent the same task; keep `update_system` for the OS update step
 
 ## Bash conventions
 
