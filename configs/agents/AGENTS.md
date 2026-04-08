@@ -18,3 +18,10 @@
 ## Environment
 
 - On macOS, use OrbStack as the Docker runtime.
+
+## Git
+
+- Use Conventional Commits.
+- Keep commit subjects under 80 characters.
+- Do not add a commit body unless asked.
+- Do not add `Co-authored-by` trailers.
