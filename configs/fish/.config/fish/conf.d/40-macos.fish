@@ -4,6 +4,7 @@ if test "$os" != Darwin
     return
 end
 
+set -gx DEVKITPRO /opt/devkitpro
 set -gx TMPDIR (getconf DARWIN_USER_TEMP_DIR)
 
 if not type -q brew
