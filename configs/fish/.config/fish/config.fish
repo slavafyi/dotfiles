@@ -11,15 +11,15 @@ bind -M insert ctrl-n down-or-search
 bind -M insert -m default j,k cancel repaint-mode
 
 if type -q starship
-    starship init fish | source 2>/dev/null
+    starship init fish | source - 2>/dev/null
 end
 
 if type -q mise
-    mise activate fish | source 2>/dev/null
+    mise activate fish | source - 2>/dev/null
 end
 
 if type -q fzf
-    fzf --fish | source 2>/dev/null
+    fzf --fish | source - 2>/dev/null
 end
 
 if type -q orb
