@@ -20,6 +20,8 @@ end
 
 if type -q fzf
     fzf --fish | source - 2>/dev/null
+    bind shift-tab complete-and-search
+    bind -M insert shift-tab complete-and-search
 end
 
 if type -q orb
