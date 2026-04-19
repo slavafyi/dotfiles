@@ -3,7 +3,7 @@ set -gx VIRTUAL_ENV_DISABLE_PROMPT true
 function fish_prompt --description "Set fish prompt"
     if set -q ZMX_SESSION
         set_color --bold brwhite
-        printf "[S] "
+        printf "[$ZMX_SESSION] "
         set_color normal
     end
 

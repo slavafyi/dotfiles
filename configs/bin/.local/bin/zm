@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ns="${ZMX_NAMESPACE:-d}"
+
+usage() {
+  cat <<'USAGE'
+usage:
+  zm                   attach next d.<project>.<n>
+  zm 1                 attach d.<project>.1
+  zm editor            attach d.<project>.editor
+  zm -p pico 2         attach d.pico.2
+  zm ls                list sessions for current project
+  zm 2 npm run dev     create/attach d.<project>.2 with command if new
+USAGE
+}
+
+die() {
+  printf 'zm: %s\n' "$*" >&2
+  exit 2
+}
+
+slug() {
+  local s
+
+  s=$(printf '%s' "$1" |
+    LC_ALL=C tr '[:upper:]' '[:lower:]' |
+    LC_ALL=C tr -cs '[:alnum:]_.-' '-')
+
+  s=${s#-}
+  s=${s%-}
+
+  [ -n "$s" ] || s=x
+  printf '%s\n' "$s"
+}
+
+project_from_pwd() {
+  local root name
+
+  root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+  root=${root%/}
+  name=${root##*/}
+
+  slug "$name"
+}
+
+sessions() {
+  zmx list --short 2>/dev/null || true
+}
+
+list_project() {
+  local base name
+
+  base="$ns.$1."
+
+  sessions | while IFS= read -r name; do
+    case "$name" in
+    "$base"*) printf '%s\n' "$name" ;;
+    esac
+  done
+}
+
+next_slot() {
+  local base max name slot all
+
+  base="$ns.$1."
+  max=0
+  all=$(sessions)
+
+  while IFS= read -r name; do
+    [ -n "$name" ] || continue
+
+    case "$name" in
+    "$base"*)
+      slot=${name#"$base"}
+
+      case "$slot" in
+      '' | *[!0-9]*) ;;
+      *) [ "$slot" -gt "$max" ] && max=$slot ;;
+      esac
+      ;;
+    esac
+  done <<EOF
+$all
+EOF
+
+  printf '%s\n' "$((max + 1))"
+}
+
+project="${ZMX_PROJECT:-$(project_from_pwd)}"
+project=$(slug "$project")
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+  -p | --project)
+    [ "$#" -ge 2 ] || die 'missing project name'
+    project=$(slug "$2")
+    shift 2
+    ;;
+  -h | --help)
+    usage
+    exit 0
+    ;;
+  ls | list)
+    list_project "$project"
+    exit 0
+    ;;
+  --)
+    shift
+    break
+    ;;
+  *)
+    break
+    ;;
+  esac
+done
+
+if [ "$#" -gt 0 ]; then
+  slot=$1
+  shift
+else
+  slot=$(next_slot "$project")
+fi
+
+case "$slot" in
++ | new | next) slot=$(next_slot "$project") ;;
+esac
+
+base="$ns.$project."
+
+ZMX_SESSION_PREFIX="$base" exec zmx attach "$slot" "$@"
