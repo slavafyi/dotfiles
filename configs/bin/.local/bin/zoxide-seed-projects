@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+command -v zoxide >/dev/null 2>&1 || {
+  echo "error: zoxide is not installed" >&2
+  exit 1
+}
+
+command -v fd >/dev/null 2>&1 || {
+  echo "error: fd is not installed" >&2
+  exit 1
+}
+
+ZOXIDE_SEED_ROOTS="${ZOXIDE_SEED_ROOTS:-}"
+ZOXIDE_SEED_MANUAL="${ZOXIDE_SEED_MANUAL:-}"
+ZOXIDE_SEED_MAX_DEPTH="${ZOXIDE_SEED_MAX_DEPTH:-7}"
+
+seen=()
+
+already_seen() {
+  local dir="$1"
+  local item
+
+  for item in "${seen[@]}"; do
+    [[ "$item" == "$dir" ]] && return 0
+  done
+
+  return 1
+}
+
+add_dir() {
+  local dir="${1%/}"
+
+  [[ -d "$dir" ]] || return 0
+  already_seen "$dir" && return 0
+
+  seen+=("$dir")
+
+  zoxide add "$dir"
+  echo "added: $dir"
+}
+
+IFS=':' read -r -a roots <<<"$ZOXIDE_SEED_ROOTS"
+IFS=':' read -r -a manual <<<"$ZOXIDE_SEED_MANUAL"
+
+for root in "${roots[@]}"; do
+  root="${root%/}"
+
+  [[ -n "$root" ]] || continue
+  [[ -d "$root" ]] || continue
+
+  add_dir "$root"
+
+  while IFS= read -r -d '' git_path; do
+    add_dir "$(dirname "$git_path")"
+  done < <(
+    fd \
+      --hidden \
+      --no-ignore-vcs \
+      --type d \
+      --type f \
+      --max-depth "$ZOXIDE_SEED_MAX_DEPTH" \
+      --prune \
+      --print0 \
+      '^\.git$' \
+      "$root"
+  )
+done
+
+for dir in "${manual[@]}"; do
+  add_dir "$dir"
+done

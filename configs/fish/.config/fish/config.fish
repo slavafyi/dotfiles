@@ -27,3 +27,8 @@ end
 if type -q orb
     source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 end
+
+if type -q zoxide
+    zoxide init fish | source - 2>/dev/null
+    set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
+end
