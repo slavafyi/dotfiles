@@ -15,10 +15,11 @@
 
 ## Package managers
 
-- Use `pnpm` for Node.js installs and scripts by default. Use `pnpm exec` for local binaries, `pnpm dlx` for one-off CLIs, and `pnpm add -g` for global installs. Only use `npm`, `yarn`, `bun`, or another package manager when the project already uses or explicitly requires it.
+- Use `pnpm` for Node.js installs and scripts by default. On this machine, wrap Node.js package-manager commands with `mise exec --` so the active global and project-local `mise.toml` configuration is applied: `mise exec -- pnpm ...`, `mise exec -- pnpm exec ...`, and `mise exec -- pnpm dlx ...`. Only use `npm`, `yarn`, `bun`, or another package manager when the project already uses or explicitly requires it.
 
 ## Environment
 
+- This machine uses `mise` for runtime and CLI versions across languages. When running tools that may be managed by `mise` (`node`, `pnpm`, `python`, `ruby`, `go`, etc.), prefer `mise exec -- <command>` instead of calling a system-installed binary directly so the active global and project-local `mise.toml` configuration is respected.
 - On macOS, use OrbStack as the Docker runtime.
 
 ## Git
