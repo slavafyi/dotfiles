@@ -20,6 +20,7 @@
 ## Environment
 
 - This machine uses `mise` for runtime and CLI versions across languages. When running tools that may be managed by `mise` (`node`, `pnpm`, `python`, `ruby`, `go`, etc.), prefer `mise exec -- <command>` instead of calling a system-installed binary directly so the active global and project-local `mise.toml` configuration is respected.
+- Avoid explicit `bash -lc` or `zsh -lc` wrappers unless a task specifically requires those shells. Prefer running commands directly, and avoid depending on interactive shell setup files when invoking tools.
 - On macOS, use OrbStack as the Docker runtime.
 
 ## Git
