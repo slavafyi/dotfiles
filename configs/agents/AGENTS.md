@@ -15,7 +15,7 @@
 
 ## Package managers
 
-- Use `pnpm` for Node.js installs and scripts by default. On this machine, wrap Node.js package-manager commands with `mise exec --` so the active global and project-local `mise.toml` configuration is applied: `mise exec -- pnpm ...`, `mise exec -- pnpm exec ...`, and `mise exec -- pnpm dlx ...`. Only use `npm`, `yarn`, `bun`, or another package manager when the project already uses or explicitly requires it.
+- Use `pnpm` for Node.js installs and scripts by default. On this machine, wrap Node.js package-manager commands with `mise exec --` so the active global and project-local `mise.toml` configuration is applied: `mise exec -- pnpm ...`, `mise exec -- pnpm exec ...`, and `mise exec -- pnpm dlx ...`. When external docs, READMEs, or skills recommend `npm`/`npx` commands, translate them to the `pnpm` equivalent unless the project explicitly requires another package manager: use `mise exec -- pnpm dlx ...` for one-off `npx` commands, and use `mise exec -- pnpm exec ...` only for binaries already installed in the current project. Only use `npm`, `yarn`, `bun`, or another package manager when the project already uses or explicitly requires it.
 
 ## Environment
 
