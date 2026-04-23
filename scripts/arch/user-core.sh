@@ -66,6 +66,22 @@ setup_yay() {
   print_in_green "✓ Yay AUR helper installed successfully!"
 }
 
+setup_env() {
+  print_in_purple "Setting up environment..."
+  sleep 2
+  mkdir -p "$XDG_CONFIG_HOME/env"
+  stow \
+    --verbose \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow env
+  local out="$XDG_CONFIG_HOME/env/local.sh"
+  : > "$out"
+  printf "export DOTFILES=%s\n" "$DIR" >> "$out"
+  render_env
+  print_in_green "✓ Environment set up successfully!"
+}
+
 setup_fish() {
   print_in_purple "Setting up Fish..."
   sleep 2
@@ -77,6 +93,7 @@ setup_fish() {
     print_in_yellow "⚠ Default shell already set to Fish, skipping"
   fi
   mkdir -pv "$XDG_CONFIG_HOME/fish/completions"
+  mkdir -pv "$XDG_CONFIG_HOME/fish/conf.d"
   stow \
     --verbose \
     --dir "$DIR/configs" \
@@ -98,6 +115,7 @@ setup_bat() {
 }
 
 user_core() {
+  setup_env
   setup_stow
   setup_git
   setup_ssh
