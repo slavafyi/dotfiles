@@ -101,19 +101,6 @@ setup_tmux() {
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow tmux
-  mkdir \
-    -p \
-    "$XDG_BIN_HOME" \
-    "$XDG_DATA_HOME/man/man1"
-  curl \
-    -Lo \
-    "$XDG_DATA_HOME/man/man1/git-mux.1" \
-    "https://raw.githubusercontent.com/benelan/git-mux/stable/bin/man/man1/git-mux.1"
-  curl \
-    -Lo \
-    "$XDG_BIN_HOME/git-mux" \
-    "https://raw.githubusercontent.com/benelan/git-mux/stable/bin/git-mux"
-  chmod +x "$XDG_BIN_HOME/git-mux"
   print_in_green "✓ Tmux set up successfully!"
 }
 

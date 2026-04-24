@@ -30,10 +30,3 @@ set -gx FZF_DEFAULT_OPTS "
 
 set -gx GPG_TTY (tty)
 set -gx MISE_FISH_AUTO_ACTIVATE 0
-
-set -gx GIT_MUX_CUSTOM_ROOT "$HOME/dev"
-if set -q REMOTE_DEV; and test $REMOTE_DEV -eq 1
-    set -gx GIT_MUX_CUSTOM_PROJECTS "$HOME/dotfiles" "$HOME/share"
-else
-    set -gx GIT_MUX_CUSTOM_PROJECTS "$NOTES_DIR"
-end
