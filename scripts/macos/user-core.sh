@@ -73,8 +73,9 @@ setup_env() {
 
   render_env
 
-  local user_id="$(id -u)"
-  local user_name="$(id -un)"
+  local user_id user_name
+  user_id="$(id -u)"
+  user_name="$(id -un)"
   local agent_plist="$HOME/Library/LaunchAgents/com.$user_name.apply-env.plist"
   local agent_label="gui/$user_id/com.$user_name.apply-env"
   launchctl bootout "$agent_label" 2> /dev/null || true

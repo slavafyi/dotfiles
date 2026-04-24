@@ -2,23 +2,18 @@
 
 OS="$(detect_os)"
 
-ENV_KEYS=(
-  XDG_CACHE_HOME
-  XDG_CONFIG_HOME
-  XDG_DATA_HOME
-  XDG_STATE_HOME
-  XDG_BIN_HOME
-  EDITOR
-  VISUAL
-  GIT_EDITOR
-  PAGER
-  NOTES_DIR
-  PI_CONFIG_DIR
-  PI_CODING_AGENT_DIR
-  DOTFILES
-  PNPM_HOME
-  DEVKITPRO
-)
+_env_keys() {
+  local file line
+
+  for file in "$DIR/configs/env/.config/env/base.sh" "$XDG_CONFIG_HOME/env/local.sh"; do
+    [ -f "$file" ] || continue
+
+    while IFS= read -r line; do
+      [[ $line =~ ^[[:space:]]*export[[:space:]]+([A-Za-z_][A-Za-z0-9_]*)= ]] || continue
+      printf "%s\n" "${BASH_REMATCH[1]}"
+    done < "$file"
+  done
+}
 
 _escape_squotes() {
   printf "%s" "$1" | sed "s/'/'\\\\''/g"
@@ -29,11 +24,11 @@ _render_fish() {
   mkdir -p "$(dirname "$out")"
   : > "$out"
 
-  for key in "${ENV_KEYS[@]}"; do
+  while IFS= read -r key; do
     local value="${!key:-}"
     [ -n "$value" ] || continue
     printf "set -gx %s \"%s\"\n" "$key" "$(_escape_squotes "$value")" >> "$out"
-  done
+  done < <(_env_keys)
 }
 
 _render_environmentd() {
@@ -41,11 +36,11 @@ _render_environmentd() {
   mkdir -p "$(dirname "$out")"
   : > "$out"
 
-  for key in "${ENV_KEYS[@]}"; do
+  while IFS= read -r key; do
     local value="${!key:-}"
     [ -n "$value" ] || continue
     printf "%s=%s\n" "$key" "$value" >> "$out"
-  done
+  done < <(_env_keys)
 }
 
 _render_launchd_script() {
@@ -53,17 +48,18 @@ _render_launchd_script() {
   mkdir -p "$(dirname "$out")"
   : > "$out"
 
-  for key in "${ENV_KEYS[@]}"; do
+  while IFS= read -r key; do
     local value="${!key:-}"
     [ -n "$value" ] || continue
     printf "launchctl setenv %s %s\n" "$key" "$value" >> "$out"
-  done
+  done < <(_env_keys)
 
   chmod +x "$out"
 }
 
 _render_launchd_plist() {
-  local user_name="$(id -un)"
+  local user_name
+  user_name="$(id -un)"
   local out="$HOME/Library/LaunchAgents/com.$user_name.apply-env.plist"
   local script="$HOME/.config/env/apply-launchd-env.sh"
 
