@@ -20,8 +20,8 @@ uv_venv_auto = true
 age_key_file = '{{ env.XDG_CONFIG_HOME }}/sops/age/keys.txt'
 
 [settings.status]
-show_env = true
-show_tools = true
+show_env = false
+show_tools = false
 
 [tools]
 'cargo:tree-sitter-cli' = 'latest'
