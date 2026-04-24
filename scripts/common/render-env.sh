@@ -16,6 +16,8 @@ ENV_KEYS=(
   PI_CONFIG_DIR
   PI_CODING_AGENT_DIR
   DOTFILES
+  PNPM_HOME
+  DEVKITPRO
 )
 
 _escape_squotes() {

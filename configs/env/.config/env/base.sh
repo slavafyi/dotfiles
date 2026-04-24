@@ -12,5 +12,7 @@ export PAGER="${PAGER:-less}"
 export NOTES_DIR="${NOTES_DIR:-$HOME/notes}"
 export PI_CONFIG_DIR="${PI_CONFIG_DIR:-$XDG_CONFIG_HOME/pi}"
 export PI_CODING_AGENT_DIR="${PI_CODING_AGENT_DIR:-$PI_CONFIG_DIR/agent}"
+export PNPM_HOME="${PNPM_HOME:-$XDG_DATA_HOME/pnpm}"
+export DEVKITPRO="${DEVKITPRO:-/opt/devkitpro}"
 
 [ -f "$XDG_CONFIG_HOME/env/local.sh" ] && . "$XDG_CONFIG_HOME/env/local.sh"

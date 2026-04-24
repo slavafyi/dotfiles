@@ -7,9 +7,6 @@ path_prepend() {
 }
 
 path_prepend "$XDG_BIN_HOME"
-
-PNPM_HOME="${PNPM_HOME:-$XDG_DATA_HOME/pnpm}"
-export PNPM_HOME
 path_prepend "$PNPM_HOME"
 
 export PATH
