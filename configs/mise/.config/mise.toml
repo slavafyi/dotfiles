@@ -27,6 +27,7 @@ show_tools = false
 'cargo:tree-sitter-cli' = 'latest'
 'cargo:zoxide' = 'latest'
 age = 'latest'
+bun = 'latest'
 cargo-binstall = 'latest'
 deno = 'latest'
 erlang = 'latest'
