@@ -27,8 +27,11 @@ update_system() {
   print_in_purple "Updating the system..."
   sleep 2
   brew update --quiet > /dev/null 2>&1
-  brew upgrade
+  brew upgrade --formula
   brew upgrade --cask --greedy
+  if command -v mas > /dev/null 2>&1; then
+    mas upgrade
+  fi
   brew cleanup
   print_in_green "✓ System updated successfully!"
 }
