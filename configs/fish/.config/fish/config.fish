@@ -59,3 +59,7 @@ if type -q zoxide
     zoxide init fish | source - 2>/dev/null
     set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
 end
+
+if type -q sesh
+    bind -M insert ctrl-o "sesh connect (sesh list | fzf)"
+end

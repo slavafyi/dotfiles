@@ -10,6 +10,7 @@ if ! tmux has -t "$session" 2>/dev/null; then
   exec tmux set-option -t "$session_id" key-table popup \; \
     set-option -t "$session_id" status off \; \
     set-option -t "$session_id" prefix None \; \
+    set-option -t "$session_id" detach-on-destroy on \; \
     attach -t "$session"
 fi
 
