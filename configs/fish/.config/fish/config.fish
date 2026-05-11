@@ -61,5 +61,15 @@ if type -q zoxide
 end
 
 if type -q sesh
-    bind -M insert ctrl-o "sesh connect (sesh list | fzf)"
+    function __sesh_connect_fzf
+        set -l session (sesh list | fzf)
+
+        if test $status -eq 0; and test -n "$session"
+            sesh connect "$session"
+        else
+            commandline -f repaint
+        end
+    end
+
+    bind -M insert ctrl-o __sesh_connect_fzf
 end
