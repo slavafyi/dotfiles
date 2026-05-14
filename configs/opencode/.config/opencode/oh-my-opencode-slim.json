@@ -3,30 +3,9 @@
   "preset": "default",
   "presets": {
     "default": {
-      "council": { "model": "openai/gpt-5.5", "variant": "xhigh" },
-      "orchestrator": {
+      "council": {
         "model": "openai/gpt-5.5",
-        "variant": "xhigh",
-        "skills": ["*"],
-        "mcps": ["*", "!context7"]
-      },
-      "oracle": {
-        "model": "openai/gpt-5.5-fast",
-        "variant": "high",
-        "skills": ["simplify"],
-        "mcps": []
-      },
-      "librarian": {
-        "model": "openai/gpt-5.3-codex-spark",
-        "variant": "low",
-        "skills": [],
-        "mcps": ["websearch", "context7", "grep_app"]
-      },
-      "explorer": {
-        "model": "openai/gpt-5.3-codex-spark",
-        "variant": "low",
-        "skills": [],
-        "mcps": []
+        "variant": "xhigh"
       },
       "designer": {
         "model": "openai/gpt-5.5-fast",
@@ -34,33 +13,61 @@
         "skills": ["agent-browser"],
         "mcps": []
       },
-      "fixer": {
+      "explorer": {
         "model": "openai/gpt-5.3-codex-spark",
-        "variant": "low",
         "skills": [],
         "mcps": []
+      },
+      "fixer": {
+        "model": "openai/gpt-5.3-codex-spark",
+        "skills": [],
+        "mcps": []
+      },
+      "oracle": {
+        "model": "openai/gpt-5.5-fast",
+        "variant": "high",
+        "skills": ["simplify"],
+        "mcps": []
+      },
+      "orchestrator": {
+        "model": "openai/gpt-5.5",
+        "variant": "xhigh",
+        "skills": ["*"],
+        "mcps": ["*", "!context7"]
+      },
+      "librarian": {
+        "model": "openai/gpt-5.3-codex-spark",
+        "skills": [],
+        "mcps": ["websearch", "context7", "grep_app"]
       }
     }
+  },
+  "council": {
+    "default_preset": "default",
+    "presets": {
+      "default": {
+        "alpha": { "model": "opencode-go/kimi-k2.6" },
+        "beta": { "model": "opencode-go/minimax-m2.7" },
+        "gamma": { "model": "opencode-go/deepseek-v4-pro" }
+      },
+      "second-opinion": {
+        "architect": {
+          "model": "openai/gpt-5.4",
+          "variant": "high",
+          "prompt": "Review the task and the likely implementation for architecture, boundaries, coupling, long-term maintainability, migration/data risk, API design, and operational risk. Argue against weak designs. Propose safer alternatives."
+        },
+        "critic": {
+          "model": "openai/gpt-5.3-codex",
+          "variant": "high",
+          "prompt": "Find missing requirements, weak assumptions, unhandled edge cases, test gaps, security/data risks, and unclear verification. End with exactly one verdict: APPROVE, ITERATE, or REJECT, with reasons."
+        }
+      }
+    },
+    "timeout": 900000
   },
   "multiplexer": {
     "type": "auto",
     "layout": "main-vertical",
     "main_pane_size": 50
-  },
-  "council": {
-    "timeout": 1000000,
-    "presets": {
-      "default": {
-        "alpha": {
-          "model": "opencode-go/kimi-k2.6"
-        },
-        "beta": {
-          "model": "opencode-go/minimax-m2.7"
-        },
-        "gamma": {
-          "model": "opencode-go/deepseek-v4-pro"
-        }
-      }
-    }
   }
 }
