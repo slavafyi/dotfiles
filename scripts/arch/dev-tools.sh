@@ -62,6 +62,7 @@ setup_opencode() {
   yay -Sy --noconfirm --needed opencode-bin
   stow \
     --verbose \
+    --no-folding \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow opencode

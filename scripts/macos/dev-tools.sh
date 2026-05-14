@@ -61,6 +61,7 @@ setup_opencode() {
   brew install anomalyco/tap/opencode
   stow \
     --verbose \
+    --no-folding \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow opencode
