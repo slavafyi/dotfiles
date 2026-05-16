@@ -87,7 +87,7 @@ EOF
 
 render_env() {
   case "$OS" in
-    arch | debian)
+    arch | debian | fedora)
       _render_fish
       _render_environmentd
       ;;

@@ -56,7 +56,7 @@ misc/        Additional files (packages, dconf dumps, etc)
 
 - Arch Linux
 - macOS
-- Fedora (coming soon)
+- Fedora
 - Debian/Ubuntu
 
 ## License
