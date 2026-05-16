@@ -1,0 +1,17 @@
+btop
+curl
+duf
+eza
+findutils
+ghostscript
+git
+gnupg2
+grep
+imagemagick
+make
+ncdu
+ripgrep
+sed
+stow
+tealdeer
+wl-clipboard

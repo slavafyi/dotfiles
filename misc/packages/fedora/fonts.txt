@@ -1,0 +1,10 @@
+dejavu-sans-fonts
+dejavu-sans-mono-fonts
+dejavu-serif-fonts
+fira-code-fonts
+google-noto-color-emoji-fonts
+google-noto-sans-fonts
+google-noto-serif-fonts
+google-roboto-fonts
+liberation-fonts
+open-sans-fonts

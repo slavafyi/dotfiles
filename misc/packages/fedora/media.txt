@@ -1,0 +1,7 @@
+ffmpeg-free
+gstreamer1-plugins-base
+gstreamer1-plugins-good
+libva
+libva-utils
+vdpauinfo
+vulkan-tools
