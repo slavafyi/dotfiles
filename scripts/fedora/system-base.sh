@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-setup_mirrors() {
-  print_in_purple "Configuring mirrors..."
-  sleep 2
-  print_in_yellow "⚠ Fedora uses DNF metalink/mirror defaults; no mirror rewrite needed"
-}
-
 setup_base_packages() {
   print_in_purple "Installing base packages..."
   sleep 2
@@ -30,26 +24,19 @@ update_system() {
 }
 
 update_firmware() {
-  print_in_purple "Checking firmware updates..."
+  print_in_purple "Updating firmware..."
   sleep 2
-
-  if ! command -v fwupdmgr > /dev/null 2>&1; then
-    sudo dnf install -y fwupd > /dev/null 2>&1 || {
-      print_in_yellow "⚠ fwupd unavailable, skipping firmware checks"
-      return 0
-    }
-  fi
-
+  sudo dnf install -y fwupd
   set +e
   sudo fwupdmgr refresh --force
   sudo fwupdmgr get-devices
+  sudo fwupdmgr get-updates
   sudo fwupdmgr update
   set -e
-  print_in_green "✓ Firmware check completed"
+  print_in_green "✓ Firmware updated successfully!"
 }
 
 system_base() {
-  setup_mirrors
   setup_base_packages
   setup_system_settings
   update_system
