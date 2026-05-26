@@ -39,10 +39,6 @@
     "chrome-devtools": {
       "type": "local",
       "command": ["pnpx", "chrome-devtools-mcp@latest", "--autoConnect"]
-    },
-    "context-mode": {
-      "type": "local",
-      "command": ["pnpx", "--allow-build=better-sqlite3", "context-mode@latest"]
     }
   },
   "lsp": {
@@ -51,5 +47,5 @@
       "extensions": [".liquid"]
     }
   },
-  "plugin": ["context-mode", "opencode-wakatime", "oh-my-opencode-slim"]
+  "plugin": ["opencode-wakatime", "oh-my-opencode-slim"]
 }

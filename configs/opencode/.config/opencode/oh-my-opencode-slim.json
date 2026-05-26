@@ -14,12 +14,13 @@
         "mcps": []
       },
       "explorer": {
-        "model": "openai/gpt-5.3-codex-spark",
+        "model": "openai/gpt-5.4-mini",
         "skills": [],
         "mcps": []
       },
       "fixer": {
-        "model": "openai/gpt-5.3-codex-spark",
+        "model": "openai/gpt-5.4-mini",
+        "variant": "low",
         "skills": [],
         "mcps": []
       },
@@ -36,7 +37,7 @@
         "mcps": ["*", "!context7"]
       },
       "librarian": {
-        "model": "openai/gpt-5.3-codex-spark",
+        "model": "openai/gpt-5.4-mini",
         "skills": [],
         "mcps": ["websearch", "context7", "grep_app"]
       }
