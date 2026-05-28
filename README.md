@@ -25,9 +25,9 @@ make fmt                      # Format code files
 Profiles let you reuse the underlying install modules for different targets:
 
 - `full` – complete workstation setup (default)
-- `minimal-server` – essentials only (`system_base`, `user_core`)
-- `desktop` – desktop experience without developer extras
-- `dev-workstation` – desktop plus developer tooling
+- `minimal-server` – base system and user essentials (`system_base`, `user_core`)
+- `desktop` – desktop environment and extras without developer tooling (`system_base`, `user_core`, `desktop_env`, `optional_extras`)
+- `dev-workstation` – base system and developer tooling without desktop extras (`system_base`, `user_core`, `dev_tools`)
 
 Usage examples:
 ```bash

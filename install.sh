@@ -70,7 +70,7 @@ run_profile() {
   local profile="$1"
   local modules
 
-  if ! modules="$(profile_modules $profile)"; then
+  if ! modules="$(profile_modules "$profile")"; then
     list_profiles "✗ Unknown profile: $profile"
     exit 1
   fi
@@ -97,16 +97,16 @@ list_profiles() {
   printf "  %-17s %s\n" "Name" "Description"
   printf "  %-17s %s\n" "-----------------" "----------------------------------"
   print_profile "full" "Complete workstation setup"
-  print_profile "minimal-server" "Bare essentials for servers"
-  print_profile "desktop" "Desktop essentials without dev tools"
-  print_profile "dev-workstation" "Full desktop plus dev tooling"
+  print_profile "minimal-server" "Base system and user essentials"
+  print_profile "desktop" "Desktop environment and extras (no dev tools)"
+  print_profile "dev-workstation" "Base system plus dev tools (no desktop)"
 }
 
 print_profile() {
   local name="$1"
   local description="$2"
   printf "  %-17s %s\n" "$name" "$description"
-  printf "  %-17s %s\n" "" "Modules: $(profile_modules $name)"
+  printf "  %-17s %s\n" "" "Modules: $(profile_modules "$name")"
   printf "\n"
 }
 
