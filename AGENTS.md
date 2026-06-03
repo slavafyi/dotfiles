@@ -5,7 +5,7 @@ For human-oriented usage and profiles, see `README.md` and `./install.sh help`. 
 ## Commands
 
 - Full installation: `make install` (defaults to profile `full`)
-- Install a named profile: `make install PROFILE=desktop` (or `./install.sh profile desktop`)
+- Install a named profile: `make install PROFILE=minimal-server` (or `./install.sh profile minimal-server`)
 - List profiles: `./install.sh list-profiles`
 - Run an individual module: `./install.sh dev_tools`
 - Update base system/packages only: `make update`

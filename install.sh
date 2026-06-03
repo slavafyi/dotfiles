@@ -23,12 +23,6 @@ profile_modules() {
     minimal-server)
       printf "%s\n" "system_base user_core"
       ;;
-    desktop)
-      printf "%s\n" "system_base user_core desktop_env optional_extras"
-      ;;
-    dev-workstation)
-      printf "%s\n" "system_base user_core dev_tools"
-      ;;
     *)
       return 1
       ;;
@@ -98,8 +92,6 @@ list_profiles() {
   printf "  %-17s %s\n" "-----------------" "----------------------------------"
   print_profile "full" "Complete workstation setup"
   print_profile "minimal-server" "Base system and user essentials"
-  print_profile "desktop" "Desktop environment and extras (no dev tools)"
-  print_profile "dev-workstation" "Base system plus dev tools (no desktop)"
 }
 
 print_profile() {
@@ -123,7 +115,7 @@ print_usage() {
   printf "\n"
   print_section_title "Examples"
   print_command_row "./install.sh" "Full installation (default profile)"
-  print_command_row "./install.sh profile desktop" "Run the desktop profile"
+  print_command_row "./install.sh profile minimal-server" "Run the minimal server profile"
   print_command_row "./install.sh dev_tools" "Call an individual module"
   print_command_row "./install.sh setup_bins" "Call an individual setup sub-module"
 }
