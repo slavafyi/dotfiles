@@ -1,2 +1,2 @@
 fish_add_path "$XDG_BIN_HOME"
-fish_add_path "$PNPM_HOME"
+fish_add_path "$PNPM_HOME/bin"

@@ -7,6 +7,6 @@ path_prepend() {
 }
 
 path_prepend "$XDG_BIN_HOME"
-path_prepend "$PNPM_HOME"
+path_prepend "$PNPM_HOME/bin"
 
 export PATH
