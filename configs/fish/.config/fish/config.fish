@@ -66,6 +66,9 @@ if type -q sesh
 
         if test $status -eq 0; and test -n "$session"
             sesh connect "$session"
+            set -l sesh_status $status
+            commandline  -f repaint
+            return $sesh_status
         else
             commandline -f repaint
         end
