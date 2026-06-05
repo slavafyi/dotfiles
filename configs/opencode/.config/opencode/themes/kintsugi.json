@@ -1,0 +1,261 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "darkBackground": "#161618",
+    "darkBackgroundPanel": "#131314",
+    "darkBackgroundElement": "#20201f",
+    "darkForeground": "#cacac2",
+    "darkStrong": "#dddddd",
+    "darkMuted": "#969b8c",
+    "darkBorder": "#2a2a28",
+    "darkPrimary": "#b8943a",
+    "darkSecondary": "#dbad49",
+    "darkAccent": "#8fa3b3",
+    "darkError": "#b38f8f",
+    "darkWarning": "#ebcb8b",
+    "darkSuccess": "#a3be8c",
+    "darkInfo": "#8fa3b3",
+    "darkOrange": "#e08542",
+    "darkSyntaxComment": "#5f5f5f",
+    "darkSyntaxKeyword": "#d66848",
+    "darkSyntaxFunction": "#798283",
+    "darkSyntaxVariable": "#bcac8f",
+    "darkSyntaxString": "#cc7f66",
+    "darkSyntaxNumber": "#db9833",
+    "darkSyntaxType": "#798283",
+    "darkSyntaxOperator": "#e08542",
+    "darkSyntaxPunctuation": "#7f7b66",
+    "darkDiffAddedBg": "#1d241c",
+    "darkDiffRemovedBg": "#251d1d",
+    "darkDiffLineNumberBg": "#20201f",
+    "lightBackground": "#f8f4ea",
+    "lightBackgroundPanel": "#f2ede4",
+    "lightBackgroundElement": "#ebe4d8",
+    "lightForeground": "#3a3828",
+    "lightStrong": "#2a2818",
+    "lightMuted": "#8a8878",
+    "lightBorder": "#ddd4c0",
+    "lightPrimary": "#9a7820",
+    "lightSecondary": "#b84020",
+    "lightAccent": "#5a6870",
+    "lightError": "#8a5050",
+    "lightWarning": "#9a7820",
+    "lightSuccess": "#5a8a40",
+    "lightInfo": "#5a6870",
+    "lightOrange": "#b86820",
+    "lightSyntaxComment": "#a4a09a",
+    "lightSyntaxKeyword": "#b84020",
+    "lightSyntaxFunction": "#506870",
+    "lightSyntaxVariable": "#3c3828",
+    "lightSyntaxString": "#a85030",
+    "lightSyntaxNumber": "#a87820",
+    "lightSyntaxType": "#686e70",
+    "lightSyntaxOperator": "#b86820",
+    "lightSyntaxPunctuation": "#928e84",
+    "lightDiffAddedBg": "#e3ead9",
+    "lightDiffRemovedBg": "#ecdeda",
+    "lightDiffLineNumberBg": "#ebe4d8"
+  },
+  "theme": {
+    "primary": {
+      "dark": "darkPrimary",
+      "light": "lightPrimary"
+    },
+    "secondary": {
+      "dark": "darkSecondary",
+      "light": "lightSecondary"
+    },
+    "accent": {
+      "dark": "darkAccent",
+      "light": "lightAccent"
+    },
+    "error": {
+      "dark": "darkError",
+      "light": "lightError"
+    },
+    "warning": {
+      "dark": "darkWarning",
+      "light": "lightWarning"
+    },
+    "success": {
+      "dark": "darkSuccess",
+      "light": "lightSuccess"
+    },
+    "info": {
+      "dark": "darkInfo",
+      "light": "lightInfo"
+    },
+    "text": {
+      "dark": "darkForeground",
+      "light": "lightForeground"
+    },
+    "textMuted": {
+      "dark": "darkMuted",
+      "light": "lightMuted"
+    },
+    "background": {
+      "dark": "darkBackground",
+      "light": "lightBackground"
+    },
+    "backgroundPanel": {
+      "dark": "darkBackgroundPanel",
+      "light": "lightBackgroundPanel"
+    },
+    "backgroundElement": {
+      "dark": "darkBackgroundElement",
+      "light": "lightBackgroundElement"
+    },
+    "border": {
+      "dark": "darkBorder",
+      "light": "lightBorder"
+    },
+    "borderActive": {
+      "dark": "darkPrimary",
+      "light": "lightPrimary"
+    },
+    "borderSubtle": {
+      "dark": "darkBackgroundElement",
+      "light": "lightBackgroundElement"
+    },
+    "diffAdded": {
+      "dark": "darkSuccess",
+      "light": "lightSuccess"
+    },
+    "diffRemoved": {
+      "dark": "darkError",
+      "light": "lightError"
+    },
+    "diffContext": {
+      "dark": "darkMuted",
+      "light": "lightMuted"
+    },
+    "diffHunkHeader": {
+      "dark": "darkPrimary",
+      "light": "lightPrimary"
+    },
+    "diffHighlightAdded": {
+      "dark": "#c3de9c",
+      "light": "lightSuccess"
+    },
+    "diffHighlightRemoved": {
+      "dark": "#d9a6a6",
+      "light": "lightError"
+    },
+    "diffAddedBg": {
+      "dark": "darkDiffAddedBg",
+      "light": "lightDiffAddedBg"
+    },
+    "diffRemovedBg": {
+      "dark": "darkDiffRemovedBg",
+      "light": "lightDiffRemovedBg"
+    },
+    "diffContextBg": {
+      "dark": "darkBackgroundPanel",
+      "light": "lightBackgroundPanel"
+    },
+    "diffLineNumber": {
+      "dark": "darkMuted",
+      "light": "lightMuted"
+    },
+    "diffAddedLineNumberBg": {
+      "dark": "darkDiffLineNumberBg",
+      "light": "lightDiffLineNumberBg"
+    },
+    "diffRemovedLineNumberBg": {
+      "dark": "darkDiffLineNumberBg",
+      "light": "lightDiffLineNumberBg"
+    },
+    "markdownText": {
+      "dark": "darkForeground",
+      "light": "lightForeground"
+    },
+    "markdownHeading": {
+      "dark": "darkPrimary",
+      "light": "lightPrimary"
+    },
+    "markdownLink": {
+      "dark": "darkPrimary",
+      "light": "lightPrimary"
+    },
+    "markdownLinkText": {
+      "dark": "darkAccent",
+      "light": "lightAccent"
+    },
+    "markdownCode": {
+      "dark": "darkOrange",
+      "light": "lightOrange"
+    },
+    "markdownBlockQuote": {
+      "dark": "darkMuted",
+      "light": "lightMuted"
+    },
+    "markdownEmph": {
+      "dark": "darkWarning",
+      "light": "lightWarning"
+    },
+    "markdownStrong": {
+      "dark": "darkStrong",
+      "light": "lightStrong"
+    },
+    "markdownHorizontalRule": {
+      "dark": "darkBorder",
+      "light": "lightBorder"
+    },
+    "markdownListItem": {
+      "dark": "darkPrimary",
+      "light": "lightPrimary"
+    },
+    "markdownListEnumeration": {
+      "dark": "darkAccent",
+      "light": "lightAccent"
+    },
+    "markdownImage": {
+      "dark": "darkPrimary",
+      "light": "lightPrimary"
+    },
+    "markdownImageText": {
+      "dark": "darkAccent",
+      "light": "lightAccent"
+    },
+    "markdownCodeBlock": {
+      "dark": "darkForeground",
+      "light": "lightForeground"
+    },
+    "syntaxComment": {
+      "dark": "darkSyntaxComment",
+      "light": "lightSyntaxComment"
+    },
+    "syntaxKeyword": {
+      "dark": "darkSyntaxKeyword",
+      "light": "lightSyntaxKeyword"
+    },
+    "syntaxFunction": {
+      "dark": "darkSyntaxFunction",
+      "light": "lightSyntaxFunction"
+    },
+    "syntaxVariable": {
+      "dark": "darkSyntaxVariable",
+      "light": "lightSyntaxVariable"
+    },
+    "syntaxString": {
+      "dark": "darkSyntaxString",
+      "light": "lightSyntaxString"
+    },
+    "syntaxNumber": {
+      "dark": "darkSyntaxNumber",
+      "light": "lightSyntaxNumber"
+    },
+    "syntaxType": {
+      "dark": "darkSyntaxType",
+      "light": "lightSyntaxType"
+    },
+    "syntaxOperator": {
+      "dark": "darkSyntaxOperator",
+      "light": "lightSyntaxOperator"
+    },
+    "syntaxPunctuation": {
+      "dark": "darkSyntaxPunctuation",
+      "light": "lightSyntaxPunctuation"
+    }
+  }
+}
