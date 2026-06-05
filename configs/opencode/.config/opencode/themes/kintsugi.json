@@ -1,8 +1,8 @@
 {
   "$schema": "https://opencode.ai/theme.json",
   "defs": {
-    "darkBackground": "#131314",
-    "darkBackgroundPanel": "#161618",
+    "darkBackground": "#161618",
+    "darkBackgroundPanel": "#131314",
     "darkBackgroundElement": "#20201f",
     "darkForeground": "#cacac2",
     "darkStrong": "#dddddd",
@@ -28,8 +28,8 @@
     "darkDiffAddedBg": "#1d241c",
     "darkDiffRemovedBg": "#251d1d",
     "darkDiffLineNumberBg": "#20201f",
-    "lightBackground": "#f2ede4",
-    "lightBackgroundPanel": "#f8f4ea",
+    "lightBackground": "#f8f4ea",
+    "lightBackgroundPanel": "#f2ede4",
     "lightBackgroundElement": "#ebe4d8",
     "lightForeground": "#3a3828",
     "lightStrong": "#2a2818",
