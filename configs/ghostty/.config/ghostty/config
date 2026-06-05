@@ -2,9 +2,9 @@ config-file = keybind
 config-file = tmux
 config-file = vim
 
-font-family = "IosevkaTerm NFM"
+font-family = "IoskeleyMonoTerm Nerd Font"
 font-feature = "-calt, -liga, -dlig"
-font-size = 16
+font-size = 14
 
 theme = light:papercolor-light, dark:papercolor-dark
 
@@ -16,7 +16,7 @@ split-inherit-working-directory = true
 tab-inherit-working-directory = true
 window-inherit-working-directory = false
 
-window-height = 35
+window-height = 40
 window-padding-balance = true
 window-padding-color = extend
 window-padding-x = 4
