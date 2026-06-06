@@ -27,6 +27,32 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Left ctrl + [ to ESC",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com.apple.Terminal",
+                                            "^com.mitchellh.ghostty",
+                                            "^net.kovidgoyal.kitty"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "open_bracket",
+                                    "modifiers": {
+                                        "mandatory": ["left_control"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Left ctrl + N/P to arrow DOWN/UP",
                         "manipulators": [
                             {
@@ -176,7 +202,6 @@
                     },
                     {
                         "description": "Caps Lock + Spacebar → Left Control + Option + Spacebar",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -276,7 +301,7 @@
                     }
                 ]
             },
-            "name": "slavamak",
+            "name": "slavafyi",
             "selected": true,
             "simple_modifications": [
                 {
