@@ -10,6 +10,8 @@ theme = light:kintsugi-light, dark:kintsugi-dark
 
 shell-integration-features = ssh-terminfo, ssh-env
 
+adjust-cursor-thickness = 200%
+cursor-style = bar
 mouse-hide-while-typing = true
 
 split-inherit-working-directory = true
