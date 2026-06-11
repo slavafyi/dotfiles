@@ -1,5 +1,28 @@
 {
   "$schema": "https://opencode.ai/tui.json",
   "theme": "kintsugi",
-  "plugin": ["oh-my-opencode-slim"]
+  "plugin": ["oh-my-opencode-slim"],
+  "keybinds": {
+    "app_exit": "<leader>q",
+    "history_previous": "alt+p",
+    "history_next": "alt+n",
+    "messages_page_up": "pageup,alt+b",
+    "messages_page_down": "pagedown,alt+f",
+    "session_list": "<leader>s",
+    "session_child_first": "<leader>j",
+    "session_child_cycle": "<leader>n",
+    "session_child_cycle_reverse": "<leader>p",
+    "session_parent": "<leader>k",
+    "which_key_toggle": "<leader>w",
+    "which_key_layout_toggle": "none",
+    "which_key_pending_toggle": "none",
+    "which_key_group_next": "tab",
+    "which_key_group_previous": "shift+tab",
+    "which_key_scroll_up": "up,alt+u",
+    "which_key_scroll_down": "down,alt+d",
+    "which_key_page_up": "alt+p",
+    "which_key_page_down": "alt+n",
+    "which_key_home": "none",
+    "which_key_end": "none"
+  }
 }
