@@ -1,4 +1,4 @@
-ffmpeg-free
+celluloid
 gstreamer1-plugins-base
 gstreamer1-plugins-good
 libva

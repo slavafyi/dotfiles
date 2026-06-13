@@ -96,8 +96,7 @@ setup_media_packages() {
     gstreamer1-plugins-bad-freeworld \
     gstreamer1-plugins-ugly \
     libavcodec-freeworld \
-    mpv \
-    vlc
+    mpv
 
   print_in_green "✓ Media and graphics support packages installed!"
 }
