@@ -4,40 +4,42 @@
   "presets": {
     "default": {
       "council": {
-        "model": "openai/gpt-5.5",
+        "model": "openai/gpt-5.6-sol",
         "variant": "high"
       },
       "designer": {
-        "model": "openai/gpt-5.5-fast",
+        "model": "openai/gpt-5.6-terra",
         "variant": "high",
         "skills": [],
         "mcps": []
       },
       "explorer": {
-        "model": "openai/gpt-5.4-mini",
-        "skills": [],
-        "mcps": []
-      },
-      "fixer": {
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.6-terra",
         "variant": "low",
         "skills": [],
         "mcps": []
       },
+      "fixer": {
+        "model": "openai/gpt-5.6-terra",
+        "variant": "medium",
+        "skills": [],
+        "mcps": []
+      },
       "oracle": {
-        "model": "openai/gpt-5.5-fast",
-        "variant": "high",
+        "model": "openai/gpt-5.6-sol",
+        "variant": "max",
         "skills": ["simplify"],
         "mcps": []
       },
       "orchestrator": {
-        "model": "openai/gpt-5.5",
+        "model": "openai/gpt-5.6-terra",
         "variant": "high",
         "skills": ["*"],
         "mcps": ["*", "!context7"]
       },
       "librarian": {
-        "model": "openai/gpt-5.4-mini",
+        "model": "openai/gpt-5.6-terra",
+        "variant": "low",
         "skills": [],
         "mcps": ["websearch", "context7", "gh_grep"]
       }
@@ -47,18 +49,24 @@
     "default_preset": "default",
     "presets": {
       "default": {
-        "alpha": { "model": "opencode-go/kimi-k2.6" },
-        "beta": { "model": "opencode-go/minimax-m2.7" },
-        "gamma": { "model": "opencode-go/deepseek-v4-pro" }
+        "alpha": {
+          "model": "opencode-go/kimi-k2.6"
+        },
+        "beta": {
+          "model": "opencode-go/minimax-m2.7"
+        },
+        "gamma": {
+          "model": "opencode-go/deepseek-v4-pro"
+        }
       },
       "second-opinion": {
         "architect": {
-          "model": "openai/gpt-5.4",
-          "variant": "high",
+          "model": "openai/gpt-5.6-sol",
+          "variant": "max",
           "prompt": "Review the task and the likely implementation for architecture, boundaries, coupling, long-term maintainability, migration/data risk, API design, and operational risk. Argue against weak designs. Propose safer alternatives."
         },
         "critic": {
-          "model": "openai/gpt-5.3-codex",
+          "model": "openai/gpt-5.6-terra",
           "variant": "high",
           "prompt": "Find missing requirements, weak assumptions, unhandled edge cases, test gaps, security/data risks, and unclear verification. End with exactly one verdict: APPROVE, ITERATE, or REJECT, with reasons."
         }
