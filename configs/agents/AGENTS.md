@@ -28,6 +28,6 @@
 ## Git
 
 - Use Conventional Commits.
-- Keep commit subjects under 80 characters.
+- Follow the classic 50/72 commit message convention: aim for a ~50-character subject, then a blank line and a body wrapped at 72 characters when a body is needed.
 - Do not add a commit body unless asked.
 - Do not add `Co-authored-by` trailers.
