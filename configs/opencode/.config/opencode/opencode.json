@@ -25,21 +25,6 @@
     }
   },
   "mcp": {
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      }
-    },
-    "shopify-dev": {
-      "type": "local",
-      "command": ["pnpx", "@shopify/dev-mcp@latest"],
-      "environment": {
-        "LIQUID_VALIDATION_MODE": "full",
-        "OPT_OUT_INSTRUMENTATION": "true"
-      }
-    },
     "chrome-devtools": {
       "type": "local",
       "command": ["pnpx", "chrome-devtools-mcp@latest", "--autoConnect"]
