@@ -71,9 +71,10 @@ setup_opencode() {
 setup_pi() {
   print_in_purple "Setting up Pi coding agent..."
   sleep 2
-  pnpm install -g @mariozechner/pi-coding-agent
+  pnpm install -g @earendil-works/pi-coding-agent
   stow \
     --verbose \
+    --no-folding \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow pi
