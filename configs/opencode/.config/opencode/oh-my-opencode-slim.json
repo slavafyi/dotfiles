@@ -78,5 +78,6 @@
     "type": "auto",
     "layout": "main-vertical",
     "main_pane_size": 50
-  }
+  },
+  "disabled_mcps": ["context7"]
 }
