@@ -112,6 +112,7 @@ setup_agents() {
   mkdir -pv "$HOME/.agents"
   stow \
     --verbose \
+    --no-folding \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow agents
