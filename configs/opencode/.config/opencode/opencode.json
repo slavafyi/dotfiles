@@ -36,5 +36,5 @@
       "extensions": [".liquid"]
     }
   },
-  "plugin": ["opencode-wakatime", "oh-my-opencode-slim"]
+  "plugin": ["opencode-wakatime", "oh-my-opencode-slim", "@dietrichgebert/ponytail"]
 }
