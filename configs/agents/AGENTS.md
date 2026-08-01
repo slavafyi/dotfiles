@@ -25,6 +25,13 @@
 - For bug fixes, prefer a failing test or concrete reproducer before changing
   code, when practical
 
+## Formatting
+
+- For prose in Markdown, plain-text, and similar text files, wrap paragraphs
+  at 80 columns
+- Follow project-specific formatting settings for source code
+- Do not wrap code blocks, tables, URLs, or other format-sensitive content
+
 ## Tooling
 
 - Use `pnpm` for Node.js by default. Translate `npm`/`npx` commands to the
