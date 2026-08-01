@@ -9,6 +9,9 @@
 [commit]
   gpgsign = true
 
+[rebase]
+  gpgsign = true
+
 [core]
   editor = nvim
   excludesfile = ~/.gitignore
