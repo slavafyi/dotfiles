@@ -15,6 +15,14 @@
   clear reason to change them
 - Be direct and technically accurate. Report blockers clearly
 
+## Implementation
+
+- Choose the simplest implementation that fully meets the current requirements
+- Prefer established, well-maintained libraries and platform features over
+  custom implementations. Do not add a dependency for trivial functionality
+- Do not add backward-compatibility code unless required by the task, a
+  documented support policy, or known consumers
+
 ## Validation
 
 - After code changes, run the relevant existing validation commands for the
