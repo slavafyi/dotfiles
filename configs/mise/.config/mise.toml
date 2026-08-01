@@ -24,6 +24,7 @@ show_env = false
 show_tools = false
 
 [tools]
+'cargo:https://github.com/rtk-ai/rtk' = 'latest'
 'cargo:tree-sitter-cli' = 'latest'
 'cargo:zoxide' = 'latest'
 age = 'latest'
