@@ -1,4 +1,8 @@
 {
+  "settings": {
+    "mcpFooterStatus": "compact",
+    "showStatusIcon": false
+  },
   "mcpServers": {
     "chrome-devtools": {
       "command": "pnpx",
