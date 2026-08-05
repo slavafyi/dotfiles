@@ -14,7 +14,7 @@ experimental = true
 key_file = '{{ env.XDG_CONFIG_HOME }}/sops/age/keys.txt'
 
 [settings.python]
-uv_venv_auto = true
+uv_venv_auto = 'create|source'
 
 [settings.sops]
 age_key_file = '{{ env.XDG_CONFIG_HOME }}/sops/age/keys.txt'
