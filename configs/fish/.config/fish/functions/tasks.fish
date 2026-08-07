@@ -1,4 +1,4 @@
-function tasks --description 'Open a picker for uncompleted tasks in daily notes'
+function tasks --description "Open a picker for uncompleted tasks in daily notes"
     set task_re '^\s*[-*]\s+\[ \]'
 
     zk list daily/ -s path- -f '{{abs-path}}' -0 --no-pager --quiet |
