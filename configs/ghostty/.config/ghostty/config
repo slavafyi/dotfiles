@@ -6,7 +6,7 @@ font-family = "IoskeleyMonoTerm Nerd Font"
 font-feature = "-calt, -liga, -dlig"
 font-size = 14
 
-theme = light:kintsugi-light, dark:kintsugi-dark
+theme = light:koda-light, dark:koda-dark
 
 shell-integration-features = ssh-terminfo, ssh-env
 

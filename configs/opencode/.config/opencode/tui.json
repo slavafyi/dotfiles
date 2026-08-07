@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/tui.json",
-  "theme": "kintsugi",
+  "theme": "koda",
   "plugin": ["oh-my-opencode-slim"],
   "keybinds": {
     "app_exit": "ctrl+q",
