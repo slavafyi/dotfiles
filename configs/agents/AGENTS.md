@@ -61,9 +61,16 @@
 
 ## Git
 
-- Use Conventional Commits.
+- Use [Conventional Commits](https://www.conventionalcommits.org/).
+- Before committing, inspect recent commit history and follow established
+  repository-specific scope and subject conventions.
 - Do not add a commit body unless asked.
 - Follow the classic 50/72 commit message convention: aim for a subject of about
   50 characters. When a body is included, separate it with a blank line and wrap
   it at 72 characters.
 - Do not add `Co-authored-by` trailers.
+- Use [Conventional Branch](https://conventionalbranch.org/) for branch names.
+- Prefer the `feature/` prefix over `feat/`. Before creating a branch, inspect
+  available local and remote branch history. Use `feat/` only when the
+  repository consistently uses it; when conventions are absent or mixed, use
+  `feature/`.
