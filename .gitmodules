@@ -1,3 +1,6 @@
 [submodule "configs/neovim/.config/nvim"]
 	path = configs/neovim/.config/nvim
 	url = https://github.com/slavafyi/nvim
+[submodule "configs/pi/.config/pi/agent"]
+	path = configs/pi/.config/pi/agent
+	url = https://github.com/slavafyi/pi-config
