@@ -24,7 +24,6 @@ show_env = false
 show_tools = false
 
 [tools]
-'cargo:https://github.com/akitaonrails/ai-usagebar' = { version = 'branch:main', default-features = false }
 'cargo:https://github.com/rtk-ai/rtk' = 'latest'
 'cargo:tree-sitter-cli' = 'latest'
 'cargo:zoxide' = 'latest'
