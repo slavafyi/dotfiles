@@ -15,6 +15,29 @@
   there is a clear reason to do otherwise.
 - Be direct and technically accurate. Report blockers clearly.
 
+## Communication
+
+For technical explanations, prefer the principles of ASD-STE100 Simplified
+Technical English: clear structure, direct language, and established technical
+terminology.
+
+Prefer familiar software engineering terms over newly coined terminology.
+Introduce a new term or abstraction only when it helps make the explanation
+more precise or easier to discuss.
+
+For general prose and non-technical explanations, prefer the principles of ISO
+24495-1 Plain Language: make the main point easy to find, use familiar words,
+and avoid unnecessary complexity.
+
+In general, optimize writing for:
+
+1. Accuracy.
+2. Clarity.
+3. Concision.
+4. Established terminology.
+
+Prefer the simplest wording that preserves the important technical detail.
+
 ## Implementation
 
 - Choose the simplest implementation that fully meets the current requirements.
