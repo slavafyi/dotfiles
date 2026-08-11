@@ -7,10 +7,17 @@ Personal system configuration files.
 Keep it simple, even if it means duplicating code. Modular where it makes sense, pragmatic everywhere else. Designed for easy maintenance and clear understanding over clever abstractions.
 
 ## Quick Start
+
 ```bash
-git clone --recursive https://github.com/slavafyi/dotfiles.git ~/.dotfiles
+git clone --recurse-submodules https://github.com/slavafyi/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 make install
+```
+
+After a regular clone, initialize the submodules separately:
+
+```bash
+git submodule update --init --recursive
 ```
 
 ## Available Commands
