@@ -59,7 +59,9 @@ These commands reflect what `make fmt` runs:
 - For commits that change only files under `configs/` or `scripts/`, use the
   corresponding top-level directory as the Conventional Commit scope. Omit the
   scope when a commit spans both or other top-level areas; do not invent a
-  generic scope
+  generic scope. This rule applies only to this repository: when committing
+  inside a submodule, follow that repository's conventions and do not infer a
+  `configs` or `scripts` scope from its path in this repository
 - When exactly one first-level component or platform is affected, start the
   subject with its name, followed by what changed: `docs(configs): agents ...`
   or `feat(scripts): macos ...`. Use `common` for shared scripts
