@@ -72,6 +72,7 @@ setup_pi() {
   print_in_purple "Setting up Pi coding agent..."
   sleep 2
   pnpm install -g @earendil-works/pi-coding-agent
+  brew install --formula steipete/tap/codexbar
   stow \
     --verbose \
     --no-folding \

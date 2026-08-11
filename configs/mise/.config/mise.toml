@@ -25,7 +25,6 @@ show_tools = false
 
 [tools]
 'cargo:https://github.com/rtk-ai/rtk' = 'latest'
-'cargo:ai-usagebar' = { version = 'latest', default-features = false }
 'cargo:tree-sitter-cli' = 'latest'
 'cargo:zoxide' = 'latest'
 age = 'latest'

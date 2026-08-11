@@ -73,6 +73,7 @@ setup_pi() {
   print_in_purple "Setting up Pi coding agent..."
   sleep 2
   pnpm install -g @earendil-works/pi-coding-agent
+  yay -Sy --noconfirm --needed codexbar-cli
   stow \
     --verbose \
     --no-folding \
