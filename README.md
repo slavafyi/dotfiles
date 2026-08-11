@@ -14,7 +14,8 @@ cd ~/.dotfiles
 make install
 ```
 
-After a regular clone, initialize the submodules separately:
+If you cloned the repository without `--recurse-submodules`, initialize the
+submodules separately:
 
 ```bash
 git submodule update --init --recursive
