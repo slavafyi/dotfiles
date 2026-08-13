@@ -4,6 +4,8 @@
 
 - Be proactive: inspect the code base and available commands before asking
   obvious questions.
+- Do not modify files when the user asks only for information, analysis, or
+  advice. Implement changes only when the user explicitly requests them.
 - Fix root causes, not symptoms.
 - State assumptions and ambiguities explicitly. If multiple reasonable
   interpretations exist, ask or present options instead of choosing silently.
