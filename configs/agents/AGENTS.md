@@ -71,6 +71,10 @@ Prefer the simplest wording that preserves the important technical detail.
   environment replaces the BSD system utilities with Homebrew GNU variants
   through `gnubin`. Do not use BSD-specific command variants unless an
   explicitly portable script requires them.
+- Use FFF-backed tools for indexed project searches before shell search. If an
+  exact ignored, generated, dependency, or external path requires `rg`, exclude
+  `*.map` and minified files unless they are the target, start with `rg -l`, and
+  use `--max-columns`; `head` limits line count, not line length.
 - For project-specific language versions, add `mise.toml` and run
   `mise install`.
 - Before using Docker, check for OrbStack, Colima, or an equivalent tool for
