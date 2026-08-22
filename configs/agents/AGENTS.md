@@ -67,6 +67,10 @@ Prefer the simplest wording that preserves the important technical detail.
   `ruby`, `go`, and `rust`.
 - Use the system package manager for standalone CLI tools such as `git`, `gh`,
   and `lazygit`.
+- Use GNU command-line syntax for standard Unix utilities on macOS. This
+  environment replaces the BSD system utilities with Homebrew GNU variants
+  through `gnubin`. Do not use BSD-specific command variants unless an
+  explicitly portable script requires them.
 - For project-specific language versions, add `mise.toml` and run
   `mise install`.
 - Before using Docker, check for OrbStack, Colima, or an equivalent tool for
