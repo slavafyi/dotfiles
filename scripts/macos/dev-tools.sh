@@ -71,8 +71,18 @@ setup_opencode() {
 setup_pi() {
   print_in_purple "Setting up Pi coding agent..."
   sleep 2
-  pnpm install -g @earendil-works/pi-coding-agent
-  brew install --formula steipete/tap/codexbar
+  pnpm install -g \
+    @earendil-works/pi-coding-agent parallel-web-cli @playwright/cli@latest
+  pnpx skills add microsoft/playwright-cli \
+    --global \
+    --agent universal \
+    --skill playwright-cli \
+    --yes
+  pnpx skills add parallel-web/parallel-agent-skills \
+    --global \
+    --agent universal \
+    --skill "*" \
+    --yes
   stow \
     --verbose \
     --no-folding \

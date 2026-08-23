@@ -76,3 +76,7 @@ if type -q sesh
 
     bind -M insert ctrl-o __sesh_connect_fzf
 end
+
+if type -q pi
+    set -gx PI_CACHE_RETENTION long
+end
