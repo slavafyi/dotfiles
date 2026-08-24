@@ -40,6 +40,12 @@ In general, optimize writing for:
 
 Prefer the simplest wording that preserves the important technical detail.
 
+When drafting text that the user is expected to copy and send, such as an
+email, chat message, reply, or issue comment, present the draft as plain text.
+Do not wrap it in Markdown blockquotes, fenced code blocks, or decorative
+separators. Do not add Markdown formatting inside the draft unless the user
+asks for it. Put explanations before or after the draft.
+
 ## Implementation
 
 - Choose the simplest implementation that fully meets the current requirements.
