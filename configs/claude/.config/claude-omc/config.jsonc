@@ -11,7 +11,7 @@
       "model": "fable"
     },
     "critic": {
-      "model": "fable"
+      "model": "opus"
     },
     "securityReviewer": {
       "model": "fable"
