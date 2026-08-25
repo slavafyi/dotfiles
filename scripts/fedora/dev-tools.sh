@@ -82,6 +82,19 @@ setup_opencode() {
   print_in_green "✓ OpenCode set up successfully!"
 }
 
+setup_claude() {
+  print_in_purple "Setting up Claude Code..."
+  sleep 2
+  pnpm install -g @anthropic-ai/claude-code@latest
+  stow \
+    --verbose \
+    --no-folding \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow claude
+  print_in_green "✓ Claude Code set up successfully!"
+}
+
 setup_pi() {
   print_in_purple "Setting up Pi coding agent..."
   sleep 2
@@ -154,6 +167,7 @@ dev_tools() {
   setup_neovim
   setup_tmux
   setup_opencode
+  setup_claude
   setup_pi
   setup_agents
   setup_bins

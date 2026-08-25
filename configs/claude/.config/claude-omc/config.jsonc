@@ -1,0 +1,66 @@
+{
+  "agents": {
+    // Deep reasoning
+    "analyst": {
+      "model": "fable"
+    },
+    "planner": {
+      "model": "fable"
+    },
+    "architect": {
+      "model": "fable"
+    },
+    "critic": {
+      "model": "fable"
+    },
+    "securityReviewer": {
+      "model": "fable"
+    },
+
+    // Coding / execution
+    "executor": {
+      "model": "opus"
+    },
+    "debugger": {
+      "model": "opus"
+    },
+    "tracer": {
+      "model": "opus"
+    },
+    "verifier": {
+      "model": "opus"
+    },
+    "testEngineer": {
+      "model": "opus"
+    },
+    "qaTester": {
+      "model": "opus"
+    },
+    "codeReviewer": {
+      "model": "opus"
+    },
+    "codeSimplifier": {
+      "model": "opus"
+    },
+
+    // Supporting roles
+    "explore": {
+      "model": "sonnet"
+    },
+    "designer": {
+      "model": "opus"
+    },
+    "documentSpecialist": {
+      "model": "opus"
+    },
+    "gitMaster": {
+      "model": "sonnet"
+    },
+    "scientist": {
+      "model": "opus"
+    },
+    "writer": {
+      "model": "sonnet"
+    }
+  }
+}
