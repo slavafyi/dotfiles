@@ -1,0 +1,133 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "sh ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud-cache.sh ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs"
+  },
+  "enabledPlugins": {
+    "claude-code-wakatime@wakatime": true,
+    "shopify-plugin@shopify-ai-toolkit": true,
+    "oh-my-claudecode@omc": true,
+    "shopify@slavafyi": true,
+    "common@slavafyi": true,
+    "forge@slavafyi": true,
+    "harden@slavafyi": true
+  },
+  "extraKnownMarketplaces": {
+    "wakatime": {
+      "source": {
+        "source": "github",
+        "repo": "wakatime/claude-code-wakatime"
+      }
+    },
+    "slavafyi": {
+      "source": {
+        "source": "github",
+        "repo": "slavafyi/skills"
+      }
+    },
+    "shopify-ai-toolkit": {
+      "source": {
+        "source": "github",
+        "repo": "Shopify/shopify-ai-toolkit"
+      }
+    },
+    "omc": {
+      "source": {
+        "source": "github",
+        "repo": "Yeachan-Heo/oh-my-claudecode"
+      }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "tui": "default",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "auto",
+  "editorMode": "normal",
+  "preferredNotifChannel": "auto",
+  "autoCompactEnabled": true,
+  "switchModelsOnFlag": false,
+  "remoteControlAtStartup": true,
+  "omcHud": {
+    "preset": "minimal",
+    "elements": {
+      "omcLabel": false,
+      "updateNotification": true,
+      "model": true,
+      "modelFormat": "versioned",
+      "rateLimits": true,
+      "cwd": false,
+      "gitRepo": false,
+      "gitBranch": true,
+      "gitStatus": false,
+      "gitInfoPosition": "below",
+      "contextBar": true,
+      "useBars": false,
+      "agents": true,
+      "agentsFormat": "multiline",
+      "agentsMaxLines": 3,
+      "ralph": true,
+      "autopilot": true,
+      "prdStory": true,
+      "activeSkills": false,
+      "lastSkill": false,
+      "backgroundTasks": true,
+      "todos": true,
+      "thinking": true,
+      "thinkingFormat": "text",
+      "promptTime": true,
+      "sessionHealth": false,
+      "showSessionDuration": false,
+      "showHealthIndicator": false,
+      "showCallCounts": false,
+      "profile": false,
+      "showTokens": false,
+      "hostname": false,
+      "apiKeySource": false,
+      "permissionStatus": false,
+      "missionBoard": false,
+      "sessionSummary": false,
+      "showLastTool": false,
+      "maxOutputLines": 6,
+      "safeMode": true
+    },
+    "layout": {
+      "line1": [
+        "ralph",
+        "autopilot",
+        "prd",
+        "agents",
+        "background",
+        "promptTime"
+      ],
+      "main": [
+        "gitBranch",
+        "model",
+        "contextBar",
+        "rateLimits",
+        "thinking"
+      ],
+      "detail": [
+        "agents",
+        "contextWarning",
+        "payloadWarning",
+        "todos"
+      ]
+    },
+    "thresholds": {
+      "contextWarning": 70,
+      "contextCompactSuggestion": 80,
+      "contextCritical": 85
+    },
+    "wrapMode": "truncate"
+  }
+}
