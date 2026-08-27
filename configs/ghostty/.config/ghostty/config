@@ -2,7 +2,7 @@ config-file = keybind
 config-file = tmux
 config-file = vim
 
-font-family = "IoskeleyMonoTerm Nerd Font"
+font-family = "IoskeleyMonoTerm Nerd Font Mono"
 font-feature = "-calt, -liga, -dlig"
 font-size = 14
 
