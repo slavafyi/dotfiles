@@ -96,7 +96,6 @@ asks for it. Put explanations before or after the draft.
 - Follow the classic 50/72 commit message convention: aim for a subject of about
   50 characters. When a body is included, separate it with a blank line and wrap
   it at 72 characters.
-- Do not add `Co-authored-by` trailers.
 - Use [Conventional Branch](https://conventionalbranch.org/) for branch names.
 - Prefer the `feature/` prefix over `feat/`. Before creating a branch, inspect
   available local and remote branch history. Use `feat/` only when the
