@@ -3,6 +3,11 @@
     "defaultMode": "bypassPermissions"
   },
   "model": "fable[1m]",
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "statusLine": {
     "type": "command",
     "command": "sh ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud-cache.sh ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs"
