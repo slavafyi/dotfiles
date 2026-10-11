@@ -56,6 +56,9 @@ These commands reflect what `make fmt` runs:
 
 ## Git
 
+- Commit changes to different first-level components or platforms separately
+  by default, including submodule pointer updates. Combine them only when the
+  changes must be applied together for the repository to work.
 - For commits that change only files under `configs/` or `scripts/`, use the
   corresponding top-level directory as the Conventional Commit scope. Omit the
   scope when a commit spans both or other top-level areas; do not invent a
