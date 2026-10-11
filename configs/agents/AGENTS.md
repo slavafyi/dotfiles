@@ -1,103 +1,123 @@
 # Agent rules
 
+## Defaults and scope
+
+Implementation, tooling, and Git preferences below apply unless the task or
+repository sets a different requirement. These preferences do not themselves
+authorize unrelated changes or software installation.
+
 ## Working style
 
-- Be proactive: inspect the code base and available commands before asking
-  obvious questions.
+- For repository tasks, inspect relevant code, configuration, and documentation
+  before asking for information that may already be available.
 - Do not modify files when the user asks only for information, analysis, or
   advice. Implement changes only when the user explicitly requests them.
-- Fix root causes, not symptoms.
-- State assumptions and ambiguities explicitly. If multiple reasonable
-  interpretations exist, ask or present options instead of choosing silently.
-- Keep changes as small as possible. Do not add refactors, abstractions,
-  comments, or extra features unless they are requested or clearly necessary.
-- Suggest best practices, even if they require refactoring. Do not make
-  unrelated refactors without approval.
-- Prefer editing existing files and following established conventions unless
-  there is a clear reason to do otherwise.
-- Be direct and technically accurate. Report blockers clearly.
+- If unresolved ambiguity would materially change scope, externally visible
+  behavior, or risk, ask before taking actions that depend on it. Continue
+  already authorized work that does not depend on the answer. Resolve other
+  ambiguities using existing conventions. State only assumptions that affect
+  the result.
+- Report out-of-scope issues only when they block the task or pose a directly
+  related correctness or security risk. Do not fix them without approval.
 
 ## Communication
 
-For technical explanations, prefer the principles of ASD-STE100 Simplified
-Technical English: clear structure, direct language, and established technical
-terminology.
-
-Prefer familiar software engineering terms over newly coined terminology.
-Introduce a new term or abstraction only when it helps make the explanation
-more precise or easier to discuss.
-
-For general prose and non-technical explanations, prefer the principles of ISO
-24495-1 Plain Language: make the main point easy to find, use familiar words,
-and avoid unnecessary complexity.
-
-In general, optimize writing for:
-
-1. Accuracy.
-2. Clarity.
-3. Concision.
-4. Established terminology.
-
-Prefer the simplest wording that preserves the important technical detail.
-
-When drafting text that the user is expected to copy and send, such as an
-email, chat message, reply, or issue comment, present the draft as plain text.
-Do not wrap it in Markdown blockquotes, fenced code blocks, or decorative
-separators. Do not add Markdown formatting inside the draft unless the user
-asks for it. Put explanations before or after the draft.
+- Use common words and direct sentences. Prefer `use` to `utilize` and `check`
+  to `perform a verification`. Avoid idioms and unnecessarily formal wording.
+  Keep standard technical terms and code identifiers.
+- Explain terms when the user asks for definitions or a beginner-level
+  explanation. Briefly define newly coined and project-specific terms when
+  introducing them. Do not automatically define standard technical terms.
+- When brevity conflicts with correctness or clarity, retain the information
+  needed to understand or act on the answer. Remove repetition, optional
+  examples, and background first.
+- Report blockers explicitly, including what could not be done and why.
+- When drafting text that the user is expected to copy and send, such as an
+  email, chat message, reply, or issue comment, present the draft as plain text.
+  Do not wrap it in Markdown blockquotes, fenced code blocks, or decorative
+  separators. Do not add Markdown formatting inside the draft unless the user
+  asks for it. Put explanations before or after the draft.
 
 ## Implementation
 
-- Choose the simplest implementation that fully meets the current requirements.
-- Prefer established, well-maintained libraries and platform features over
-  custom implementations. Do not add a dependency for trivial functionality.
+- Choose the simplest implementation that meets the requirements and, for bug
+  fixes, addresses the established cause. Minimize scope rather than optimizing
+  only for line count. Do not add unrelated refactors, abstractions, comments,
+  or features.
+- Prefer editing existing files and following established conventions unless
+  there is a clear reason to do otherwise.
+- Prefer suitable platform features and standard libraries, then existing
+  project dependencies. Add a new, maintained dependency only when the current
+  task justifies it and it reduces nontrivial custom implementation work.
 - Do not add backward-compatibility code unless required by the task, a
   documented support policy, or known consumers.
 
 ## Validation
 
-- After code changes, run the relevant existing validation commands for the
-  changed package, workspace, or subproject. Prefer an aggregate existing
-  command such as `check`, `ci`, or `validate` when one exists. Otherwise run
-  the relevant lint, typecheck, test, build, or format commands. If anything
-  remains broken, report the blocker clearly.
-- For bug fixes, prefer a failing test or concrete reproducer before changing
-  code, when practical.
+### Tests
+
+- Use TDD for new or changed behavior and bug fixes with defined requirements.
+- Initial project and test-runner setup do not require a failing test.
+- User-approved exploratory prototypes may be written before tests. Test any
+  retained product functionality before declaring it complete.
+- Base test expectations on requirements or documented behavior. Do not adjust
+  them merely to make the current implementation pass.
+- If a required test cannot run, report the blocker and agree with the user on
+  test setup or an alternative check before changing production code.
+
+### Checks
+
+- After code or configuration changes, run existing validation for the affected
+  package, workspace, or subproject. Prefer a documented aggregate command when
+  it covers that scope. Otherwise run the relevant lint, typecheck, test, build,
+  or format commands.
+- Once the relevant checks pass, repeat or broaden validation only after
+  further changes, new failures, or a specific unresolved concern.
+- Inspect unfamiliar command definitions before running them. Do not run
+  installation, deployment, publishing, or destructive steps without
+  authorization.
+- Report which checks ran, which failed, and which could not be run, with reasons.
 
 ## Tooling
 
-- Use `pnpm` for Node.js by default. Translate `npm`/`npx` commands to the
-  `pnpm` equivalent unless the project explicitly requires another package
-  manager.
+- Use `pnpm` for Node.js package management and package execution instead of
+  `npm`/`npx`.
 - Use `mise` for language runtimes and toolchains such as `node`, `python`,
   `ruby`, `go`, and `rust`.
+- Respect existing project version configuration. Add or change runtime
+  configuration only when required by the task. When introducing runtime
+  version configuration, use `mise.toml`.
 - Use the system package manager for standalone CLI tools such as `git`, `gh`,
   and `lazygit`.
-- Use GNU command-line syntax for standard Unix utilities on macOS. This
-  environment replaces the BSD system utilities with Homebrew GNU variants
-  through `gnubin`. Do not use BSD-specific command variants unless an
-  explicitly portable script requires them.
-- Use FFF-backed tools for indexed project searches before shell search. If an
-  exact ignored, generated, dependency, or external path requires `rg`, exclude
-  `*.map` and minified files unless they are the target, start with `rg -l`, and
-  use `--max-columns`; `head` limits line count, not line length.
-- For project-specific language versions, add `mise.toml` and run
-  `mise install`.
-- Before using Docker, check for OrbStack, Colima, or an equivalent tool for
-  Linux or Windows. If more than one is available, ask the user which one to
-  use.
+- When executing commands in this macOS environment, use GNU syntax for standard
+  Unix utilities. GNU variants are installed through Homebrew `gnubin`. In
+  scripts, follow the project's supported platforms instead of assuming GNU
+  utilities are available on every target.
+- When an answer depends on current releases or version-specific behavior,
+  check official documentation or the installed project sources. When
+  searching, include the name as written by the user. If verification is
+  unavailable, state the limitation.
+- For project searches, use available indexed search tools before shell search.
+  Use shell search when indexed search is unavailable or files are outside the
+  index. Read known files directly. When locating files, request filenames
+  before contents.
+- For shell searches, exclude `*.map` and minified files unless they are the
+  target. Limit total output size and line width. With `rg`, use `-l` when
+  locating files and `--max-columns` when returning matching lines.
+- Before using Docker, check the current context and daemon availability. Use
+  the selected working environment. Ask if a choice or switch is needed and
+  the task or repository does not specify the environment.
 
 ## Git
 
-- Use [Conventional Commits](https://www.conventionalcommits.org/).
-- Before committing, inspect recent commit history and follow established
-  repository-specific scope and subject conventions.
-- Do not add a commit body unless asked.
+- Before committing, inspect recent commit history. Follow documented repository
+  requirements, then consistent existing conventions. If neither establishes a
+  convention, use [Conventional Commits](https://www.conventionalcommits.org/).
+- Omit a commit body unless the user asks for one or the repository requires it.
 - Follow the classic 50/72 commit message convention: aim for a subject of about
   50 characters. When a body is included, separate it with a blank line and wrap
   it at 72 characters.
-- Use [Conventional Branch](https://conventionalbranch.org/) for branch names.
-- Prefer the `feature/` prefix over `feat/`. Before creating a branch, inspect
-  available local and remote branch history. Use `feat/` only when the
-  repository consistently uses it; when conventions are absent or mixed, use
-  `feature/`.
+- Before creating a branch, inspect available local and remote branch names.
+  Follow repository requirements, then consistent existing conventions.
+  Otherwise use [Conventional Branch](https://conventionalbranch.org/).
+  For feature branches, use `feature/` when conventions are absent or mixed.
