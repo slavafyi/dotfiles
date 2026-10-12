@@ -59,7 +59,7 @@ setup_tmux() {
 setup_opencode() {
   print_in_purple "Setting up OpenCode..."
   sleep 2
-  yay -Sy --noconfirm --needed opencode-bin
+  yay -Sy --noconfirm --needed opencode2-bin
   stow \
     --verbose \
     --no-folding \

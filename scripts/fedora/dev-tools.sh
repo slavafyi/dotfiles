@@ -72,7 +72,7 @@ setup_tmux() {
 setup_opencode() {
   print_in_purple "Setting up OpenCode..."
   sleep 2
-  pnpm install -g opencode-ai
+  pnpm install -g --allow-build=@opencode/cli @opencode/cli
   stow \
     --verbose \
     --no-folding \

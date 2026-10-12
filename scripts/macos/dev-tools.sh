@@ -58,7 +58,7 @@ setup_tmux() {
 setup_opencode() {
   print_in_purple "Setting up OpenCode..."
   sleep 2
-  brew install anomalyco/tap/opencode
+  brew install anomalyco/tap/opencode-v2
   stow \
     --verbose \
     --no-folding \
