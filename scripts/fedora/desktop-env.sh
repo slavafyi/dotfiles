@@ -121,6 +121,19 @@ setup_ghostty() {
   print_in_green "✓ Ghostty set up successfully!"
 }
 
+setup_rex() {
+  print_in_purple "Setting up Rex..."
+  sleep 2
+  stow \
+    --verbose \
+    --no-folding \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow rex
+  rex completion fish > "$XDG_CONFIG_HOME/fish/completions/rex.fish"
+  print_in_green "✓ Rex set up successfully!"
+}
+
 desktop_env() {
   setup_gnome
   setup_ghostty
@@ -129,4 +142,5 @@ desktop_env() {
   setup_hardware_support
   setup_media_packages
   setup_fonts
+  setup_rex
 }

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "format": {
+    "enable": true
+  },
+  "hint": {
+    "enable": true
+  },
+  "diagnostics.globals": [
+    "rex"
+  ],
+  "workspace.checkThirdParty": false
+}

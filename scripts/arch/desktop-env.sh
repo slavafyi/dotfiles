@@ -139,6 +139,19 @@ setup_kitty() {
   print_in_green "✓ Kitty set up successfully!"
 }
 
+setup_rex() {
+  print_in_purple "Setting up Rex..."
+  sleep 2
+  stow \
+    --verbose \
+    --no-folding \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow rex
+  rex completion fish > "$XDG_CONFIG_HOME/fish/completions/rex.fish"
+  print_in_green "✓ Rex set up successfully!"
+}
+
 desktop_env() {
   setup_gnome
   setup_gnome_settings
@@ -148,4 +161,5 @@ desktop_env() {
   setup_media_packages
   setup_fonts
   setup_ghostty
+  setup_rex
 }
