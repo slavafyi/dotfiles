@@ -65,16 +65,18 @@ end
 
 local found_git = rex.exec({ shell, '-lic', 'command -v git' }, { timeout = 5 })
 local git = found_git and found_git.ok and found_git.stdout:match '([^\r\n]+)'
-local seen, index = {}, 0
+local seen = {}
 for path in listed.stdout:gmatch '[^\r\n]+' do
   local dir = path:gsub('/+$', '')
   if dir == '' then dir = '/' end
   if not seen[dir] then
     seen[dir] = true
-    index = index + 1
     local label = project_label(dir, git)
+    local id = dir:gsub('.', function(char)
+      return ('%02x'):format(char:byte())
+    end)
     rex.action {
-      name = 'project_' .. index,
+      name = 'project_' .. id,
       title = 'Project: ' .. label,
       category = 'Projects',
       keywords = dir,
