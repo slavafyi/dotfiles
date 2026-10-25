@@ -35,13 +35,4 @@ function s --description "Display compact status"
         printf "\n"
     end
 
-    if set -q ZMX_SESSION
-        set_color brblack
-        printf "%-5s" zmx
-        set_color brwhite
-        printf "%s" $ZMX_SESSION
-        set_color normal
-        printf "\n"
-    end
-
 end
