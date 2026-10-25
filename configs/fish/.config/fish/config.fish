@@ -60,21 +60,23 @@ if type -q zoxide
     set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
 end
 
-if type -q sesh
-    function __sesh_connect_fzf
-        set -l session (sesh list | fzf)
-
-        if test $status -eq 0; and test -n "$session"
-            sesh connect "$session"
-            set -l sesh_status $status
-            commandline -f repaint
-            return $sesh_status
-        else
-            commandline -f repaint
+if type -q zoxide; and type -q fzf
+    function __project_picker --description "Open a zoxide directory in EDITOR"
+        set -l dir (zoxide query --list | fzf --no-sort --prompt 'Project> ' --preview 'ls -A -- {}')
+        if test $status -ne 0; or test -z "$dir"
+            return 0
         end
+
+        if not set -q EDITOR; or test -z "$EDITOR"
+            printf 'EDITOR is not set.\n' >&2
+            return 1
+        end
+
+        eval "$EDITOR" (string escape -- "$dir")
     end
 
-    bind -M insert ctrl-o __sesh_connect_fzf
+    bind -M insert ctrl-o '__project_picker; commandline -f repaint'
+    bind -M default ctrl-o '__project_picker; commandline -f repaint'
 end
 
 if type -q pi

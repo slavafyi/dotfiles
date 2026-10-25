@@ -3,7 +3,6 @@ heroku-cli
 lazydocker
 lazygit
 postgresql
-sesh-bin
 shellcheck
 shfmt
 stylua
