@@ -143,6 +143,20 @@ setup_agents() {
   print_in_green "✓ Agents installed successfully!"
 }
 
+setup_codex() {
+  print_in_purple "Setting up Codex..."
+  sleep 2
+  brew install --cask codex
+  local source_dir="$DIR/configs/codex"
+  local target="$HOME/.codex/config.toml"
+  mise trust "$source_dir/mise.toml"
+  mise -C "$source_dir" dot diff "$target"
+  mise -C "$source_dir" dot apply --yes "$target"
+  codex plugin marketplace upgrade
+  codex app-server --strict-config --print-startup-config
+  print_in_green "✓ Codex set up successfully!"
+}
+
 dev_tools() {
   setup_mise
   setup_docker
@@ -154,4 +168,5 @@ dev_tools() {
   setup_agents
   setup_bins
   setup_dev_tools
+  setup_codex
 }

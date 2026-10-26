@@ -213,6 +213,20 @@ setup_bins() {
   print_in_green "✓ Bin scripts installed successfully!"
 }
 
+setup_codex() {
+  print_in_purple "Setting up Codex..."
+  sleep 2
+  pnpm install -g @openai/codex@latest
+  local source_dir="$DIR/configs/codex"
+  local target="$HOME/.codex/config.toml"
+  mise trust "$source_dir/mise.toml"
+  mise -C "$source_dir" dot diff "$target"
+  mise -C "$source_dir" dot apply --yes "$target"
+  codex plugin marketplace upgrade
+  codex app-server --strict-config --print-startup-config
+  print_in_green "✓ Codex set up successfully!"
+}
+
 dev_tools() {
   setup_mise
   setup_docker
@@ -225,4 +239,5 @@ dev_tools() {
   setup_fzf
   setup_bins
   setup_dev_tools
+  setup_codex
 }

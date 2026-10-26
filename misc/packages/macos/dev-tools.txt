@@ -10,5 +10,3 @@ brew "railway"
 brew "shellcheck"
 brew "shfmt"
 brew "stylua"
-
-cask "codex"
