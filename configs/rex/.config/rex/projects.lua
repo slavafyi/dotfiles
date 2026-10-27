@@ -43,7 +43,6 @@ local function open_project(dir, label)
       label = label,
       initial_windows = {
         {
-          window_label = 'Terminal',
           layout = rex.layout.block {
             flavor = 'com.superlogical.terminal.shell',
             options = { cwd = dir },
