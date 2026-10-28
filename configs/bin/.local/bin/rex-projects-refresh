@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+umask 077
+
+cleanup() {
+  local pid
+
+  for pid in $worker_pids; do
+    kill "$pid" 2>/dev/null || true
+  done
+
+  rm -rf "$work_dir"
+}
+
+wait_for_workers() {
+  local pid
+
+  for pid in $worker_pids; do
+    wait "$pid"
+  done
+
+  worker_pids=''
+}
+
+write_project_record() {
+  local dir="$1"
+  local record_path="$2"
+  local origin
+
+  origin="$(git -C "$dir" remote get-url origin 2>/dev/null)" || origin=''
+
+  # NUL separators preserve spaces and empty origins in the cache.
+  printf '%s\0%s\0' "$dir" "$origin" >"$record_path"
+}
+
+reload=false
+case "${1:-}" in
+'') ;;
+--reload)
+  reload=true
+  ;;
+*)
+  printf 'Usage: rex-projects-refresh [--reload]\n' >&2
+  exit 1
+  ;;
+esac
+[[ "$#" -le 1 ]] || exit 1
+
+cache_dir="${XDG_CACHE_HOME:-"$HOME/.cache"}/rex"
+mkdir -p "$cache_dir"
+
+if [[ "$reload" == true ]]; then
+  exec >>"$cache_dir/projects-refresh.log" 2>&1
+fi
+
+for tool in zoxide git; do
+  command -v "$tool" >/dev/null || {
+    printf 'Missing required command: %s\n' "$tool" >&2
+    exit 1
+  }
+done
+
+work_dir="$(mktemp -d "$cache_dir/.projects.XXXXXX")"
+worker_pids=''
+trap cleanup EXIT
+trap 'exit 1' HUP INT TERM
+
+zoxide query --list >"$work_dir/directories"
+
+project_count=0
+worker_limit=8
+seen_paths=$'\n'
+
+while IFS= read -r dir; do
+  dir="${dir%/}"
+  case "$dir" in
+  "$HOME/dev" | "$HOME/dev/"* | "$HOME/notes") ;;
+  *) continue ;;
+  esac
+
+  [[ -d "$dir" ]] || continue
+
+  # Match whole paths and keep the order returned by zoxide.
+  [[ "$seen_paths" != *$'\n'"$dir"$'\n'* ]] || continue
+  seen_paths+="$dir"$'\n'
+  project_count=$((project_count + 1))
+
+  write_project_record "$dir" "$work_dir/$project_count" &
+  worker_pids+=" $!"
+
+  if ((project_count % worker_limit == 0)); then
+    wait_for_workers
+  fi
+done <"$work_dir/directories"
+
+wait_for_workers
+
+: >"$work_dir/projects"
+for ((index = 1; index <= project_count; index++)); do
+  cat "$work_dir/$index" >>"$work_dir/projects"
+done
+
+mv -f "$work_dir/projects" "$cache_dir/projects"
+printf 'Refreshed %s projects.\n' "$project_count"
+
+if [[ "$reload" == true ]]; then
+  rex config reload
+fi
