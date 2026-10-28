@@ -1,9 +1,14 @@
 local home = assert(os.getenv 'HOME')
 local shell = assert(os.getenv 'SHELL')
+local dev_dir = home .. '/dev'
+local dev_prefix = dev_dir .. '/'
+local cache_home = os.getenv 'XDG_CACHE_HOME'
+if not cache_home or cache_home == '' then cache_home = home .. '/.cache' end
+local cache_path = cache_home .. '/rex/projects'
+local refresh_timeout = 20
 
 local function display_path(dir)
-  local dev = home .. '/dev/'
-  if dir:sub(1, #dev) == dev then return dir:sub(#dev + 1) end
+  if dir:sub(1, #dev_prefix) == dev_prefix then return dir:sub(#dev_prefix + 1) end
   if dir:sub(1, #home + 1) == home .. '/' then return '~' .. dir:sub(#home + 1) end
   return dir
 end
@@ -28,17 +33,11 @@ local function project_label(dir, origin)
 end
 
 local function is_project_directory(dir)
-  local dev_dir = home .. '/dev'
-  local dev_prefix = dev_dir .. '/'
-
   return dir == dev_dir or dir:sub(1, #dev_prefix) == dev_prefix or dir == home .. '/notes'
 end
 
 local function read_projects()
-  local cache_home = os.getenv 'XDG_CACHE_HOME'
-  if not cache_home or cache_home == '' then cache_home = home .. '/.cache' end
-
-  local cache = io.open(cache_home .. '/rex/projects', 'rb')
+  local cache = io.open(cache_path, 'rb')
   if not cache then
     rex.log('warn', 'Project cache unavailable. Run Projects: Refresh.')
     return
@@ -106,8 +105,8 @@ local function refresh_projects()
   local result, err = rex.exec({
     shell,
     '-lic',
-    'exec "$HOME/.local/bin/rex-projects-refresh"',
-  }, { timeout = 20 })
+    'exec rex-projects-refresh',
+  }, { timeout = refresh_timeout })
 
   if not result then error(err, 0) end
   if not result.ok then error('Project refresh failed: ' .. result.stderr, 0) end
