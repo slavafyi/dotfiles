@@ -39,3 +39,6 @@ prevent_idle_sleep = true
 
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
+
+[mcp_servers.superlogical]
+url = "https://www.superlogical.com/rex/community-mcp"
