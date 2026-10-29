@@ -34,5 +34,13 @@
   "plugin": ["opencode-wakatime", "oh-my-opencode-slim"],
   "websearch": {
     "provider": "parallel"
+  },
+  "mcp": {
+    "servers": {
+      "superlogical": {
+        "type": "remote",
+        "url": "https://www.superlogical.com/rex/community-mcp"
+      }
+    }
   }
 }
