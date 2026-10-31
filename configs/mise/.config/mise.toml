@@ -5,10 +5,10 @@ _.file = [
 ]
 
 [settings]
-always_keep_download = true
 cargo.binstall = true
 env_file = '.env.local'
 experimental = true
+idiomatic_version_file_enable_tools = ['pnpm']
 
 [settings.age]
 key_file = '{{ env.XDG_CONFIG_HOME }}/sops/age/keys.txt'
@@ -34,8 +34,9 @@ deno = 'latest'
 erlang = 'latest'
 gleam = 'latest'
 go = 'latest'
-node = { version = 'lts', postinstall = 'corepack enable' }
+node = 'lts'
 odin = 'latest'
+pnpm = 'latest'
 python = 'latest'
 ruby = 'latest'
 rust = 'latest'
