@@ -104,85 +104,6 @@ setup_tmux() {
   print_in_green "✓ Tmux set up successfully!"
 }
 
-setup_github() {
-  print_in_purple "Setting up Gihub CLI..."
-  sleep 2
-  if ! command -v gh > /dev/null 2>&1; then
-    local temp_path="$(mktemp)"
-    local arch=$(dpkg --print-architecture)
-    local key_path=/etc/apt/keyrings/githubcli-archive-keyring.gpg
-    local url=https://cli.github.com/packages
-    sudo install -dm 755 /etc/apt/keyrings
-    wget -nv -O$temp_path "$url/githubcli-archive-keyring.gpg"
-    cat $temp_path | sudo tee $key_path > /dev/null
-    sudo chmod go+r $key_path
-    sudo mkdir -p -m 755 /etc/apt/sources.list.d
-    echo "deb [arch=$arch signed-by=$key_path] $url stable main" |
-      sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-  fi
-  sudo apt update
-  sudo apt install -yy gh
-  print_in_green "✓ Gihub CLI set up successfully!"
-}
-
-setup_heroku() {
-  print_in_purple "Setting up Heroku CLI..."
-  sleep 2
-  if ! command -v heroku > /dev/null 2>&1; then
-    curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-  fi
-  sudo apt update
-  sudo apt install -yy heroku
-  print_in_green "✓ Heroku CLI set up successfully!"
-}
-
-setup_lazygit() {
-  print_in_purple "Setting up Lazygit..."
-  sleep 2
-  local arch=$(dpkg --print-architecture)
-  local bin_arch="x86_64"
-  if [[ $arch == "arm64" ]]; then
-    bin_arch="arm64"
-  fi
-  if apt-cache show lazygit > /dev/null 2>&1; then
-    sudo apt-get update
-    sudo apt-get install -y lazygit
-  else
-    local version=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
-    local temp_path=$(mktemp -d)
-    local tarball="lazygit_${version}_linux_${bin_arch}.tar.gz"
-    local url="https://github.com/jesseduffield/lazygit/releases/download/v${version}/${tarball}"
-    cd "$temp_path"
-    curl -LO "$url"
-    tar xf "$tarball" lazygit
-    sudo install lazygit -D -t /usr/local/bin/
-    cd "$DIR"
-  fi
-  print_in_green "✓ Lazygit set up successfully!"
-}
-
-setup_lazydocker() {
-  print_in_purple "Setting up Lazydocker..."
-  sleep 2
-  if ! command -v docker > /dev/null 2>&1; then
-    print_in_yellow "⚠ Docker not installed, skipping"
-    return 0
-  else
-    curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
-  fi
-  print_in_green "✓ Lazydocker set up successfully!"
-}
-
-setup_fzf() {
-  print_in_purple "Setting up Fzf..."
-  sleep 2
-  local temp_path="$(mktemp -d)"
-  git clone --depth 1 https://github.com/junegunn/fzf.git $temp_path
-  "$temp_path/install" --bin
-  sudo cp -f "$temp_path/bin/fzf" /usr/local/bin/fzf
-  print_in_green "✓ Fzf set up successfully!"
-}
-
 setup_dev_tools() {
   print_in_purple "Installing dev tools..."
   sleep 2
@@ -232,11 +153,6 @@ dev_tools() {
   setup_docker
   setup_neovim
   setup_tmux
-  setup_github
-  setup_heroku
-  setup_lazygit
-  setup_lazydocker
-  setup_fzf
   setup_bins
   setup_dev_tools
   setup_codex

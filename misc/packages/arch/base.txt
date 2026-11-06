@@ -2,7 +2,6 @@ curl
 duf
 eza
 findutils
-fzf
 ghostscript
 git
 gnupg
