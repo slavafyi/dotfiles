@@ -1,4 +1,7 @@
 {
+  "security": {
+    "disableAutoUpdate": true
+  },
   "agents": {
     // Deep reasoning
     "analyst": {

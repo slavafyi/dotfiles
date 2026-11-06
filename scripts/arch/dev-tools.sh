@@ -72,7 +72,9 @@ setup_opencode() {
 setup_claude() {
   print_in_purple "Setting up Claude Code..."
   sleep 2
-  pnpm install -g @anthropic-ai/claude-code@latest
+  pnpm install -g \
+    @anthropic-ai/claude-code@latest \
+    oh-my-claude-sisyphus@latest
   stow \
     --verbose \
     --no-folding \
