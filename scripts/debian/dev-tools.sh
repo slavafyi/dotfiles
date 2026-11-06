@@ -191,7 +191,7 @@ setup_dev_tools() {
   xargs -r -a "$packages" sudo apt install -yy
   if command -v cargo > /dev/null 2>&1; then
     print_in_purple "Installing cargo packages..."
-    cargo binstall stylua usage-cli
+    cargo binstall usage-cli
   fi
   stow \
     --verbose \

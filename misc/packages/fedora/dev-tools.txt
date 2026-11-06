@@ -3,5 +3,3 @@ gh
 lazydocker
 lazygit
 postgresql
-shellcheck
-shfmt

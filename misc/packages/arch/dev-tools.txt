@@ -3,6 +3,3 @@ heroku-cli
 lazydocker
 lazygit
 postgresql
-shellcheck
-shfmt
-stylua
