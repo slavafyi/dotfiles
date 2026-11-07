@@ -58,13 +58,17 @@
       }
     }
   },
+  "feedbackDrafts": "quiet",
   "effortLevel": "xhigh",
+  "askUserQuestionTimeout": "never",
   "tui": "default",
+  "timeFormat": "auto",
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
   "editorMode": "normal",
   "preferredNotifChannel": "auto",
   "autoCompactEnabled": true,
+  "idleCompaction": false,
   "switchModelsOnFlag": false,
   "remoteControlAtStartup": true,
   "omcHud": {
