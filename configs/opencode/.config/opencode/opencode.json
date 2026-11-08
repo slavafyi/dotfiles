@@ -1,27 +1,38 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "autoupdate": true,
+  "update": "auto",
   "model": "openai/gpt-6.1-sol",
-  "instructions": ["~/AGENTS.md"],
+  "instructions": [
+    "~/AGENTS.md"
+  ],
   "default_agent": "orchestrator",
-  "agent": {
+  "agents": {
     "title": {
-      "model": "openai/gpt-6-luna",
-      "variant": "low"
+      "model": {
+        "providerID": "openai",
+        "model": "gpt-6-luna",
+        "variant": "low"
+      }
     },
     "plan": {
-      "model": "openai/gpt-6-astra",
-      "variant": "high"
+      "model": {
+        "providerID": "openai",
+        "model": "openai/gpt-6-astra",
+        "variant": "high"
+      }
     },
     "build": {
-      "model": "openai/gpt-6.1-sol",
-      "variant": "medium"
+      "model": {
+        "providerID": "openai",
+        "model": "gpt-6.1-sol",
+        "variant": "medium"
+      }
     },
     "explore": {
-      "disable": true
+      "disabled": true
     },
     "general": {
-      "disable": true
+      "disabled": true
     }
   },
   "permissions": [
@@ -31,7 +42,11 @@
       "effect": "allow"
     }
   ],
-  "plugin": ["opencode-wakatime", "oh-my-opencode-slim"],
+  "plugins": [
+    "opencode-wakatime",
+    "oh-my-opencode-slim",
+    "@rama_nigg/open-cursor"
+  ],
   "websearch": {
     "provider": "parallel"
   },

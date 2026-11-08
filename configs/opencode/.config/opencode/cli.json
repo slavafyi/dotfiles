@@ -32,5 +32,8 @@
     "scrollbar": true,
     "thinking": "show"
   },
+  "tabs": {
+    "mode": "off"
+  },
   "animations": true
 }
