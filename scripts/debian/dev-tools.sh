@@ -16,6 +16,7 @@ setup_mise() {
   sudo apt install -yy mise autoconf libncurses-dev libssl-dev libyaml-dev zlib1g-dev
   stow \
     --verbose \
+    --no-folding \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow mise

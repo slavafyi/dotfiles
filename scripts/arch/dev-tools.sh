@@ -6,6 +6,7 @@ setup_mise() {
   sudo pacman -Sy --noconfirm --needed mise usage
   stow \
     --verbose \
+    --no-folding \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow mise

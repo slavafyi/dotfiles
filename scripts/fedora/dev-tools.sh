@@ -10,6 +10,7 @@ setup_mise() {
   sudo dnf install -y mise
   stow \
     --verbose \
+    --no-folding \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow mise

@@ -6,6 +6,7 @@ setup_mise() {
   brew install mise usage libyaml
   stow \
     --verbose \
+    --no-folding \
     --dir "$DIR/configs" \
     --target "$HOME" \
     --stow mise
