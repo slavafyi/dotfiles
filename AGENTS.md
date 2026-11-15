@@ -56,22 +56,28 @@ These commands reflect what `make fmt` runs:
 
 ## Git
 
-- Commit unrelated changes to different components or platforms separately,
-  including unrelated submodule pointer updates. Combine changes that serve
-  one coherent feature, fix, or migration, even when they could work
-  independently. For example, an OpenCode migration can include its config
-  and installer changes across platforms in one commit.
-- For commits that change only files under `configs/` or `scripts/`, use the
-  corresponding top-level directory as the Conventional Commit scope. Omit the
-  scope when a commit spans both or other top-level areas; do not invent a
-  generic scope. This rule applies only to this repository: when committing
-  inside a submodule, follow that repository's conventions and do not infer a
-  `configs` or `scripts` scope from its path in this repository
-- When exactly one first-level component or platform is affected, start the
-  subject with its name, followed by what changed: `docs(configs): agents ...`
-  or `feat(scripts): macos ...`. Use `common` for shared scripts
-- When multiple components or platforms are affected, start directly with what
-  changed instead of listing them all
+- Use separate commits for unrelated changes, including submodule updates.
+  Keep changes for the same feature, fix, or migration in one commit, even
+  across platforms or when the parts could work independently.
+- Use scope `configs` when all changed files are under `configs/`, or `scripts`
+  when all are under `scripts/`. Omit the scope for other changes, including
+  changes that touch both directories. Do not make up another scope.
+- When committing inside a submodule, follow its own commit rules. Do not use
+  `configs` or `scripts` just because of where the submodule is stored here.
+- Choose the type based on what changed:
+  - `feat`: add a capability or setup step.
+  - `fix`: correct broken behavior.
+  - `refactor`: reorganize code or config without changing behavior.
+  - `chore`: routine config maintenance or dependency updates.
+- Start the subject with the main tool, component, or platform, followed by
+  what changed. This also applies when its changes span several directories
+  or platforms: `feat: pnpm add setup`, `chore(configs): neovim update`, or
+  `feat(scripts): macos add system preferences`.
+- Use `common` for shared scripts when there is no main tool or component.
+  For other changes without one main tool, component, or platform, describe
+  the change directly instead of listing everything affected.
+- Keep the action short. Use "add setup" instead of listing config files,
+  symlinks, or platforms. Use a more specific action than "update" when possible.
 
 ## Layout rules
 
