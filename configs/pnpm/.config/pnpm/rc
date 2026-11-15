@@ -1,0 +1,2 @@
+store-dir=${PNPM_HOME:-~/.local/share/pnpm}/store
+only-built-dependencies[]=better-sqlite3

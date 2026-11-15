@@ -17,6 +17,28 @@ setup_mise() {
   print_in_green "✓ Mise set up successfully!"
 }
 
+setup_pnpm() {
+  print_in_purple "Setting up pnpm configuration..."
+  local preferences_dir="$HOME/Library/Preferences/pnpm"
+  local cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/pnpm"
+  stow \
+    --verbose \
+    --no-folding \
+    --dir "$DIR/configs" \
+    --target "$HOME" \
+    --stow pnpm
+  mkdir -p "$HOME/Library/Preferences" "$HOME/Library/Caches" "$cache_dir"
+  local path
+  for path in "$preferences_dir" "$HOME/Library/Caches/pnpm"; do
+    if [[ -d $path && ! -L $path ]]; then
+      mv "$path" "$path.backup.$(date +%Y%m%d-%H%M%S)"
+    fi
+  done
+  ln -sfn "$HOME/.config/pnpm" "$preferences_dir"
+  ln -sfn "$cache_dir" "$HOME/Library/Caches/pnpm"
+  print_in_green "✓ pnpm configuration set up successfully!"
+}
+
 setup_docker() {
   print_in_purple "Setting up Docker..."
   sleep 2
@@ -162,6 +184,7 @@ setup_codex() {
 
 dev_tools() {
   setup_mise
+  setup_pnpm
   setup_docker
   setup_neovim
   setup_tmux
