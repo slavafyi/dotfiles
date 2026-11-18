@@ -69,11 +69,9 @@ end
 local function pick_project()
   local options = { timeout = 5 }
   local result, err = rex.exec({ 'zoxide', 'query', '--list' }, options)
-  if not result then
-    local shell = os.getenv 'SHELL'
-    if shell then
-      result, err = rex.exec({ shell, '-lic', 'exec zoxide query --list' }, options)
-    end
+  local shell = os.getenv 'SHELL'
+  if not result and shell then
+    result, err = rex.exec({ shell, '-lic', 'exec zoxide query --list' }, options)
   end
   if not result then error(err, 0) end
   if not result.ok then error('Could not list zoxide directories: ' .. result.stderr, 0) end
@@ -149,10 +147,8 @@ local function find_session(dir, label)
 end
 
 local function list_worktrees(dir)
-  local result = rex.exec(
-    { 'git', '-C', dir, 'worktree', 'list', '--porcelain', '-z' },
-    { timeout = 5 }
-  )
+  local command = { 'git', '-C', dir, 'worktree', 'list', '--porcelain', '-z' }
+  local result = rex.exec(command, { timeout = 5 })
   local worktrees = {}
   if not result or not result.ok then return worktrees end
 
@@ -171,7 +167,7 @@ local function list_worktrees(dir)
 end
 
 local function create_worktree(dir, main_checkout)
-  local value
+  local value, branch
   while true do
     local answer, reason, detail = rex.ui.input {
       title = 'New worktree',
@@ -185,41 +181,37 @@ local function create_worktree(dir, main_checkout)
     end
     value = answer
 
-    local branch = answer:match '^%s*(.-)%s*$'
+    branch = answer:match '^%s*(.-)%s*$'
     if branch ~= '' and branch:sub(1, 1) ~= '-' then
-      local valid, err = rex.exec(
-        { 'git', '-C', dir, 'check-ref-format', 'refs/heads/' .. branch },
-        { timeout = 5 }
-      )
+      local check = { 'git', '-C', dir, 'check-ref-format', 'refs/heads/' .. branch }
+      local valid, err = rex.exec(check, { timeout = 5 })
       if not valid then error(err, 0) end
-      if valid.ok then
-        for _, worktree in ipairs(list_worktrees(dir)) do
-          if worktree.available and worktree.branch == branch then return worktree.path end
-        end
-
-        local session = find_session(dir)
-        if not session and dir ~= main_checkout then session = find_session(main_checkout) end
-        local name = session and session.label or project_name(dir)
-        local folder = name:gsub('[/%c]', '-')
-        if folder == '' or folder == '.' or folder == '..' then folder = basename(main_checkout) end
-        local path = worktrees_dir .. '/' .. folder .. '/' .. branch
-        local existing, lookup_error = rex.exec(
-          { 'git', '-C', dir, 'show-ref', '--verify', '--quiet', 'refs/heads/' .. branch },
-          { timeout = 5 }
-        )
-        if not existing then error(lookup_error, 0) end
-        if not existing.ok and (existing.code ~= 1 or existing.timed_out) then
-          error('Could not check local branch: ' .. existing.stderr, 0)
-        end
-        local command = existing.ok and { 'git', '-C', dir, 'worktree', 'add', '--', path, branch }
-          or { 'git', '-C', dir, 'worktree', 'add', '-b', branch, '--', path, 'HEAD' }
-        local result, add_error = rex.exec(command, { timeout = 20 })
-        if not result then error(add_error, 0) end
-        if not result.ok then error('Could not create worktree: ' .. result.stderr, 0) end
-        return path
-      end
+      if valid.ok then break end
     end
   end
+
+  for _, worktree in ipairs(list_worktrees(dir)) do
+    if worktree.available and worktree.branch == branch then return worktree.path end
+  end
+
+  local session = find_session(dir)
+  if not session and dir ~= main_checkout then session = find_session(main_checkout) end
+  local name = session and session.label or project_name(dir)
+  local folder = name:gsub('[/%c]', '-')
+  if folder == '' or folder == '.' or folder == '..' then folder = basename(main_checkout) end
+  local path = worktrees_dir .. '/' .. folder .. '/' .. branch
+  local lookup = { 'git', '-C', dir, 'show-ref', '--verify', '--quiet', 'refs/heads/' .. branch }
+  local existing, lookup_error = rex.exec(lookup, { timeout = 5 })
+  if not existing then error(lookup_error, 0) end
+  if not existing.ok and (existing.code ~= 1 or existing.timed_out) then
+    error('Could not check local branch: ' .. existing.stderr, 0)
+  end
+  local command = existing.ok and { 'git', '-C', dir, 'worktree', 'add', '--', path, branch }
+    or { 'git', '-C', dir, 'worktree', 'add', '-b', branch, '--', path, 'HEAD' }
+  local result, add_error = rex.exec(command, { timeout = 20 })
+  if not result then error(add_error, 0) end
+  if not result.ok then error('Could not create worktree: ' .. result.stderr, 0) end
+  return path
 end
 
 local function pick_checkout(dir)
@@ -293,16 +285,16 @@ local function choose_session(dir)
   end
 
   if #matches == 1 then return matches[1].id end
-  if #matches > 1 then return pick('Link existing session', 'Search sessions', matches) end
-
-  local choice = pick('Session options', nil, {
-    { id = 'new-session', title = 'Create session', icon = 'plus' },
-    { id = 'link-session', title = 'Link existing session', icon = 'link' },
-  })
-  if choice == 'link-session' then
-    return pick('Link existing session', 'Search sessions', items)
+  local candidates = matches
+  if #matches == 0 then
+    local choice = pick('Session options', nil, {
+      { id = 'new-session', title = 'Create session', icon = 'plus' },
+      { id = 'link-session', title = 'Link existing session', icon = 'link' },
+    })
+    if choice ~= 'link-session' then return choice end
+    candidates = items
   end
-  return choice
+  return pick('Link existing session', 'Search sessions', candidates)
 end
 
 local function open_checkout(dir)
@@ -324,8 +316,7 @@ local function open_checkout(dir)
     error('The selected session is no longer available to link.', 0)
   end
 
-  local name = project_name(dir)
-  local label = name:match '^%s*(.-)%s*$'
+  local label = project_name(dir):match '^%s*(.-)%s*$'
   local parent = dir:match '^(.*)/[^/]+$' or ''
   local suggestion = label .. '-' .. basename(parent)
   local submitted
@@ -353,16 +344,10 @@ local function open_checkout(dir)
     label = answer:match '^%s*(.-)%s*$'
   end
 
+  local layout = rex.layout.block { flavor = terminal .. '.shell', options = { cwd = dir } }
   local created = assert(rex.call('session.create', {
     label = label,
-    initial_windows = {
-      {
-        layout = rex.layout.block {
-          flavor = terminal .. '.shell',
-          options = { cwd = dir },
-        },
-      },
-    },
+    initial_windows = { { layout = layout } },
   }))
   return save_session(dir, created.session_id)
 end
@@ -372,10 +357,8 @@ rex.action {
   title = 'Open Project',
   run = function()
     local dir = pick_project()
-    if not dir then return end
-    local checkout = pick_checkout(dir)
-    if not checkout then return end
-    local session_id = open_checkout(checkout)
+    local checkout = dir and pick_checkout(dir)
+    local session_id = checkout and open_checkout(checkout)
     if session_id then rex.client.queue('session.select', { session_id = session_id }) end
   end,
 }
