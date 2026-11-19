@@ -218,7 +218,7 @@ local function pick_checkout(dir)
   local worktrees = list_worktrees(dir)
   if #worktrees == 0 then return dir end
 
-  local items = { { id = 'new-worktree', title = 'New worktree…', icon = 'plus' } }
+  local items = {}
   for _, worktree in ipairs(worktrees) do
     if worktree.available then
       items[#items + 1] = {
@@ -227,9 +227,10 @@ local function pick_checkout(dir)
         subtitle = display_path(worktree.path),
         icon = 'branch',
       }
-      if #items == 2000 then break end
+      if #items == 1999 then break end
     end
   end
+  items[#items + 1] = { id = 'new-worktree', title = 'New worktree…', icon = 'plus' }
 
   local selected = pick(basename(dir), 'Choose a worktree', items)
   if selected == 'new-worktree' then return create_worktree(dir, worktrees[1].path) end
