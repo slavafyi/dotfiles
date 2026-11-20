@@ -245,7 +245,9 @@ local function unlinked_sessions()
 
   local sessions = {}
   for _, session in ipairs(assert(rex.call 'session.list').sessions or {}) do
-    if not linked[session.session_id] then sessions[#sessions + 1] = session end
+    if session.label ~= 'Command Center' and not linked[session.session_id] then
+      sessions[#sessions + 1] = session
+    end
   end
   return sessions
 end
