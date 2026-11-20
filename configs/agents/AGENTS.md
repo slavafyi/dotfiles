@@ -25,6 +25,11 @@ authorize unrelated changes or software installation.
 - Use common words and direct sentences. Prefer `use` to `utilize` and `check`
   to `perform a verification`. Avoid idioms and unnecessarily formal wording.
   Keep standard technical terms and code identifiers.
+- Leave out filler such as "This PR aims to", "comprehensive", or "robust".
+  Start sentences with the fact.
+- In prose you write (replies, docs, commit messages, PR and issue text, code
+  comments), use periods, commas, colons, or parentheses instead of em dashes
+  (—), en dashes (–), or semicolons. Use a plain hyphen for ranges.
 - Explain terms when the user asks for definitions or a beginner-level
   explanation. Briefly define newly coined and project-specific terms when
   introducing them. Do not automatically define standard technical terms.
@@ -42,8 +47,13 @@ authorize unrelated changes or software installation.
 
 - Choose the simplest implementation that meets the requirements and, for bug
   fixes, addresses the established cause. Minimize scope rather than optimizing
-  only for line count. Do not add unrelated refactors, abstractions, comments,
-  or features.
+  only for line count. Do not add unrelated refactors, abstractions, or
+  features.
+- Write code without comments unless the user asks for them. Show intent
+  through names and structure. Exceptions: tool directives (such as
+  `shellcheck disable` or `eslint-disable`), shebangs, and comments the
+  project's conventions require. Keep existing comments, and update any that
+  your change makes wrong.
 - Prefer editing existing files and following established conventions unless
   there is a clear reason to do otherwise.
 - Prefer suitable platform features and standard libraries, then existing
@@ -78,7 +88,10 @@ authorize unrelated changes or software installation.
 - Inspect unfamiliar command definitions before running them. Do not run
   installation, deployment, publishing, or destructive steps without
   authorization.
+- Never disable, skip, or weaken tests or lint rules just to make checks pass.
 - Report which checks ran, which failed, and which could not be run, with reasons.
+  Say what is verified, what is assumed, and what is not verified. Do not call
+  a change safe, fixed, or backward compatible without pointing to the evidence.
 
 ## Tooling
 
