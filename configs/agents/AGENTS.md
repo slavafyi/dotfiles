@@ -56,14 +56,16 @@ authorize unrelated changes or software installation.
 
 ### Tests
 
-- Use TDD for new or changed behavior and bug fixes with defined requirements.
+- Use TDD for new or changed behavior and bug fixes with defined requirements
+  when the project has a test setup.
 - Initial project and test-runner setup do not require a failing test.
 - User-approved exploratory prototypes may be written before tests. Test any
   retained product functionality before declaring it complete.
 - Base test expectations on requirements or documented behavior. Do not adjust
   them merely to make the current implementation pass.
-- If a required test cannot run, report the blocker and agree with the user on
-  test setup or an alternative check before changing production code.
+- If the project has no tests or they cannot run, use the best available check,
+  such as a build, typecheck, lint, or running the code, and report which one
+  you used.
 
 ### Checks
 
@@ -81,9 +83,10 @@ authorize unrelated changes or software installation.
 ## Tooling
 
 - Use `pnpm` for Node.js package management and package execution instead of
-  `npm`/`npx`.
+  `npm`/`npx`. In existing projects, use the package manager they already use,
+  as shown by the lockfile or the `packageManager` field.
 - Use `mise` for language runtimes and toolchains such as `node`, `python`,
-  `ruby`, `go`, and `rust`.
+  `ruby`, `go`, and `rust`, not Homebrew, `nvm`, `pyenv`, or similar tools.
 - Respect existing project version configuration. Add or change runtime
   configuration only when required by the task. When introducing runtime
   version configuration, use `mise.toml`.
@@ -97,10 +100,8 @@ authorize unrelated changes or software installation.
   check official documentation or the installed project sources. When
   searching, include the name as written by the user. If verification is
   unavailable, state the limitation.
-- For project searches, use available indexed search tools before shell search.
-  Use shell search when indexed search is unavailable or files are outside the
-  index. Read known files directly. When locating files, request filenames
-  before contents.
+- For project searches, read known files directly. When locating files, request
+  filenames before contents.
 - For shell searches, exclude `*.map` and minified files unless they are the
   target. Limit total output size and line width. With `rg`, use `-l` when
   locating files and `--max-columns` when returning matching lines.
