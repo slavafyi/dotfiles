@@ -155,6 +155,12 @@ setup_codex() {
   mise trust "$source_dir/mise.toml"
   mise -C "$source_dir" dot diff "$target"
   mise -C "$source_dir" dot apply --yes "$target"
+  mkdir -p "$HOME/.codex/skills"
+  stow \
+    --verbose \
+    --dir "$source_dir" \
+    --target "$HOME/.codex/skills" \
+    --stow skills
   codex plugin marketplace upgrade
   codex app-server --strict-config --print-startup-config
   print_in_green "✓ Codex set up successfully!"
