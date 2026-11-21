@@ -1,13 +1,15 @@
 ---
 name: advisor
-description: "Seek a second opinion before a consequential decision, when repeated debugging attempts stop narrowing the cause, or when new evidence undermines the current approach. Reconsider during the task if conflicting evidence appears. Use when the advice could change the next action. Skip routine changes and directly verifiable checks."
+description: "Get guidance while forming a consequential plan, reconciling findings at an integration point, or deciding whether verification is sufficient. Also use when repeated debugging attempts stall or new evidence undermines the approach. Consult when advice could change the next action. Skip routine changes and directly verifiable checks."
 ---
 
 # Advisor
 
 Spawn one subagent in a fresh context for a focused second opinion. The executor owns the task and makes the decision.
 
-When invoked explicitly with `$advisor`, consult immediately using the question supplied or the current decision. Honor an optional leading `medium`, `high`, or `xhigh` as the effort override. For automatic use, consult as soon as initial read-only investigation identifies a consequential decision that advice could change. Reassess when new evidence invalidates a working assumption, debugging stalls, or a specific acceptance criterion remains uncertain after verification. Use one automatic consultation per task, with a second if new evidence materially changes the question.
+When invoked explicitly with `$advisor`, consult immediately using the question supplied or the current decision. Honor an optional leading `medium`, `high`, or `xhigh` as the effort override.
+
+For automatic use, consult after initial read-only investigation when advice could change the next action on a consequential decision. Consult early enough to shape the plan. Reassess when findings from separate parts of the work must be reconciled, debugging stalls, or a specific verification gap could change the rollout or completion decision. Use one consultation per consequential decision. Later decisions in the same task can each warrant a call. Revisit the same decision only when new evidence materially changes the question.
 
 Choose the advisor from the session's available subagent models. Prefer a clearly stronger model for the question, using the catalog's capability descriptions and any explicitly listed successor. Treat model names, version numbers, catalog order, and effort ceilings as insufficient evidence of capability.
 
@@ -23,4 +25,10 @@ Treat an explicit effort override as a ceiling for either route. Use the request
 
 Pass the selected model and `reasoning_effort` explicitly to the subagent tool. If no eligible consultation can run, continue from the available evidence. For a manual invocation, report the model and effort that actually ran or briefly explain why there was no separate consultation.
 
-Give the advisor the decision, relevant constraints, the strongest evidence for and against the current approach, and enough excerpts to reason independently. Ask for a recommendation, its strongest objection, and one check that could disprove it. Tell the subagent to advise from the supplied evidence without editing files, running commands, or spawning more agents. Wait for the advice before committing to the decision. Verify its claims against the available evidence and use the result to choose the next action.
+Give the advisor one decision, the relevant constraints, and the primary evidence or pointers needed to start investigating. Include relevant code, contracts, traces, or test output. When workers disagree, include the evidence behind their findings. Include counterevidence that could overturn the executor's current view.
+
+While forming a plan, ask for viable approaches, the constraint that determines the choice, and the first check that would narrow the options. When evaluating a proposed action, ask for a recommendation, its strongest objection, and one check that could disprove it.
+
+Tell the advisor it can choose and use any available tools to investigate within the task's scope and existing permissions. It can inspect the workspace, run tests or diagnostic commands, and search documentation and public community discussions. Ask it to report the evidence it gathered and any remaining uncertainty. The executor owns implementation.
+
+Wait for the advisor's completed result before committing to the decision. If a wait returns while the advisor is still running, wait again for the same agent. If the consultation fails, continue from the available evidence. Verify the advisor's claims and use the result to choose the next action.
