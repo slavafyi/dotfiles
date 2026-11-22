@@ -1,6 +1,6 @@
 ---
 name: advisor
-description: "Get guidance while forming a consequential plan, reconciling findings at an integration point, or deciding whether verification is sufficient. Also use when repeated debugging attempts stall or new evidence undermines the approach. Consult when advice could change the next action. Skip routine changes and directly verifiable checks."
+description: "Consult a subagent when comparing viable technology stacks, architectures, or migration plans, including research-only requests. Also consult when advice could change a consequential plan, reconcile conflicting findings, resolve stalled debugging, or settle whether verification is sufficient. Skip routine work and directly verifiable checks."
 ---
 
 # Advisor
