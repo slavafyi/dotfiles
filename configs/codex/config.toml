@@ -1,13 +1,13 @@
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
-model = "gpt-6-astra"
+model = "gpt-6.2-sol"
 model_reasoning_effort = "medium"
 model_verbosity = "low"
 plan_mode_reasoning_effort = "xhigh"
 web_search = "live"
 project_doc_fallback_filenames = ["CLAUDE.md"]
 project_doc_max_bytes = 524288
-service_tier = "fast"
+service_tier = "default"
 
 [agents]
 max_concurrent_threads_per_session = 3
@@ -19,7 +19,7 @@ persistence = "save-all"
 max_bytes = 5242880
 
 [tui]
-alternate_screen = "auto"
+alternate_screen = "never"
 notifications = ["agent-turn-complete", "approval-requested"]
 notification_method = "auto"
 notification_condition = "unfocused"
