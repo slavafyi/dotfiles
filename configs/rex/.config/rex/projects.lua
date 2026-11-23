@@ -163,6 +163,13 @@ local function list_worktrees(dir)
       }
     end
   end
+
+  local main = worktrees[1]
+  if main and main.available then
+    local resolve = { 'git', '-C', main.path, 'rev-parse', '--show-toplevel' }
+    local resolved = rex.exec(resolve, { timeout = 5 })
+    if resolved and resolved.ok then main.path = resolved.stdout:gsub('\n$', '') end
+  end
   return worktrees
 end
 
